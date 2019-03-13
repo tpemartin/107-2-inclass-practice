@@ -25,6 +25,19 @@ c <- 17
 `107學期平均成績` <- 100
 ```
 
+
+```{r}
+class (a)
+```
+
+```{r}
+a2 <- 5L
+```
+
+```{R}
+class (a2)
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
