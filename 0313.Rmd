@@ -5,7 +5,39 @@ date: "3/13/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{R}
+A <- 1
+2 -> B
 ```
 
+```{r}
+c=10+A
+c
+```
+
+```{r}
+D=A+B-c
+D
+```
+```{r warning=FALSE}
+price=40
+number=10
+total=price*number
+```
+```{r}
+class(price)
+```
+```{r}
+A<-5
+```
+###重複命名相同var 會被新的取代
+
+```{r}
+aVector<-c(5,6,7)
+a2Vector<-c(5L,6L,7L)
+```
+```{r}
+a2<-5L
+class(a2)
+```
