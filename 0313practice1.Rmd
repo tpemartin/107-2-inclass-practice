@@ -21,3 +21,13 @@ The preview shows you a rendered HTML copy of the contents of the editor. Conseq
 **Hi**
 LOL
 
+```{r}
+plot(stars)
+```
+
+```{r}
+a <- 9
+93 -> b
+a+b -> x
+```
+
