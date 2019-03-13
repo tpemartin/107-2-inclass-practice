@@ -7,6 +7,20 @@ output: html_document
 
 good
 
+```{r}
+a <- 2
+3 -> b
+```
+
+```{r}
+65 + b
+```
+
+```{r}
+c <- 17
+65 + b + c
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
