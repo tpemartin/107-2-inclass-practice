@@ -17,6 +17,29 @@ When you save the notebook, an HTML file containing the code and output will be 
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
-```{cool}
-coolcool
+```{r}
+`a` <- 2
+3 -> `b`
+`a`+`b`->`x`
 ```
+
+```{r}
+`x`*100
+```
+
+```{r}
+`107grades`<-90 
+```
+
+```{r}
+`a`<-50
+`a2`<-50L
+```
+
+`avector`<-(10,30,50)
+`a2vector<-(10,30,50)
+```{r}
+`avector`<-c(10,20,30)
+`a2vector`<-c(10,20,30)
+```
+
