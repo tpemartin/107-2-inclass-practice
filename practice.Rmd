@@ -7,3 +7,28 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+a <- 2
+3 -> b
+```
+
+```{r}
+65+b
+a
+```
+
+```{r}
+`107上學期我的平均成績` <- 92
+我的107上學期平均成績 <- 92
+```
+
+```{r}
+class(a)
+a<-5
+a2<-5L
+```
+
+```{r}
+idiot <- "劉宥鑫"
+```
+
