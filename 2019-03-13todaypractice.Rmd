@@ -77,3 +77,8 @@ class(aVector)
 class(a2Vector)
 ```
 
+```{r}
+5*a 
+```
+
+
