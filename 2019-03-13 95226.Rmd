@@ -9,3 +9,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+a <- 2
+a2<-5L
+```
+
+```{r}
+5 -> b
+```
+
+```{r}
+`神魔之塔` <- 85
+```
+
+
+```{r}
+class(a)
+class(a2)
+```
