@@ -30,4 +30,34 @@ studentMajors <- factor(
 ```{r}
 studentMajors
 ```
+```{r}
+studentMajors0 <- 
+  c("經濟系", "經濟系", "法律系")
+
+```
+
+```{r}
+studentMajors
+```
+```{r}
+aLogical <- c(T,TRUE,F,FALSE,FALSE)
+class(aLogical)
+```
+```{r}
+typeof(studentMajors)
+```
+
+```{r}
+typeof(studentMajors0)
+```
+
+```{r}
+hometown <- factor(
+  c("台中","台北","台北","台中","台北")
+)
+typeof(hometown)
+levels(hometown)
+class(hometown)
+as.integer(hometown)
+```
 
