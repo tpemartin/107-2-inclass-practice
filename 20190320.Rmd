@@ -36,7 +36,31 @@ dialogue <-
 
 cat(dialogue, sep="\n")
 ```
+```{r}
+aLogical <- c(T,TRUE,F,FALSE,FALSE)
+class(aLogical)
+```
+```{r}
+# 加總向量內的所有元素值。
+sum(aLogical)
+```
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+```
 
+```{r}
+studentMajors0 <- 
+  c("經濟系", "經濟系", "法律系")
 
+```
 
+```{r}
+class(studentMajors)
+```
+
+```{r}
+class(studentMajors0)
+```
 
