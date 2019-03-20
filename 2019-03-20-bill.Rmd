@@ -43,4 +43,19 @@ class(dtObject)
 ```{r}
 dtObject
 ```
+```{r}
+as.integer(dtObject)
+```
+
+```{r}
+typeof(dtObject)
+```
+```{r}
+as.double(dtObject)
+```
+
+```{r}
+Sys.timezone()
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
 
