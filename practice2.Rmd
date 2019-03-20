@@ -39,15 +39,26 @@ studentMajors <- factor(
 
 studentMajors0 <- c("經濟系", "經濟系", "法律系")
 
-levels(studentMajors)
 
-studentMajors
-
-as.integer(studentMajors)
+birthplaces <- factor(c("雲林縣","古坑鄉","高林村"))
+class(birthplaces)
+levels(birthplaces)
+as.integer(birthplaces)
 ```
-
 ```{r}
 library(lubridate)
+
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+
+class(dtObject)
+
+dtObject
 ```
+
 
 
