@@ -72,4 +72,11 @@ dtObjectVector<-ymd_hms(
     "1980-02-11 11:25:22")
 )
 ```
+```{r}
+class(dtObject)
+```
+
+```{r}
+dtObject
+```
 
