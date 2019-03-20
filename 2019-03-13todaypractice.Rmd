@@ -78,7 +78,13 @@ class(a2Vector)
 ```
 
 ```{r}
-5*a 
+5
 ```
 
+```{r}
+dialogue <- c("小明說：'明天不用上課。'",
+               "小花說：'真的嗎？'")
+
+cat(dialogue, sep="\n")
+```
 
