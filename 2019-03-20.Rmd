@@ -79,4 +79,10 @@ class(dtObject)
 ```{r}
 dtObject
 ```
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+```{r}
+as.double(dtObject)
+```
 
