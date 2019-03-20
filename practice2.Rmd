@@ -9,3 +9,45 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+b<-"你好"
+bVector<-c("你好","How are you?")
+dialogue <- c('小明說："明天不用上課。"',
+               '小花說："真的嗎？"')
+
+cat(dialogue, sep="\n")
+## 小明說："明天不用上課。"
+## 小花說："真的嗎？"
+```
+
+# factor
+
+```{r}
+aLogical <- c(T,TRUE,F,FALSE,FALSE)
+class(aLogical)
+```
+
+```{r}
+# 加總向量內的所有元素值。
+sum(aLogical)
+```
+
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+
+studentMajors0 <- c("經濟系", "經濟系", "法律系")
+
+levels(studentMajors)
+
+studentMajors
+
+as.integer(studentMajors)
+```
+
+```{r}
+library(lubridate)
+```
+
+
