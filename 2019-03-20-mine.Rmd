@@ -120,6 +120,11 @@ class(dtObject)
 dtObject
 ```
 
+```{r}
+typeof(dtObject)
+as.double(dtObject)
+as.integer(dtObject)
+```
 
 
 
