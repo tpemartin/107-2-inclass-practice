@@ -9,3 +9,54 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+dialogue <- c("小明說：'明天不用上課。'",
+               "小花說：'真的嗎？'")
+
+cat(dialogue, sep="\n")
+```
+```{r}
+aLogical <- c(T,TRUE,F,FALSE,FALSE)
+class(aLogical)
+```
+```{r}
+sum(aLogical)
+```
+```{r}
+bLogical <- c(T,T,T,F)
+class(bLogical)
+```
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+```
+```{r}
+studentMajors
+```
+
+```{r}
+as.integer(studentMajors)
+```
+
+```{r}
+typeof(studentMajors)
+```
+
+```{r}
+studentMajors0 <- c("經濟系", "經濟系", "法律系")
+```
+```{r}
+typeof(studentMajors0)
+```
+
+```{r}
+born <- factor(c ("台北","台北","台中","台中","台中"))
+```
+
+```{r}
+born <- factor(c ("台北","台北","台中","台中","台中"))
+levels(born)
+as.integer(born)
+class(born)
+```
