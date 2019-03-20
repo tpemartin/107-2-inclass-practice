@@ -91,12 +91,34 @@ trueInteger <- as.integer(stringInteger)
 class(trueInteger) # 可以進行數值運算
 ```
 
+```{r}
+# 加總向量內的所有元素值。
+sum(trueInteger)
+```
+
+```{r}
+library(lubridate)
+```
+
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+```
 
 
+```{r}
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+```
 
+```{r}
+class(dtObject)
+```
 
-
-
+```{r}
+dtObject
+```
 
 
 
