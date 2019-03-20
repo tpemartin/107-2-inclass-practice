@@ -64,3 +64,30 @@ class(studentMajors)
 class(studentMajors0)
 ```
 
+```{r}
+studentMajors
+```
+
+```{r}
+typeof(studentMajors)
+```
+
+```{r}
+birthplace <- factor(
+  c("台北市","台北市","台中市","台北市","台中市")
+)
+class(birthplace)
+levels(birthplace)
+as.integer(birthplace)
+
+```
+
+```{r}
+birthplace <- factor(
+  c("台北市","台中市","新竹市","台北市","新竹市")
+)
+class(birthplace)
+levels(birthplace)
+as.integer(birthplace)
+```
+
