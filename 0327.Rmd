@@ -28,3 +28,156 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library(lubridate)
+```
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+```
+
+```{r}
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+```
+
+```{r}
+class(dtObject)
+```
+
+```{r}
+Sys.timezone(+2503+12130)
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime <- mdy_hms("3/14/2019 8:18:47", tz="Asia/Taipei")
+twDateTime
+```
+
+```{r}
+practicedate <- mdy("'March'-11-2019")
+practicedate
+```
+```{r}
+as.integer(ymd("1970-01-01"))
+as.integer(ymd("1970-01-02"))
+as.integer(ymd("2019-03-11"))
+```
+
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+```
+
+```{r}
+a+bL
+class(a+bL)
+
+aL+bL
+class(aL+bL)
+
+class(aL*bL)
+class(aL/bL)
+```
+```{r}
+a+4
+```
+```{r}
+b+5
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime 
+
+twDateTime+1
+```
+
+```{r}
+twDateTime2 <- ymd_hms("2019-03-20 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime2 - twDateTime
+```
+
+```{r}
+twDateTime3 <- ymd_hms("2019-03-21 14:04:00", tz="Asia/Taipei")
+```
+```{r}
+twDateTime3 - twDateTime
+```
+```{r}
+startingDate <- ymd("2000-02-17")
+```
+
+```{r}
+startingDate + years(1)
+```
+
+```{r}
+startingDate + dyears(1)
+```
+```{r}
+x <- 5
+y <- 7
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+```
+
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+```
+
+```{r}
+x4 <- c(1,5,8)
+y4 <- c(5,8)
+
+x4 %in% y4
+```
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+y5 <- c("台北市","新北市")
+
+x5 %in% y5
+```
+```{r}
+x <- 5
+y <- 7
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+
+x == y
+x <= y
+x != y
+x < y
+
+x2 == y2
+x2 >= y2
+x2 != y2
+x2 <= y2
+
+x3 == y3
+x3 != y3
+```
+
+```{r}
+x2
+y2
+x2 == y2
+```
+
