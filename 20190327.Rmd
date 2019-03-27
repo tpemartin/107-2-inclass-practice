@@ -93,7 +93,23 @@ bL <- c(-2L, -4L, 8L)
 a+bL
 class(a+bL)
 
+a-bL
+class(a-bL)
+
 aL+bL
 class(aL+bL)
+
+aL-bL
+class(aL-bL)
+```
+
+```{r}
+twDateTime+1
+```
+time+1=+1second
+
+```{r}
+twDateTime-OsloDateTime
+class(twDateTime-OsloDateTime)
 ```
 
