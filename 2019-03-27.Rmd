@@ -1,0 +1,148 @@
+---
+title: '20190327'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+library(lubridate)
+```
+
+library(lubridate)
+
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+```
+
+```{r}
+class(dtObject)
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+```
+
+```{r}
+nowtwDateTime <- ymd_hms("2019-03-27 15:32:00", tz="Asia/Taipei")
+nowtwDateTime
+nowTokyoDateTime <- with_tz(nowtwDateTime,tzone="Asia/Tokyo")
+nowTokyoDateTime
+```
+
+```{r}
+twDateTime<-ymd_hms("2019-03-27 15:32:10", tz="Asia/Taipei")
+OsloDateTime<-with_tz(twDateTime, tzone="Europe/Oslo")
+```
+
+```{r}
+typeof(twDateTime)
+as.double(twDateTime)
+as.double(OsloDateTime)
+```
+
+```{r}
+typeof(LisbonDateTime)
+as.double(LisbonDateTime)
+as.double(twDateTime)
+```
+
+```{r}
+twDateTime <- mdy_hms("03-27-2019 15:32:10")
+```
+
+```{r}
+as.integer(ymd("1970-01-01"))
+as.integer(ymd("1970-01-02"))
+as.integer(ymd("2019-03-16"))
+```
+
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+a+b
+a-b
+```
+
+```{r}
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+
+a+bL
+class(a+bL)
+
+a-bL
+class(a-bL)
+
+aL+bL
+class(aL+bL)
+
+aL-bL
+class(aL-bL)
+```
+
+```{r}
+twDateTime+1
+```
+time+1=+1second
+
+```{r}
+twDateTime-OsloDateTime
+class(twDateTime-OsloDateTime)
+```
+
+```{r}
+startingDate <- ymd("2000-02-17")
+startingDate + years(1)
+startingDate + dyears(1)
+```
+
+```{r}
+x <- 5
+y <- 7
+```
+
+```{r}
+x >= y
+x == y
+x <= y
+
+```
+
+```{r}
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+
+x2 == y2
+x2 >= y2
+x2 != y2
+x2 <= y2
+
+x3 == y3
+x3 != y3
+```
+
