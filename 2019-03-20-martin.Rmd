@@ -136,9 +136,23 @@ dtObject<-ymd_hms(c("2017-03-20 12:30:57","2019-03-20 16:47:59"))
 as.double(dtObject)
 ```
 
+```{r}
+Sys.timezone()
+```
+
+```{r}
+library(lubridate)
+```
 
 
+```{r}
+twDateTime<-ymd_hms("2019-03-27 15:32:10", tz="Asia/Taipei")
+```
 
+
+```{r}
+OsloDateTime<-with_tz(twDateTime, tzone="Europe/Oslo")
+```
 
 
 
