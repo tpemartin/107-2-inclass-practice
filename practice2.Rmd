@@ -71,3 +71,32 @@ LisbonDateTime
 
 ```
 
+```{r}
+typeof(twDateTime)
+as.double(twDateTime)
+as.double(LisbonDateTime)
+as.integer(twDateTime)
+```
+```{r}
+now <- mdy_hms("03-27-2019 15:49:38")
+
+now
+```
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+
+a+b
+aL+bL
+a+bL
+
+a/4
+a+1
+a*2
+a%%5
+```
+
+
+
