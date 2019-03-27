@@ -79,3 +79,21 @@ as.integer(ymd("1970-01-02"))
 as.integer(ymd("2019-03-16"))
 ```
 
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+a+b
+a-b
+```
+
+```{r}
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+
+a+bL
+class(a+bL)
+
+aL+bL
+class(aL+bL)
+```
+
