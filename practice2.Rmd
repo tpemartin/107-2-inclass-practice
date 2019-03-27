@@ -71,6 +71,7 @@ LisbonDateTime
 
 ```
 
+
 ```{r}
 typeof(twDateTime)
 as.double(twDateTime)
@@ -96,7 +97,13 @@ a/4
 a+1
 a*2
 a%%5
+a**b
 ```
+```{r}
+twDateTime
+twDateTime+999
+```
+
 
 
 
