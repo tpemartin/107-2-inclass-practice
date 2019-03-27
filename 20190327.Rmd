@@ -52,3 +52,24 @@ nowTokyoDateTime <- with_tz(nowtwDateTime,tzone="Asia/Tokyo")
 nowTokyoDateTime
 ```
 
+```{r}
+twDateTime<-ymd_hms("2019-03-27 15:32:10", tz="Asia/Taipei")
+OsloDateTime<-with_tz(twDateTime, tzone="Europe/Oslo")
+```
+
+```{r}
+typeof(twDateTime)
+as.double(twDateTime)
+as.double(OsloDateTime)
+```
+
+```{r}
+typeof(LisbonDateTime)
+as.double(LisbonDateTime)
+as.double(twDateTime)
+```
+
+```{r}
+twDateTime <- mdy_hms("03-27-2019 15:32:10")
+```
+
