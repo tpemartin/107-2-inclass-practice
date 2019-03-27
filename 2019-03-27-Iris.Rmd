@@ -60,6 +60,53 @@ LisbonDateTime <- mdy_hms("3/18/2019 14:04:00")
 LisbonDateTime <- ymd("2019/3/18")
 ```
 
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+```
+
+```{r}
+a+bL
+class(a+bL)
+
+aL+bL
+class(aL+bL)
+```
+
+```{r}
+c <- 4
+
+c+a
+```
+
+```{r}
+a^b
+a %% b
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime+1
+```
+
+```{r}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
