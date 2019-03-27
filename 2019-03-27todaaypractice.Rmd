@@ -156,4 +156,9 @@ x5>y5
 is.na(x5)
 is.na(y5)
 ```
+```{r}
+sum(x5)
+sum(x5, na.rm = TRUE)
+sum(x5, na.rm = FALSE)
+```
 
