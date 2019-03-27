@@ -184,6 +184,11 @@ aL%%b
 twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
 unclass(twDateTime)
 ```
+```{r}
+tw2=ymd("2012/4/5")
+tw3=ymd("2013/3/7")
+as.integer(tw3-tw2)
+```
 
 
 ```{R}
@@ -213,4 +218,19 @@ x4 <- c(1,5,8)
 y4 <- c(5,8)
 
 x4 %in% y4
+```
+
+```{r}
+x2 <- c(1,NA,10)
+y2 <- c(-1,NA,20)
+
+x3 <- c(NA,"小花")
+y3 <- c(NA,"小華")
+is.na(x2)
+is.na(x3)
+sum(x2)
+?sum
+
+Z=sum(x2,na.rm=TRUE)
+Z
 ```
