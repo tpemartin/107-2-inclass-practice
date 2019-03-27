@@ -154,7 +154,29 @@ twDateTime<-ymd_hms("2019-03-27 15:32:10", tz="Asia/Taipei")
 OsloDateTime<-with_tz(twDateTime, tzone="Europe/Oslo")
 ```
 
+```{r}
+typeof(OsloDateTime)
+as.double(OsloDateTime)
+```
 
 
+```{r}
+twDateTime2<-ymd("2019/3/27")
+```
 
+```{r}
+twDateTime3<-mdy("March 27,2019")
+```
+
+```{r}
+KoreaDateTime<-with_tz(twDateTime3, tzone="Asia/Seoul")
+```
+
+```{r}
+as.double(KoreaDateTime)
+```
+
+```{r}
+as.integer(KoreaDateTime)
+```
 
