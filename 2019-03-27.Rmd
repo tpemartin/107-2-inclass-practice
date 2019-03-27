@@ -101,6 +101,11 @@ y3 <- c("小明","小華")
 x3==y3
 ```
 ```{r}
-is.na()
+is.na(x2)
+```
+```{r}
+sum(x2)
+sum(x2,na.rm=F)
+sum(x2,na.rm=T)
 ```
 
