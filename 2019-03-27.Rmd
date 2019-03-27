@@ -8,4 +8,68 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+library(lubridate)
+```
+
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+```
+
+```{r}
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+```
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+twDateTime
+```
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+LisbonDateTime
+```
+```{r}
+typeof(LisbonDateTime)
+as.double(LisbonDateTime)
+as.double(twDateTime)
+```
+```{r}
+as.integer(ymd("1970-01-01"))
+as.integer(ymd("1970-01-02"))
+as.integer(ymd("1970-03-11"))
+```
+```{r}
+day1<-ymd("2018-09-11")
+day1
+```
+```{r}
+day2<-mdy("march,3,2019")
+day2
+```
+```{r} 
+a <- c(1,5,-3)
+b <- c(0,5,12,2)
+```
+```{r}
+aL <- c(1L,5L,-3L)
+bL <- c(-2L,-4L,8L)
+```
+```{r}
+a+bL
+class(a+bL)
+```
+```{r}
+a^b
+a %% b
+```
 
