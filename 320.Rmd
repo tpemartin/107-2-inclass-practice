@@ -115,3 +115,102 @@ dtObject
 typeof(dtObject)
 as.double(dtObject)
 ```
+```{r}
+Sys.timezone()
+```
+```{r}
+twDateTime <-mdy_hms("3/14/2019 8:18:47", tz="Asia/Taipei")
+twDateTime
+
+```
+“3/14/2019 8:18:47”。
+```{r}
+
+
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+LisbonDateTime
+```
+```{r}
+typeof(LisbonDateTime)
+as.double(LisbonDateTime)
+```
+
+```{r}
+accraDT<-with_tz(twDateTime,tzone = "Africa/Accra")
+
+accraDT
+typeof(accraDT)
+as.double(accraDT)
+```
+```{r}
+td<-ymd("2018-09-11")
+td
+typeof(td)
+as.double(td)
+```
+```{r}
+td1<-mdy("March 4,2019")
+as.Date(td1,format=dmy)
+td1
+typeof(td1)
+as.double(td1)
+```
+```{r}
+as.Date("05 March,2012")
+
+```
+
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+```
+```{r}
+class(a+bL)
+class(b*aL)
+class(a/bL)
+
+```
+```{r}
+a+4
+```
+```{r}
+a^2
+aL%%b
+```
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+unclass(twDateTime)
+```
+
+
+```{R}
+x <- 5
+y <- 7
+
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+```
+
+```{R}
+x==y
+x>y
+x<y
+```
+```{r}
+x2>4
+x2<y2
+```
+
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+```
+```{r}
+x4 <- c(1,5,8)
+y4 <- c(5,8)
+
+x4 %in% y4
+```
