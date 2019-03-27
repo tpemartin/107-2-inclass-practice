@@ -33,8 +33,62 @@ dtObjectVector<-ymd_hms(
     "1980-02-11 11:25:22")
 )
 ```
-```{r}
-twDateTime <- ymd_hms("2019-04-01 04:01:00", tz="Asia/Taipei")
 
-USDateTime <- with_tz(twDateTime,tzone = "America/New_York")
+```{r}
+Sys.timezone(1)
 ```
+
+```{r}
+library(lubridate)
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+```
+
+```{r}
+typeof(LisbonDateTime)
+as.integer(LisbonDateTime)
+as.double(LisbonDateTime)
+```
+```{r}
+LisbonDateTime <- mdy_hms("3/18/2019 14:04:00")
+```
+
+```{r}
+LisbonDateTime <- ymd("2019/3/18")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
