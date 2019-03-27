@@ -5,7 +5,31 @@ date: "3/20/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+```
+
+```{r}
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+```
+
+```{r}
+class(dtObject)
+```
+
+```{r}
+Sys.timezone()
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
 ```
 
