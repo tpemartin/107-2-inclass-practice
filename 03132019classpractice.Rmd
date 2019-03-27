@@ -1,0 +1,38 @@
+---
+title: '03132019classpractice'
+author: "CINDY"
+date: "3/13/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+a <- 2
+3 -> b
+```
+
+```{r}
+66 + b
+```
+
+```{r}
+`我是0313練習`= 10
+```
+
+```{r}
+a<-5
+a2<-5L
+```
+
+```{r}
+class(a2)
+```
+
+```{r}
+aVector<-c(5,6,7)
+a2Vector<-c(5L,6L,7L)
+```
+
