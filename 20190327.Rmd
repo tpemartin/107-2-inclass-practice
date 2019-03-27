@@ -73,3 +73,9 @@ as.double(twDateTime)
 twDateTime <- mdy_hms("03-27-2019 15:32:10")
 ```
 
+```{r}
+as.integer(ymd("1970-01-01"))
+as.integer(ymd("1970-01-02"))
+as.integer(ymd("2019-03-16"))
+```
+
