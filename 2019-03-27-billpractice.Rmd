@@ -51,3 +51,26 @@ class(aL)
 class(aL*bL)
 ```
 
+```{r}
+c <- 4
+
+c+a
+```
+
+```{r}
+a^b
+a %% b
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime2 <- ymd_hms("2019-03-11 14:08:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime-twDateTime2
+```
+
