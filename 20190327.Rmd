@@ -45,3 +45,10 @@ twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
 LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
 ```
 
+```{r}
+nowtwDateTime <- ymd_hms("2019-03-27 15:32:00", tz="Asia/Taipei")
+nowtwDateTime
+nowTokyoDateTime <- with_tz(nowtwDateTime,tzone="Asia/Tokyo")
+nowTokyoDateTime
+```
+
