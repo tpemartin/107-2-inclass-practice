@@ -133,7 +133,39 @@ y6=="女"
 ```
 
 ```{r}
+x6
+y6
+```
+
+
+```{r}
+(x6 %in% greatTaipei) | (y6=="女")
+
+# 或
+```
+
+>圈圈是要圈出"Retional Operation" 為真的元素在物件內的位置
+
+```{r}
+x6 %in% greatTaipei
+y6=="女"
+(x6 %in% greatTaipei) & (y6=="女") #同時(&)來自 greatTaipei 又是女性
+```
+
+# which為向量中第幾筆元素為TRUE
+
+
+```{r}
+which((x6 %in% greatTaipei) & (y6=="女"))
+```
+
+```{r}
+x6 %in% greatTaipei
+y6=="女"
 (x6 %in% greatTaipei) | (y6=="女")
 ```
 
->圈圈是要圈出Retional Operation 為真
+```{r}
+which((x6 %in% greatTaipei) | (y6=="女"))
+```
+
