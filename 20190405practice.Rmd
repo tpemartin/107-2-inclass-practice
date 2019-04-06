@@ -111,3 +111,29 @@ levels(currency)
 sum(currency == "日圓JPY/USD")
 ```
 
+# 5.4 logical operators
+
+```{r}
+x6 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+
+x6 %in% greatTaipei
+!(x6 %in% greatTaipei)
+```
+
+```{r}
+y6 <- c("女","男","女")
+
+y6=="女"
+!(y6=="女")
+```
+
+```{r}
+(x6 %in% greatTaipei) & (y6=="女")
+```
+
+```{r}
+(x6 %in% greatTaipei) | (y6=="女")
+```
+
+>圈圈是要圈出Retional Operation 為真
