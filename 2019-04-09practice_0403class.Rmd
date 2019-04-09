@@ -27,6 +27,8 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
+
+
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 ```{r}
 x3 <- c("小明","小花")
@@ -47,5 +49,24 @@ x3 == y3
 library(readr)
 exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
 currency <- exData2$"幣別"
+```
+```{r}
+head(currency)
+```
+
+```{r}
+class(currency)
+```
+
+```{r}
+currency <- as.factor(currency)
+class(currency)
+```
+
+```{r}
+levels(currency)
+```
+```{r}
+length(levels(currency))
 ```
 
