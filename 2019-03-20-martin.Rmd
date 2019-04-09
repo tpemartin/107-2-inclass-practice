@@ -1,7 +1,7 @@
 ---
 title: '2019-03-20'
 author: ""
-date: "3/20/2019"
+date: "04/03/2019"
 output: html_document
 ---
 
@@ -242,6 +242,7 @@ aa<-c(6,NA,9)
 bb<-c(7,8,9)
 ```
 
+aa集合是否屬於bb (%in%)
 ```{r}
 aa%in%bb
 aa!=bb
@@ -252,8 +253,70 @@ is.na(aa)
 ```
 
 ```{r}
-
+X1 <- c("阿美","阿森")
+Y1 <- c("阿美","阿彬")
 ```
+
+```{r}
+X1 == Y1
+X1 != Y1
+```
+
+! negation (邏輯上反向操作)
+```{r}
+X1 == Y1
+!(X1 == Y1)
+```
+
+```{r}
+library(readr)
+```
+
+
+
+
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$ 幣別
+```
+
+head 會顯示物件前六個元素值
+```{r}
+head(currency)
+```
+
+```{r}
+class(currency)
+```
+
+左邊為新物件        右邊為舊物件
+```{r}
+currency <- as.factor(currency)
+```
+
+
+```{r}
+levels(currency)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
