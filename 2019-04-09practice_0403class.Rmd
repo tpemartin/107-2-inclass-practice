@@ -166,3 +166,24 @@ iseuro <- currency == "歐元USD/EUR"
 sum(iseuro)
 ```
 
+```{r}
+isExchangeRateNA <-
+  is.na(exchangeRate)
+sum(isExchangeRateNA)
+```
+
+```{r}
+is.na(exchangeRate)
+```
+```{r}
+isnotna <- !is.na(exchangeRate)
+iseuro <- currency == "歐元USD/EUR"
+```
+```{r}
+sum((isnotna)&(iseuro))
+```
+
+
+練習2
+
+
