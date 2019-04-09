@@ -1,0 +1,141 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+x <- 5
+y <- 7
+
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+```
+
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+
+x3 == y3
+x3 != y3
+!(x3 == y3)
+```
+
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+y5 <- c("台北市","新北市")
+
+x5 %in% y5
+```
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$幣別
+```
+
+```{r}
+currency
+head(currency)
+levels(currency)
+```
+
+```{r}
+currency <- as.factor(currency)
+class(currency)
+levels(currency)
+length(levels(currency))
+```
+
+```{r}
+sum(currency=="日圓JPY/USD")
+```
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+
+x5 %in% greatTaipei
+!(x5 %in% greatTaipei)
+```
+
+```{r}
+y5 <- c("女","男","女")
+
+y5
+y5=="女"
+!(y5=="女")
+```
+```{r}
+(x5 %in% greatTaipei) & (y5=="女")
+(x5 %in% greatTaipei) | (y5=="女")
+(x5 %in% greatTaipei) &! (y5=="女")
+```
+
+```{r}
+which(y5=="女")
+```
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$期間)
+currency <- exData2$幣別
+exchangeRate <- exData2$匯率
+```
+
+```{r}
+library(lubridate)
+date <- ymd(date)
+class(date)
+```
+
+```{r}
+isAfter19800801 <- date >= ymd("1980-08-01")
+sum(isAfter19800801)
+```
+
+```{r}
+isEURO <- currency == "歐元USD/EUR"
+sum(isEURO)
+```
+
+```{r}
+IS <- is.na(exchangeRate)
+sum(IS)
+```
+
+```{r}
+IS2 <- currency == "歐元USD/EUR" &! is.na(exchangeRate)
+sum(IS2)
+```
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+major <- transcriptDataFinal$學系
+studentID <- transcriptDataFinal$學號
+grade <- transcriptDataFinal$學期成績
+```
+
+```{r}
+sum(major == "經濟學系")
+sum(studentID == "5bdS6977b")
+
+someone <- studentID == "5bdS6977b" & grade >= 60
+sum(someone)
+
+fq <- major == "經濟學系" & courseType == "選"
+sum(fq)
+
+fq2 <- major == "經濟學系" & courseType == "必" & grade < 60
+sum(fq2)
+
+fq3 <- major == "經濟學系" & courseType == "必"
+sum(fq3)
+
+sum(fq2)/sum(fq3)
+```
+
