@@ -185,5 +185,51 @@ sum((isnotna)&(iseuro))
 
 
 練習2
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+major <- transcriptDataFinal$"學系"
+studentID <- transcriptDataFinal$"學號"
+grade <- transcriptDataFinal$"學期成績"
+```
+```{r}
+class(major)
+```
+第一題
+```{r}
+major <- as.factor(major)
+class(major)
+```
+```{r}
+sum(major == "經濟學系")
+```
+第二題
+```{r}
+sum(studentID == "5bdS6977b")
+```
+第三題
+```{r}
+sum((studentID == "5bdS6977b")&(grade >= 60))
+```
+
+第四題
+```{r}
+sum((major == "經濟學系")&(courseType == "選"))
+```
+第五題
+```{r}
+sum(major == "經濟學系"&courseType == "必")
+both1 <- sum(major == "經濟學系"&courseType == "必")
+
+```
+```{r}
+sum((major == "經濟學系"&courseType == "必")&(grade < 60))
+both2 <- sum((major == "經濟學系"&courseType == "必")&(grade < 60))
+```
+```{r}
+both2/both1
+```
+
 
 
