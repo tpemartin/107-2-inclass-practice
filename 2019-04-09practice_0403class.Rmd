@@ -43,4 +43,9 @@ x3 == y3
 x3 == y3
 ```
 
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$"幣別"
+```
 
