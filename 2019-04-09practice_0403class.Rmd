@@ -58,6 +58,7 @@ head(currency)
 class(currency)
 ```
 
+
 ```{r}
 currency <- as.factor(currency)
 class(currency)
@@ -69,4 +70,23 @@ levels(currency)
 ```{r}
 length(levels(currency))
 ```
+```{r}
+step1_extractLevelsVector <- levels(currency)
+step1_extractLevelsVector
+
+```
+```{r}
+step2_countVectorLenrth <-
+  length(step1_extractLevelsVector)
+step2_countVectorLenrth
+```
+
+```{r}
+head(currency)
+```
+
+```{r}
+sum(currency == "日圓JPY/USD")
+```
+
 
