@@ -70,4 +70,13 @@ class(LisbonDateTime)
 ```{r}
 class(RomeDateTime)
 ```
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+typeof(studentMajors)
+levels(studentMajors)
+studentMajors
+as.integer(studentMajors)
+```
 
