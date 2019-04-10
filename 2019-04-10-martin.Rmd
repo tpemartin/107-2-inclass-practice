@@ -109,5 +109,17 @@ bwithnames<-c(
   b10=10
 )
 bwithnames
+typeof(bwithnames)
+```
+
+```{r}
+b1<-list("a","b",c(1:10))
+typeof(b1)
+b2<-list(
+  第一個="a",
+  第二個="b",
+  第三個=c(1:10))#定義
+b1
+b2
 ```
 
