@@ -38,4 +38,42 @@ year
 major <- str_sub(studentID,5,6)
 major
 ```
+str_c 是把字串起來
+```{r}
+month <- c("3","4","2")
+day <- c("11","5","7")
+char1 <- c("月","月","月")
+char2 <- c("日","日","日")
+month
+char1
+day 
+char2
+str_c(month,char1,day,char2)
+```
+也可以只打一個向量
+```{r}
+str_c(month,c("月"),day,c("日"))
+```
+也可以單打一個字
+```{r}
+str_c(month,"月",day,"日")
+```
+sep="-" 是分隔符號的意思
+```{r}
+month
+day
+str_c(month,day, sep="-")
+```
+
+```{r}
+pp <- c("^","-","=")
+qq <- c("-","-","=")
+pp
+qq
+str_c(pp,qq,sep = "_")
+```
+
+```{r}
+
+```
 
