@@ -9,3 +9,71 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(stringr)
+```
+
+```{r}
+course <- c("個體經濟學","投資學","總體經濟學")
+course
+str_subset(course,"經濟學")
+```
+```{r}
+course
+str_detect(course,"經濟學")
+```
+```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+studentID
+str_sub(studentID,5,6)
+
+```
+
+```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+year <- str_sub(studentID,2,4)
+year
+```
+
+```{r}
+month <- c("3","4","2")
+day <- c("11","5","7")
+char1 <- c("月","月","月")
+char2 <- c("日","日","日")
+month
+char1
+day 
+char2
+str_c(month,char1,day,char2)
+```
+```{r}
+str_c(month,"月",day,"日")
+```
+```{r}
+month
+day
+str_c(month,day, sep="-")
+```
+```{r}
+dates <- c("3-11", "4-5",  "2-7")
+str_split(dates,"-")
+dates
+str_replace(dates,"-","月")
+```
+
+```{r}
+dates2 <- c("3-11-2019", "4-5-2017",  "2-7-2015")
+dates2
+str_replace(dates2,"-","/")
+str_replace_all(dates2,"-","/")
+```
+
+```{r}
+library(readr)
+githubData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/githubData.csv")
+username <- githubData$`GitHub username`[11:16]
+reponame <- githubData$`GitHub repo name`[11:16]
+```
+
