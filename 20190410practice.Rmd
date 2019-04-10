@@ -27,4 +27,39 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+```{r}
+library(stringr)
+```
+
+```{r}
+course <- c("個體經濟學","投資學","總體經濟學")
+str_which(course,"經濟學")
+```
+
+兩組資料合併str_c
+```{r}
+month <- c("3","4","2")
+day <- c("11","5","7")
+str_c(month,day)
+str_c(month,c("月"),day,c("日"))
+str_c(month,"月",day,"日")
+```
+
+```{r}
+month
+day
+str_c(month,day, sep="-")
+```
+
+
+str_sub 查找限定字串(2,4=找字串中第二到四個字元)
+```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+
+majorsubject <-str_sub(studentID,5,6)
+majorsubject
+year <- str_sub(studentID,2,4) 
+year
+```
 
