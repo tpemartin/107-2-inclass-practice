@@ -301,8 +301,40 @@ currency <- as.factor(currency)
 levels(currency)
 ```
 
+```{r}
+length(levels(currency))
+```
 
+初學者適用以下(一步一步慢慢來)
+```{r}
+step1_extractlevelsVector <- levels(currency)
+step1_extractlevelsVector
 
+step2_countVectorlength <- length(step1_extractlevelsVector)
+step2_countVectorlength
+```
+
+如何去算出一個向量裡 同一類別元素有多少個
+舉例
+```{r}
+currency2 <- c("日圓","美元","日圓")
+currency2
+```
+
+```{r}
+currency2 == "日圓"
+```
+
+邏輯裡運用T &　F 去判別數量 所以用sum()加起來就可以得知
+```{r}
+sum(currency2 == "日圓")
+```
+
+因此例題:
+
+```{r}
+sum(currency == "日圓JPY/USD")
+```
 
 
 
