@@ -1,13 +1,10 @@
 ---
 title: '2019-04-10'
-author: "??—è?‚å»·"
+author: 410473076
 date: "4/10/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 stringr
 
@@ -47,6 +44,8 @@ str_sub(studentID,2,4)
 
 
 
+
+
 join
 
 ```{r}
@@ -69,4 +68,61 @@ month
 day
 str_c(month,day, sep="/")
 ```
+
+
+
+
+
+replace
+
+```{r}
+dates <- c("3-11","5-6")
+str_replace(dates,"-","¤ë")
+```
+
+```{r}
+dates2 <- c("3-11-2019", "4-5-2017",  "2-7-2015")
+dates2
+str_replace(dates2,"-","/")
+str_replace_all(dates2,"-","/")
+```
+
+
+
+
+```{r}
+"https://github.com"
+username
+reponame
+str_c("https://github.com",username,reponame,sep="/")
+```
+
+
+½m²ß¤@
+
+```{r}
+library(readr)
+filmVotingData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/%E7%AC%AC%E4%B8%89%E5%B1%86%E7%B6%93%E6%BF%9F%E6%92%AD%E5%AE%A2%E7%AB%B6%E8%B3%BD%E5%8F%83%E8%B3%BD%E4%BD%9C%E5%93%81%E6%8A%95%E7%A5%A8%E7%B5%90%E6%9E%9C%E6%A8%A3%E6%9C%AC%20-%20Sheet1.csv")
+birthday<-filmVotingData$`¥X¥Í¦è¤¸¦~¤ë¤é¡]ÅçÃÒ¥»¤H¥Î¡^`
+birthday
+y<-str_sub(birthday,1,4)
+m<-str_sub(birthday,5,6)
+d<-str_sub(birthday,7,8)
+birthday<-str_c("¦è¤¸",y,"¦~",m,"¤ë",d,"¤é")
+birthday
+```
+
+
+½m²ß¤G
+
+
+```{r}
+year<-c("099/01","099/02","099/03")
+a<-str_sub(year,2,3)
+b<-str_sub(year,4,6)
+c<-as.integer(a)+1911
+str_c("¦è¤¸",c,"¦~",b,"¤ë")
+```
+
+
 
