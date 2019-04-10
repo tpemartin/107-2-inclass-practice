@@ -40,7 +40,35 @@ str_subset(course,"經濟學")
 str_detect(course,"經濟學")
 ```
 ```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+studentID
+major <- str_sub(studentID,5,6)
+major
+入學年 <- str_sub(studentID,2,4)
+入學年
+```
+```{r}
+month <- c("1","3","5")
+day <- c("1","5","7")
+```
 
+
+```{r}
+char1 <- c("月","月","月")
+char2 <- c("日","日","日")
+month
+char1
+day 
+char2
+str_c(month,char1,day,char2)
+```
+
+
+```{r}
+month
+day
+str_c(month,day, sep="-")
 ```
 
 
