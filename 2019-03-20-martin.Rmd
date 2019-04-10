@@ -459,15 +459,77 @@ satisfyBoth <- isNotNA & isEuro
 sum(satisfyBoth)
 ```
 
+練習1
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+major <- transcriptDataFinal$學系
+studentID <- transcriptDataFinal$學號
+grade <- transcriptDataFinal$學期成績
+```
 
 
+```{r}
+library(stringr)
+```
 
+subset表示「挑出」符合規律的項目
+```{r}
+course <- c("個體經濟學","投資學","總體經濟學")
+course
+str_subset(course,"經濟學")
+```
 
+detect表示偵測出「是否」符合規律
+```{r}
+str_detect(course,"經濟學")
+```
 
+```{r}
+name <- c("張阿花","王大花","張小樂","花同學","王大樂")
+name
+```
 
+```{r}
+str_detect(name, "花")
+str_subset(name, "樂")
+```
 
+```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+studentID
+```
 
+sub後面的是start, end的概念-> 2,4 表示取出2,3,4 ;2,6 表示取出2,3,4,5,6
+```{r}
+str_sub(studentID,2,4) ->"入學年"
+str_sub(studentID,5,6) ->"系別"
+```
 
+str_c 把向量按順序組合起來
+```{r}
+month <- c("2","4","10")
+day <- c("28","11","10")
+char1 <- c("月","月","月")
+char2 <- c("日","日","日")
+str_c(month,char1,day,char2)
+```
 
+作法二(懶人法)
+加括號
+不加括號
+
+```{r}
+str_c(month,c("月"),day,c("日"))
+str_c(month,"月",day,"日")
+```
+
+也可以自定義分隔方式
+```{r}
+str_c(month,day, sep = "-")
+```
 
 
