@@ -77,22 +77,35 @@ head(submitTime)
 ### 2.1
 請將submitTime轉成電腦看得懂的date time並存回相同答案物件submitTime。(原資料來自Google表單，所以是內定的UTC時區)
 ```{r ans21}
+class(submitTime)
+
+library(lubridate)
+submitTime <- mdy_hms(submitTime)
+class(submitTime)
+submitTime
 ```
 
 ### 2.2
 請將submitTime轉成台灣時區，並存在答案物件twTime。
 ```{r ans22}
+Sys.timezone()
+twTime <- ymd_hms(submitTime, tz="Asia/Taipei")
+twTime
 ```
 
 ### 2.3
 使用`hour(twTime)`取出twTime的小時值。創造出一個logical class答案物件nightOwl，為TRUE若twTime中的投票時間在半夜1點到早上6點間（包含1與6。
 
 ```{r ans23}
+hour(twTime)
+nightOwl <- hour(twTime) == (1|2|3|4|5|6)
+nightOwl
 ```
 
 ### 2.4
 承上題，在上題半夜間投票的學生佔總投票人數的比何為多少？（存在答案物件nightOwlVoteShare）（hint: `length()`可以計算向量的元素個數）
 ```{r ans24}
+
 ```
 
 ## 3
