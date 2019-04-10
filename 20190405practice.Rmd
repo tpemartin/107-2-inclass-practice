@@ -169,3 +169,55 @@ y6=="女"
 which((x6 %in% greatTaipei) | (y6=="女"))
 ```
 
+```{r}
+x6 %in% greatTaipei
+y6=="女"
+xor(x6 %in% greatTaipei, y6=="女")
+```
+
+```{r}
+which(xor(x6 %in% greatTaipei, y6=="女"))
+```
+
+>綜合練習
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$期間)
+currency <- exData2$幣別
+exchangeRate <- exData2$匯率
+```
+
+請把date的class存成date class。
+
+```{r}
+class(date)
+```
+
+```{r}
+head(date)
+```
+
+```{r}
+library(lubridate)
+date <- ymd(date)
+```
+
+```{r}
+class(date)
+```
+
+1980-08-01之後的資料有多少筆。
+```{r}
+isAfter19800801 <-
+  date >= ymd("1980-08-01")
+isAfter19800801
+```
+
+```{r}
+head(as.integer(date))
+as.integer(ymd("1980-08-01"))
+head(date >= ymd("1980-08-01"))
+```
+
