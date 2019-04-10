@@ -105,7 +105,10 @@ nightOwl
 ### 2.4
 承上題，在上題半夜間投票的學生佔總投票人數的比何為多少？（存在答案物件nightOwlVoteShare）（hint: `length()`可以計算向量的元素個數）
 ```{r ans24}
-
+sum(nightOwl)
+length(submitTime)
+nightOwlVoteShare <- sum(nightOwl)/length(submitTime)
+nightOwlVoteShare 
 ```
 
 ## 3
