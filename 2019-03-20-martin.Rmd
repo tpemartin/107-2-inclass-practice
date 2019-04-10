@@ -471,6 +471,13 @@ grade <- transcriptDataFinal$學期成績
 ```
 
 
+
+
+
+
+
+0410課程內容
+
 ```{r}
 library(stringr)
 ```
@@ -531,5 +538,103 @@ str_c(month,"月",day,"日")
 ```{r}
 str_c(month,day, sep = "-")
 ```
+
+str_split 表示分割
+```{r}
+date1 <- c("2-28","4-11","10-10")
+date1
+str_split(date1,"-")
+```
+
+str_replace 表替代
+```{r}
+date1
+str_replace(date1,"-","/")
+str_replace_all(date1,"-","/")
+```
+
+
+練習把username & reponame合併成一個網址
+```{r}
+library(readr)
+githubData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/githubData.csv")
+username <- githubData$`GitHub username`[11:16]
+reponame <- githubData$`GitHub repo name`[11:16]
+```
+
+善用sep = 合併資訊
+```{r}
+username
+reponame
+str_c("https://Github.com","username","reponame",sep = "/")
+```
+
+
+
+練習1
+
+```{r}
+library(readr)
+filmVotingData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/%E7%AC%AC%E4%B8%89%E5%B1%86%E7%B6%93%E6%BF%9F%E6%92%AD%E5%AE%A2%E7%AB%B6%E8%B3%BD%E5%8F%83%E8%B3%BD%E4%BD%9C%E5%93%81%E6%8A%95%E7%A5%A8%E7%B5%90%E6%9E%9C%E6%A8%A3%E6%9C%AC%20-%20Sheet1.csv")
+birthday<-filmVotingData$`出生西元年月日（驗證本人用）`
+```
+ 
+Ans:
+```{r}
+birthday
+```
+
+```{r}
+a<-str_sub(birthday,1,4)
+b<-str_sub(birthday,5,6)
+c<-str_sub(birthday,7,8)
+str_c("西元",a,"年",b,"月",c,"日")
+```
+
+
+
+練習2
+
+讓以下民國年月變成西元制
+```{r}
+dates<-c("099/01","099/02","099/03")
+```
+
+Ans:
+以下步驟:
+(1)先抓出lubridate
+(2)把099 跟 01分別挑出來
+(3)讓099+1911 [(特別注意邏輯上:數字+數字 不可以數字+charactor) 所以先把099變成numeric]
+(4把099 01 合併起來str_c)
+```{r}
+library(lubridate)
+y<-str_sub(dates,1,3)
+m<-str_sub(dates,5,6)
+y<-as.numeric(y)
+y2<-y+1911
+y2<-as.character(y2)
+y2
+m
+str_c("西元",y2,"年",m,"月")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
