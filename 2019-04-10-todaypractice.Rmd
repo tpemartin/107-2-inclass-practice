@@ -132,12 +132,11 @@ str_c(year02,month01,sep = "/")
 
 ```
 ```{r}
-y <- str_sub(民國年月,2,3)
-m <- str_sub(民國年月,4,5)
-y<- as.integer(y)
-m<- as.integer(m)
-str_c(y+1911,m,sep = "/")
-ans <- as.character(str_c(y+1911,m,sep = "/"))
-ans
+民國年月<-c("099/01","099/02","099/03")
+y<- str_sub(民國年月,2,3)
+m<- str_sub(民國年月,5,6)
+y2<- as.integer(y)
+m2<- as.integer(m)
+str_c("西元",y2+1911,"年",m2,"月")
 ```
 
