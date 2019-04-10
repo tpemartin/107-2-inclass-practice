@@ -1,5 +1,5 @@
 ---
-title: '2019-04-03'
+title: 'billpractice0403'
 author: "林茂廷"
 date: "3/31/2019"
 output: html_document
@@ -24,10 +24,14 @@ x3 != y3
 ```{r}
 x3 == y3
 !(x3 == y3)
+!(x3!=y3)
 ```
 
 ```{r}
 library(readr)
+```
+
+```{r}
 exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
 currency <- exData2$幣別
 ```
@@ -35,6 +39,10 @@ currency <- exData2$幣別
 ```{r}
 head(currency) # head 會顯示物件前六個元素值。
 ```
+```{r}
+class(currency)
+```
+
 ```{r}
 levels(currency)
 ```
@@ -88,6 +96,9 @@ currency2
 
 ```{r}
 sum(currency2 == "日元")
+```
+```{r}
+sum(x3=="小明")
 ```
 
 ```{r}
@@ -333,6 +344,11 @@ sum(
 分子/分母
 ```
 
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+```
 
 
 
