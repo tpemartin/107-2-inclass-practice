@@ -5,6 +5,7 @@ date: "3/31/2019"
 output: html_document
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -27,148 +28,71 @@ x3 == y3
 ```
 
 ```{r}
+install.packages("readr")
 library(readr)
 exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
 currency <- exData2$幣別
 ```
 
-```{r}
-head(currency) # head 會顯示物件前六個元素值。
-```
-```{r}
-levels(currency)
-```
 
 
-資料一進來並沒有被當成factor class
 ```{r}
-class(currency)
+currency
 ```
 
-更正為factor class
+
+```{r}
+head(currency)
+```
+
+
 ```{r}
 currency <- as.factor(currency)
+```
+
+
+```{r}
 class(currency)
+
 ```
 
 
 ```{r}
 levels(currency)
-```
-
-length(): 數向量內的元素個數（向量長度）
-```{r}
 length(levels(currency))
+
 ```
 
-```{r}
-step1_extractLevelsVector <- levels(currency)
-step1_extractLevelsVector
-```
-
-```{r}
-step2_countVectorLength <- length(step1_extractLevelsVector)
-```
-
-```{r}
-step2_countVectorLength
-```
-
-多少筆日元資料
 
 ```{r}
 head(currency)
-levels(currency)
+currency == ("日圓JPY/USD")
+sum(currency == ("日圓JPY/USD"))
 ```
 
-```{r}
-currency2 <- c("日元","美元","日元")
-currency2
-```
-
-```{r}
-sum(currency2 == "日元")
-```
-
-```{r}
-head(currency)
-sum(currency == "日圓JPY/USD")
-```
-
-# 5.4 Logical Operators
 
 ```{r}
 x5 <- c("台北市","新北市","高雄市")
 greatTaipei <- c("台北市","新北市")
 
-
 x5 %in% greatTaipei
-```
-
-
-
-```{r}
 !(x5 %in% greatTaipei)
-```
-
-```{r}
 y5 <- c("女","男","女")
-
-y5=="女"
-```
-
-
-
-
-
-
-
-```{r}
-!(y5=="女")
-```
-
-> 圈圏是要圏出"Relational Operation"為真的元素在物件內的「位置」
-
-```{r}
-x5 %in% greatTaipei
-y5 == "女"
-(x5 %in% greatTaipei) & (y5=="女") # 同時（&）來自於greatTaipei 又是 女 性。
-```
-
-```{r}
-which((x5 %in% greatTaipei) & (y5=="女"))
-```
-
-```{r}
-x5
 y5
-```
-
-```{r}
-(x5 %in% greatTaipei)
-(y5=="女")
+y5=="女"
+!(y5=="女")
+(x5 %in% greatTaipei) & (y5=="女")
 (x5 %in% greatTaipei) | (y5=="女")
 ```
 
 
 ```{r}
-which((x5 %in% greatTaipei) | (y5=="女"))
-```
-
-```{r}
-x5 %in% greatTaipei
-y5=="女"
+y5
+(y5 == "女")
+which(y5=="女")
 xor(x5 %in% greatTaipei, y5=="女")
 ```
 
-
-
-```{r}
-which(xor(x5 %in% greatTaipei, y5=="女"))
-```
-
-
-綜合練習
 ```{r}
 library(readr)
 exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
@@ -177,100 +101,35 @@ currency <- exData2$幣別
 exchangeRate <- exData2$匯率
 ```
 
-請把date的class存成date class
 ```{r}
 class(date)
-```
-
-```{r}
 head(date)
-```
-
-```{r}
 library(lubridate)
 date <- ymd(date)
-```
-
-```{r}
 class(date)
 ```
 
-1980-08-01之後的資料有多少筆。
-
 ```{r}
-isAfter19800801 <-
-  date >= ymd("1980-08-01")
-isAfter19800801
+date >= "1980-08-01"
+sum(date >= "1980-08-01")
 ```
 
 
-```{r}
-head(as.integer(date))
-as.integer(ymd("1980-08-01"))
-head(date >= ymd("1980-08-01"))
-```
-
-```{r}
-class(isAfter19800801)
-```
-
-```{r}
-sum(isAfter19800801)
-```
-
-
-幣別為“歐元USD/EUR”的資料有多少筆。
 ```{r}
 head(currency)
+currency == "歐元USD/EUR"
+sum(currency == "歐元USD/EUR")
 
 ```
 
 ```{r}
-head(currency == "歐元USD/EUR")
-
-isEURO <- currency == "歐元USD/EUR"
+is.na(exchangeRate)
+sum(is.na(exchangeRate))
 ```
 
 ```{r}
-sum(isEURO)
-```
-
-
-有將currency轉成factor class
-```{r}
-currency <- as.factor(currency)
-```
-
-```{r}
-isEURO <- currency == "歐元USD/EUR"
-sum(isEURO)
-```
-
-exchangeRate有多少筆NA
-```{r}
-isExchangeRateNA <-
-  is.na(exchangeRate)
-sum(isExchangeRateNA)
-```
-
-排除NA後，幣別為“歐元USD/EUR”的資料有多少筆
-
-```{r}
-isNotNA <- !is.na(exchangeRate)
-isEuro <- currency == "歐元USD/EUR"
-```
-
-
-```{r}
-satisfyBoth <- isNotNA & isEuro
-sum(satisfyBoth)
-```
-
-另一種先不存成isNotNA, isEuro的寫法
-```{r}
-satifyBoth <-
-  !is.na(exchangeRate) & currency == "歐元USD/EUR"
-sum(satisfyBoth)
+currency == "歐元USD/EUR" & !is.na(exchangeRate)
+sum(currency == "歐元USD/EUR" & !is.na(exchangeRate))
 ```
 
 
@@ -283,97 +142,158 @@ studentID <- transcriptDataFinal$學號
 grade <- transcriptDataFinal$學期成績
 ```
 
-有多少筆資料是來自經濟學系
 ```{r}
+major == "經濟學系"
 sum(major == "經濟學系")
 ```
 
-學號“5bdS6977b”同學修了多少課
 ```{r}
+studentID == "5bdS6977b"
 sum(studentID == "5bdS6977b")
 ```
 
-學號“5bdS6977b”有多少科成績及格
 ```{r}
-sum(
-  studentID == "5bdS6977b" &
-    grade >= 60
-)
+grade >= 60
+studentID == "5bdS6977b" & grade >= 60
+sum(studentID == "5bdS6977b" & grade >= 60)
 ```
 
-資料來自經濟學系學生且為選修課
-```{r}
-sum(
-  major == "經濟學系" &
-    courseType == "選"
-)
-```
-
-經濟學系學生且必修課程中，成經不及格佔多少比例
-1. 經濟學系學生且必修課程有多少筆
-```{r}
-sum(
-  major == "經濟學系" &
-    courseType == "必"
-) -> 分母
-分母
-```
-
-2. 其中成績不及格佔多少比例
-```{r}
-sum(
-  major == "經濟學系" &
-    courseType == "必" &
-    grade < 60
-) -> 分子
-分子
-```
 
 ```{r}
-分子/分母
+courseType == "選"
+sum(major == "經濟學系" & courseType == "選")
+```
+
+
+```{r}
+sum((major == "經濟學系" & courseType == "必") & grade < 60) / sum(major == "經濟學系" & courseType == "必")
 ```
 
 
 
 
+```{r}
+library(stringr)
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+str_sub(studentID, 5,6)
+str_sub(studentID, 2,4)
+```
+
+```{r}
+course <- c("個體經濟學","投資學","總體經濟學")
+str_subset(course,"經濟學")
+```
 
 
 
+```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+majorsubject<-str_sub(studentID,5,6)
+year<-str_sub(studentID,2,4)
+majorsubject
+year
+```
 
 
+```{r}
+library(readr)
+githubData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/githubData.csv")
+username <- githubData$`GitHub username`[11:16]
+reponame <- githubData$`GitHub repo name`[11:16]
+username
+```
+```{r}
+reponame
+```
+
+```{r}
+str_c("https://github.com",username,"/",reponame)
+```
+```{r}
+library(readr)
+githubData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/githubData.csv")
+username <- githubData$`GitHub username`[11:16]
+reponame <- githubData$`GitHub repo name`[11:16]
+str_c("https://github.com",username,reponame, sep="/")
+```
+
+```{r}
+library(readr)
+filmVotingData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/%E7%AC%AC%E4%B8%89%E5%B1%86%E7%B6%93%E6%BF%9F%E6%92%AD%E5%AE%A2%E7%AB%B6%E8%B3%BD%E5%8F%83%E8%B3%BD%E4%BD%9C%E5%93%81%E6%8A%95%E7%A5%A8%E7%B5%90%E6%9E%9C%E6%A8%A3%E6%9C%AC%20-%20Sheet1.csv")
+birthday<-filmVotingData$`出生西元年月日（驗證本人用）`
+
+```
+
+```{r}
+birthday
+y<-str_sub(birthday,1,4)
+m<-str_sub(birthday,5,6)
+d<-str_sub(birthday,7,8)
+bday<-str_c("西元",y,"年",m,"月",d,"日")
+bday
+```
 
 
+```{r}
+#1
+y<-str_sub(birthday,1,4)
+m<-str_sub(birthday,5,6)
+d<-str_sub(birthday,7,8)
+bday<-str_c("西元",y,"年",m,"月",d,"日")
+bday
+mm<-str_replace(bday,"年0","年")
+dd<-str_replace(mm,"月0","月")
+dd
 
+#2
+date<-c("099/01","099/02","099/03")
+library(lubridate)
+year<-str_sub(date,1,3)
+year<-as.numeric(year)
+ys<-years(year+1911)
+ms<-str_sub(date,5,6)
+dates<-str_c(str_sub(ys,1,4),m,sep="/")
+dates
+```
 
+```{r}
+民國年月<-c("099/01","099/02","099/03")
+my <- str_sub(民國年月,2,3)
+my
+my <-as.numeric(my)
+mm <- str_sub(民國年月,5,6)
+mm
+y <-as.numeric(y)
+y <-my+1911
+str_c("西元",y,"年",mm,"月")
+str_c
+_
 
+```
 
+```{r}
+str_split(民國年月,"/")
+year <- str_sub(民國年月,1,3)
+month <- str_sub(民國年月,5,6)
+year2 <- as.integer(year)+1911
+year2
+str_c(year2,"/",month)
+```
 
+```{r}
 
+```
 
+```{r}
+year <-c("099/01","099/02","099/03")
+a <- str_sub(year,2,3)
+b <- str_sub(year,5,6)
+c <- as.integer(a)+1911
+str_c("西元",c,"年",b,"月")
+_
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
 

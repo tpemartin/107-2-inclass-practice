@@ -1,0 +1,34 @@
+---
+title: '2019-03-13'
+author: "林茂廷"
+date: "3/13/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+a <- 2
+a2<-5L
+```
+
+```{r}
+5 -> b
+```
+
+```{r}
+`神魔之塔` <- 85
+```
+
+
+```{r}
+class(a)
+class(a2)
+```
+
+```{r}
+aVector<-c(5,6,7)
+
+```
