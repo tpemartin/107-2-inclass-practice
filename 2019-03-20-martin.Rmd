@@ -336,23 +336,128 @@ sum(currency2 == "日圓")
 sum(currency == "日圓JPY/USD")
 ```
 
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
 
+x5%in%greatTaipei
+!(x5%in%greatTaipei)
+```
 
+```{r}
+y5 <- c("女","男","女")
+y5 == "女"
+!(y5 == "女")
+```
+圈圈是要圈出"Rational Operation"為真的元素在物件內的位置
 
+```{r}
+x5%in%greatTaipei
+y5 == "女"
+(x5%in%greatTaipei) & (y5 == "女")
+```
 
+```{r}
+which((x5%in%greatTaipei) & (y5 == "女"))
+```
 
+A|B 表示兩條件其中一個是True
+```{r}
+(x5%in%greatTaipei)
+(y5 == "女")
+(x5%in%greatTaipei) | (y5 == "女")
+```
 
+```{r}
+which((x5%in%greatTaipei) | (y5 == "女"))
+```
 
+xor表示"只滿足其中一條件者" 所以兩個都滿足不算
+```{r}
+(x5%in%greatTaipei)
+(y5 == "女")
+xor(x5%in%greatTaipei , y5 == "女")
+```
 
+```{r}
+which(xor(x5%in%greatTaipei , y5 == "女"))
+```
 
+綜合練習
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$期間)
+currency <- exData2$幣別
+exchangeRate <- exData2$匯率
+```
 
+確認
+```{r}
+class(date)
+```
 
+```{r}
+head(date)
+```
 
+先把date的calss存成date calss -> lubridate
+```{r}
+library(lubridate)
+date <- ymd(date)
+```
 
+```{r}
+class(date)
+```
 
+Q2. 第一題1980-08-01之後的資料有多少筆
 
+```{r}
+isAfter19800801 <- date >= ymd("1980-08-01")
+isAfter19800801
+```
 
+```{r}
+head(as.integer(date))
+as.integer(ymd("1980-08-01"))
+head(as.integer(date)) >= as.integer(ymd("1980-08-01"))
+```
 
+```{r}
+class(isAfter19800801)
+```
+
+```{r}
+sum(isAfter19800801)
+```
+
+Q3.幣別為"歐元USD/EUR"的資料有多少筆
+
+```{r}
+sum(currency == "歐元USD/EUR")
+```
+
+Q4. exchangeRate有多少筆NA
+```{r}
+isexchangeRateNA <- is.na(exchangeRate)
+sum(isexchangeRateNA)
+```
+
+Q5. 排除NA後 幣值為"歐元USD/EUR"的資料有多少筆
+
+```{r}
+isNotNA <- !is.na(exchangeRate)
+isEuro <- currency == "歐元USD/EUR"
+```
+
+以下兩者做法都可以
+```{r}
+sum((isNotNA) & (isEuro))
+
+satisfyBoth <- isNotNA & isEuro
+sum(satisfyBoth)
+```
 
 
 
