@@ -1,0 +1,60 @@
+---
+title: '2019-04-10'
+author: "林茂廷"
+date: "4/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+course <- c("個體經濟學","投資學","總體經濟學")
+```
+
+```{r}
+str_subset(course,"經濟學")
+```
+
+```{r}
+str_detect(course,"經濟學")
+```
+
+```{r}
+studentID<-c(
+  '410177115','410176080','410174233','410177011','410182045','410176014')
+str_sub()
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
