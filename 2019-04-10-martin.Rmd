@@ -48,4 +48,13 @@ str_c(month,char1,day,char2)
 str_c(month,c("月"),day,c("日"))
 str_c(month,"月",day,"日")
 ```
+```{r}
+library(readr)
+githubData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/githubData.csv")
+username <- githubData$`GitHub username`[11:16]
+reponame <- githubData$`GitHub repo name`[11:16]
+```
+```{r}
+str_c("https://github.com/",username,"/",reponame)
+```
 
