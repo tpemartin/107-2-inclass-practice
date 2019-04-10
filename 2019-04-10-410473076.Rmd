@@ -1,0 +1,31 @@
+---
+title: '2019-04-10'
+author: "??—è?‚å»·"
+date: "4/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+¤Ş¤J®M¥ó
+```{r}
+library(stringer)
+```
+no package
+```{r}
+install.packages("stingr")
+```
+
+
+
+```{r}
+str_subset(course,"¸gÀÙ¾Ç")
+
+```
+```{r}
+str_detect(course,"¸gÀÙ¾Ç")
+```
+
