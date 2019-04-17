@@ -49,8 +49,25 @@ studentRecord[["學年平均成績"]][[3]]
 
 ```
 
+```{r}
+plasticContainer[c("greenBox","redBox")] 
+plasticContainer[c(1,2)]
+```
 
+```{r}
+list(
+  greenBox=c("paper","scissor"),
+  redBox=c(1,3,2.5)
+)
+```
 
+```{r}
+extract1 <- plasticContainer[c("greenBox")]
+extract1[[1]][[1]]
+
+extract2 <- plasticContainer[[c("greenBox")]]
+extract2[[1]]
+```
 
 
 
