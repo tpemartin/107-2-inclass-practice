@@ -32,7 +32,22 @@ plasticContainer[[1]]
 plasticContainer[["greenBox"]][1]
 ```
 
+```{r}
+成績單 <- c(
+  個經=90,
+  總經=77,
+  統計=88
+)
 
+成績單[[1]]
+成績單[["個經"]]
+```
+
+```{r}
+studentRecord[["姓名"]]
+studentRecord[["學年平均成績"]][[3]]
+
+```
 
 
 
