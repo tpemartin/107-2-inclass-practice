@@ -221,3 +221,17 @@ as.integer(ymd("1980-08-01"))
 head(date >= ymd("1980-08-01"))
 ```
 
+```{r}
+class(isAfter19800801)
+sum(isAfter19800801)
+```
+
+
+```{r}
+Sys.getlocale()
+```
+
+```{r}
+Sys.setlocale(category = "LC_ALL", locale = "UTF-8")
+```
+
