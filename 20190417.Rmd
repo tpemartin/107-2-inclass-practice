@@ -97,6 +97,10 @@ plasticContainer <- list(
 )
 ```
 
+
+一個中[]取多個東西,[[]]取一個東西
+
+
 ```{r}
 extract1 <- plasticContainer[c("greenBox")]
 
@@ -106,6 +110,28 @@ extract1[[1]][[1]]
 extract2[[1]]
 
 extract1
-extract2
+extract2 
+```
+
+
+$=[[]]
+```{r}
+plasticContainer$greenBox
+plasticContainer[["greenBox"]]
+```
+
+```{r}
+your_github_username <- "c00093090"
+your_practice_reponame <- "107-2-inclass-practice"
+library(httr)
+library(stringr)
+str_replace_all(
+  "https://api.github.com/repos/:owner/:repo/commits",
+  c(
+    ":owner"=your_github_username,
+    ":repo"=your_practice_reponame
+    )
+  ) -> commitCheckStatement
+commitCheck <- content(GET(commitCheckStatement))
 ```
 
