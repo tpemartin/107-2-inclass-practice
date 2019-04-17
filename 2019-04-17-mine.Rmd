@@ -139,19 +139,64 @@ extract2[[1]]
 ```
 
 ```{r}
-
+length(plasticContainer)
+plasticContainer[c(T,F,T)]
 ```
 
 ```{r}
-
+成績單
+成績單[c(FALSE,TRUE,TRUE)]
 ```
 
 ```{r}
-
+plasticContainer$greenBox
+plasticContainer[["greenBox"]]
 ```
 
+```{r}
+your_github_username <- "pinchieh71"
+your_practice_reponame <- "107-2-inclass-practice"
+library(httr)
+library(stringr)
+str_replace_all(
+  "https://api.github.com/repos/:owner/:repo/commits",
+  c(
+    ":owner"=your_github_username,
+    ":repo"=your_practice_reponame
+    )
+  ) -> commitCheckStatement
+commitCheck <- content(GET(commitCheckStatement))
+```
 
+```{r}
+committwtime <- commitCheck[[4]][[3]][[2]][[3]]
+class(commitCheck[[4]][[3]][[2]][[3]])
+committwtime <- ymd_hms(committwtime)
+class(committwtime)
+Sys.timezone()
+twTime <- with_tz(committwtime,tzone="Asia/Taipei")
+twTime
+```
 
+```{r}
+library(readr)
+filmVotingData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/podcastcompetition3.csv")
+str_replace(filmVotingData$請選擇你最喜歡的影片二部,", by"," by") -> favoriteTwo
+birthday <- filmVotingData$`出生西元年月日（驗證本人用）`
+timeStamp <- filmVotingData$Timestamp
+```
+
+```{r}
+library(stringr)
+str_split(favoriteTwo,", ") -> favoriteTwoList # 將選擇的兩片split成兩個元素
+unlist(favoriteTwoList) -> allVotes # 將list堆疊成atomic vector
+table(allVotes) # 計算每個類別的次數
+```
+
+```{r}
+logiCorrect<-str_length(birthday)==8
+logiCorrect
+```
 
 
 
