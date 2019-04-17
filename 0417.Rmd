@@ -1,0 +1,92 @@
+---
+title: '2019-04-17'
+author: "林茂廷"
+date: "4/17/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+studentRecord <-
+  list(
+    學號="410073058",
+    姓名="王小明",
+    性別="男",
+    學年平均成績=list(
+      一年級=88,
+      二年級=90.3,
+      三年級=92,
+      四年級=95
+    )
+  )
+
+studentRecord
+```
+
+```{r}
+studentRecord[[2]]
+third=studentRecord[['學年平均成績']]
+third[[3]]
+```
+```{r}
+plasticContainer[c("greenBox","redBox")] 
+plasticContainer[c(1,2)]
+```
+```{r}
+list(
+  greenBox=c("paper","scissor"),
+  redBox=c(1,3,2.5)
+)
+```
+```{r}
+
+extract1 <- plasticContainer[c("greenBox")]
+plasticContainer$greenBox[[1]]
+
+extract2 <- plasticContainer[[c("greenBox")]]
+extract2[[1]]
+```
+
+```{r}
+
+```
+
+
+```{r}
+plasticContainer <- list(
+  greenBox=c("paper","scissor"),     # location 1
+  redBox=c(1,3,2.5),               # location 2
+  blueBox=c(TRUE,FALSE,TRUE,TRUE)    # location 3
+)
+plasticContainer
+```
+
+```{r}
+成績單 <- c(
+  個經=90,
+  總經=77,
+  統計=88
+)
+成績單[['個經']]
+成績單[[1]]
+```
+
+```{r}
+plasticContainer
+plasticContainer[["greenBox"]] 
+plasticContainer[["redBox"]]
+plasticContainer[[2]]
+plasticContainer[[1]]
+plasticContainer$greenBox[[1]]
+```
+
+
+```{r}
+library(dplyr)
+library(stringr)
+library(lubridate)
+```
+
