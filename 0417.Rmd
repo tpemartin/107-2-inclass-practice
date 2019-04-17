@@ -109,6 +109,7 @@ filmVotingData$`Timestamp`
 ```
 
 ```{r}
-
+logiCorrect <- str_length(birthday)==8
+logiCorrect
 ```
 
