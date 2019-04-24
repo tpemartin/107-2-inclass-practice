@@ -250,7 +250,47 @@ favoriteTwo[logiCorrect] -> validFavoriteTwo
 validFavoriteTwo
 ```
 
+```{r}
+m2<-matrix(c("a","b","c","d"),2,2)
+class(m2)
+typeof(m2)
+a<-m2[[1]]
+c<-m2[[3]]
+bd<-m2[2,]
+a
+c
+bd
+```
+```{r}
+listSample<-list(Students=c("Tom","Kobe","Emma","Amy"),Year=2017,
+                 Score=c(60,50,80,40),School="CGU")
+listSample
+```
 
+
+
+```{r}
+StuDF <- data.frame(StuID=c(1,2,3,4,5), ##欄位名稱=欄位值
+                  name=c("小明","大雄","胖虎","小新","大白"),
+                  score=c(80,60,90,70,50))
+StuDF 
+```
+
+```{r}
+class(StuDF)
+typeof(StuDF)
+```
+
+
+```{r}
+StuDF[[2]][[3]]
+```
+
+```{r}
+chosenletters <- letters[1:16]
+matobj2 <- matrix(chosenletters,4,4)
+matobj2
+```
 
 
 
