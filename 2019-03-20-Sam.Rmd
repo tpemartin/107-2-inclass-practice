@@ -814,7 +814,15 @@ matObj[c(2,4),c(T,T,F,F)]
 #可以混搭
 ```
 
-
+```{r}
+library(readr)
+classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+```
+***取出姓名、學分數***
+```{r}
+classSurvey[c(1:60),c(4,5)]
+classSurvey[,c(4,5)]
+```
 
 
 
