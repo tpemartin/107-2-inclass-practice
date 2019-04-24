@@ -49,3 +49,48 @@ StuList
 StuList[[2]][3]
 ```
 
+```{r}
+chosenLETTERS <- LETTERS[1:15]
+chosenLETTERS
+chosenletters <- letters[1:15]
+chosenletters
+```
+
+```{r}
+chosenLETTERS<-LETTERS[1:16]
+matObji<-matrix(chosenLETTERS,4,4)
+matObji
+```
+
+```{r}
+LETTERS
+chosenLETTERS <- LETTERS[1:8]
+m <- matrix(chosenLETTERS,2,4)
+m
+tolower(m) # 轉成小寫
+m
+toupper(m) # 轉成大寫
+m
+```
+
+```{r}
+CHOSENLETTERS<-letters[1:12]
+
+EXAMPLE<-matrix(
+  CHOSENLETTERS,4,3
+)
+EXAMPLE
+```
+
+```{r}
+matObj1[c(T,F,F,T,F),c(F,T,T)]
+```
+
+
+```{r}
+ans1 <- as.data.frame(classSurvey)
+ans1
+ans1[c(1:60),c(4,5)]
+ans1
+```
+
