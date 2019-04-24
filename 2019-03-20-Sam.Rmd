@@ -801,6 +801,23 @@ StuDF$姓名 <- as.character(StuDF$姓名)
 class(StuDF$姓名)
 ```
 
+```{r}
+LETTERS 
+ChosenLETTERS <- LETTERS[1:20]
+matObj <- matrix(ChosenLETTERS,5,4)
+tolower(matObj)
+```
+```{r}
+matObj[c(F,T,F,T,F),c(T,T,F,F)]
+
+matObj[c(2,4),c(T,T,F,F)]
+#可以混搭
+```
+
+
+
+
+
 
 
 
