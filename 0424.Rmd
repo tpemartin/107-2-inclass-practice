@@ -41,6 +41,24 @@ as.data.frame((StuList<-StuDF))
 class(StuDF)
 
 ```
+```{r}
+chosenLETTERS<-LETTERS[1:16]
+matObji<-matrix(chosenLETTERS,4,4)
+matObji
+```
+```{r}
+LETTERS
+chosenLETTERS <- LETTERS[1:8]
+m <- matrix(chosenLETTERS,2,4)
+m
+
+```
+```{r}
+
+matObji[c(T,F,F,T),c(F,T,T)]
+matObji
+```
+
 
 
 
