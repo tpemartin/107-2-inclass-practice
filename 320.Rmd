@@ -124,13 +124,14 @@ twDateTime
 
 ```
 “3/14/2019 8:18:47”。
-```{r}
+
 
 
 ```{r}
 LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
 LisbonDateTime
 ```
+
 ```{r}
 typeof(LisbonDateTime)
 as.double(LisbonDateTime)

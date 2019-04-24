@@ -147,10 +147,10 @@ logiCorrect=str_length(birthday)==8
 logiCorrect
 ```
 ```{r}
-correct=logiCorrect
+
 correct<-favoriteTwo[which(logiCorrect==TRUE)]
 correct
-favoriteTwo
+
 ```
 
 

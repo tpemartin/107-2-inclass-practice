@@ -1,0 +1,47 @@
+---
+title: '2019-04-24'
+author: "林茂廷"
+date: "4/24/2019"
+output: html_document
+---
+```{r}
+Vec1<-c(1:6)
+Vec1
+Mat1<-matrix(c(1:6),2,3)
+Mat1
+Mat1[[2]]
+class(Mat1)
+typeof(Mat1)
+```
+```{r}
+Math2<-matrix(c('a','b','c','d'),2,2)
+Math2
+Math2[[3]]
+Math2[c(T,T,F,F)]
+Math2[1,]
+Math2[,1]
+```
+```{r}
+StuList <- list(
+  StuID=c(171,214,322,425,517),
+  name=c("小明","大雄","胖虎","小新","大白"),
+  score=c(80,60,90,70,50)
+  )
+StuDF <- data.frame(
+  StuID=c(171,214,322,425,517),
+  name=c("小明","大雄","胖虎","小新","大白"),
+  score=c(80,60,90,70,50)
+  )
+
+
+StuDF[[2]][3]
+```
+```{r}
+as.data.frame((StuList<-StuDF))
+class(StuDF)
+
+```
+
+
+
+
