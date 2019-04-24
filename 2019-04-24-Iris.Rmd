@@ -72,3 +72,7 @@ matObj1[c(1,4),c(2,3)]
 matObj1[c(T,F,F,T,F),c(F,T,T)]
 ```
 
+```{r}
+classSurvey[c(1:60),c(4,5)]
+```
+
