@@ -89,3 +89,8 @@ toupper(m) # Âà¦¨¤j¼g
 m
 ```
 
+```{r}
+matObj1[c(T,F,F,T,F),c(F,T,T)]
+matObj1
+```
+
