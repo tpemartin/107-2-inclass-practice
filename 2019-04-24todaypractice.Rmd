@@ -35,9 +35,13 @@ StuDF <- data.frame(
   )
 StuDF 
 ```
-StuDF其實在R中是list
+StuDF其實在R中其實是list
 ```{r}
 class(StuDF)
 typeof(StuDF)
+```
+
+```{r}
+StuDF[[2]][[3]]
 ```
 
