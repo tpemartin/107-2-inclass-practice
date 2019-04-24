@@ -40,8 +40,52 @@ StuDF
 ```
 
 
+
+#[.R , .C] object extraction
+
 ```{r}
+chosenLETTERS <- LETTERS[1:15]
+matObj1 <- matrix(chosenLETTERS,5,3)
+matObj1
+```
 
 
+```{r}
+chosenLETTERS[8]
+```
+
+```{r}
+matObj1[8]
+```
+
+```{r}
+matObj1
+```
+
+```{r}
+matObj1[3,2]
+```
+
+```{r}
+matObj1[c(F,F,TRUE,F,F),c(F,TRUE,F)]
+```
+
+```{r}
+chosenLETTERS <- LETTERS[1:15]
+chosenLETTERS
+chosenletters <- letters[1:15]
+chosenletters
+```
+
+
+```{r}
+LETTERS
+chosenLETTERS <- LETTERS[1:8]
+m <- matrix(chosenLETTERS,2,4)
+m
+tolower(m) # 轉成小寫
+m
+toupper(m) # 轉成大寫
+m
 ```
 
