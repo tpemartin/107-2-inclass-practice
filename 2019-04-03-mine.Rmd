@@ -253,7 +253,8 @@ sum(major == "經濟學系")
 
 學號“5bdS6977b”同學修了多少課
 ```{r}
-sum(studentID == "5bdS6977b")
+a <- sum(studentID == "5bdS6977b")
+a
 ```
 
 學號“5bdS6977b”有多少科成績及格
