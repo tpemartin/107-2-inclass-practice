@@ -1,0 +1,80 @@
+---
+title: "R_midprepare"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+#>time
+library(lubridate)
+定義時間>ymd_hms
+ymd_hms(), ymd_hm(), ymd_h()
+ydm_hms(), ydm_hm(), ydm_h() 
+mdy_hms(), mdy_hm(), mdy_h()
+dmy_hms(), dmy_hm(), dmy_h()
+檢驗時間class>  "POSIXct" "POSIXt" 
+
+
+```{r}
+library(lubridate)
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+class(dtObject)
+
+```
+
+更改時區 with_tz(A,tzone=)
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+```
+
+typeof()R是怎麼儲存這個物件：
+as.double()=電腦怎麼看時間
+```{r}
+typeof(twDateTime)
+as.double(twDateTime)
+```
+
+電腦怎麼看時間
+```{r}
+as.integer(ymd("1970-01-01"))
+as.integer(ymd("1970-01-02"))
+as.integer(ymd("2019-03-16"))
+```
+顯示系統時區
+Sys.timezone()
+```{r}
+Sys.timezone()
+```
+
+#object
+ObjectName <- object_value
+```{r}
+x1 <- 3
+```
+
+as.integer(...)會將…物件（嘗試）轉成integer class的物件。
+levels顯示的類別名稱（categorical values）順序整數值即R真正儲存的內容
