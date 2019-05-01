@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(stringr)
 ```
-
+subset是取出符合指令的元素
 ```{r}
 course <- c("個體經濟學","投資學","總體經濟學")
 course
@@ -27,7 +27,7 @@ str_detect(course,"經濟學")
 studentID<-c(
   '410177115','410176080','410174233','410177011','410182045','410176014')
 ```
-
+sub是取出元素中指定位置的東西
 ```{r}
 str_sub(studentID,5,6)
 ```
