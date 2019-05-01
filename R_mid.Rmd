@@ -78,3 +78,5 @@ x1 <- 3
 
 as.integer(...)會將…物件（嘗試）轉成integer class的物件。
 levels顯示的類別名稱（categorical values）順序整數值即R真正儲存的內容
+
+time+1=+1second  
