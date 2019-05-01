@@ -108,6 +108,7 @@ as.double(day3)
 day3+13
 ```
 ```{r}
+library(lubridate)
 startingDate <- ymd("2000-02-17")
 startingDate + years(1)
 startingDate + dyears(1)
