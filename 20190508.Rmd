@@ -1,0 +1,82 @@
+---
+title: '20190508'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+randomGrades <- sample(40:80,15,replace = T)
+randomCredits <- sample(0:3,15,replace=T)
+data3 <- list(
+  成績=randomGrades,
+  學分數=randomCredits
+)
+```
+
+```{r}
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+### twDates
+```
+
+```{r}
+str_replace(twDates,"民國","") -> twDates2
+str_replace(twDates2,"月","") -> twDates2  
+twDates2
+```
+
+```{r}
+library(purrr)
+str_split(twDates2,"年") -> dateList
+map(dateList,~.[[1]]) -> yy
+as.integer(yy)+1911 -> westYears
+
+westYears
+```
+
+```{r}
+library(lubridate)
+twDates2
+str_split(twDates2,"年") -> datesSplitList # 用年切開 年 月值
+datesSplitList
+
+map(datesSplitList,~.[[2]]) -> monthList # 選出每個元素的第二個值
+monthList
+
+unlist(monthList) -> monthVector # 將list疊成字串向量
+monthVector
+
+str_c(as.character(westYears),monthVector,"01",sep = "-") -> westDates # 貼成YYYY-MM-DD 字串格式
+westDates
+
+ymd(westDates) -> westDates # 轉成dates
+westDates
+class(westDates)
+```
+
