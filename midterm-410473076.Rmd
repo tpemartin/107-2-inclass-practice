@@ -230,12 +230,33 @@ tail(sampledTranscriptData$系碼) # or head()
 請在sampledTranscriptData新增一個「學系」變數，存在`sampledTranscriptData$學系`答案物件裡，它是「系級」元素值去除數字1,2,3,4的結果。例如：系級為"經濟學系2", 學系值即為"經濟學系"。（hint: 可透過`str_replace()`或`str_replace_all()`把字串中的數字去除。）
 
 ```{r ans73}
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"1","")
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"2","")
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"3","")
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"4","")
+
+head(sampledTranscriptData$系級)
+head(sampledTranscriptData$學系)
+
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"[1234]","")
+sampledTranscriptData$學系
+
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"[:digit:]","")
+sampledTranscriptData$學系
 # sampledTranscriptData$學系 
 ```
 
 ### 7.4 轉系生
 學號是一入學就決定，不管後來有沒有轉系。 請找出外系轉入經濟系的學生學號，並存成changeMajorStudent答案物件。(由於資料一筆為一科成績，所以學號會重覆出現，要存入答案物件前請用`unique()`去除重覆學號)
 ```{r ans74}
+(sampledTranscriptData$系碼!="73" & 
+   sampledTranscriptData$學系=="經濟學系") -> logiCheck
+
+sampledTranscriptData$學號[logiCheck] 
+
+unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
+
+changeMajorStudent
 # changeMajorStudent
 ```
 
