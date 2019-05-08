@@ -190,6 +190,10 @@ sampledTranscriptData裡每個元素底下的值都是一位同學在一門課�
 取出科目名稱為「科目204」的學期成績，計算該科的當人比例（子樣本中成績不及格的比例）將此值存在答案物件failRate裡（為numeric/double class）。
 ```{r ans71}
 # failRate
+logicsubject <- sampledTranscriptData$科目名稱=="科目204" 
+logicsubjectandfail <- sampledTranscriptData$學期成績<60 &logicsubject
+failRate<- sum(logicsubjectandfail)/length(logicsubject)
+failRate
 ```
 
 
