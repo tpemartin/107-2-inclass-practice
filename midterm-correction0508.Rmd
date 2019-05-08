@@ -166,6 +166,8 @@ names(invoiceList) <-
 請將元素名稱「訂單時間(以訂單時區顯示)」改成「訂單時區之下單時間」。答案最後一行請寫invoiceList答案物件。
 ```{r ans61}
 # invoiceList
+names(invoiceList)[[2]] <- "訂單時區之下單時間"
+invoiceList
 ```
 
 ### 6.2 轉UTC
@@ -204,6 +206,9 @@ failRate
 「學屆」元素值代表的是每一位同學的入學學年，可由學號的第2到4位字元產生，「系碼」即學號的第5到6位字元；如410073298即為100學年入學，系碼73。另本題的答案物件為sampledTranscriptData。（使用`sampledTranscriptData$學屆 <- `及`sampledTranscriptData$系碼 <-`，將個別由學號取出之值放在`<-`右側即可在sampleTranscriptData新增這兩個元素。）
 ```{r ans72}
 # sampledTranscriptData
+sampledTranscriptData$學屆 <- str_sub(sampledTranscriptData[[1]],2,4)
+sampledTranscriptData$系碼 <- str_sub(sampledTranscriptData[[1]],5,6)
+sampledTranscriptData
 ```
 
 ### 7.3 產生學系 str_replace_all
@@ -211,6 +216,8 @@ failRate
 
 ```{r ans73}
 # sampledTranscriptData$學系 
+sampledTranscriptData$學系<- str_replace(sampledTranscriptData$系級,"[1234]","")
+sampledTranscriptData$學系
 ```
 
 ### 7.4 轉系生
