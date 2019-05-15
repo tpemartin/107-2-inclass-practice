@@ -62,9 +62,44 @@ b
 ```
 
 
+#example
+
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+
+```
+
+取出「期間」變數轉成date class。
+```{r}
+library(lubridate)
+exData3[[1]] <- ymd(exData3[[1]])
+class(exData3[[1]])
+```
+
+```{r}
+library(lubridate)
+exData3$期間 <- ymd(exData3$期間)
+exData30
+```
+
+
+增加一個「isAsiaCrisis」的logical變數，其值為TRUE若「期間」介於1997-06-01到1998-12-01（含前後）。
+```{r}
+exData3$isAsiaCrisis <- (exData3$期間>=ymd("1997-06-01"))&(exData3$期間<=ymd("1998-12-01"))
+class(exData3$isAsiaCrisis)
+exData3
+```
 
 
 
+利用「isAsiaCrisis」值，結合使用[.R,.C]取出1997-06-01到1998-12-01亞洲金融危機的子樣本。
+```{r}
+
+```
 
 
 
