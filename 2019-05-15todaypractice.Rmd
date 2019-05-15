@@ -127,9 +127,25 @@ class(exData3$期間)
 exData3[["isAsiaCrisis"]] <-  (exData3[[1]] >= ymd("1997-06-01") & exData3[[1]] <= ymd("1998-12-01"))
 exData3
 ```
-[sth,]代表取出直的項目
+
 ```{r}
 exData3[exData3$isAsiaCrisis==T,]
+```
+只取出true的
+```{r}
+logiAsiaCrisis <- exData3$isAsiaCrisis
+exData3[logiAsiaCrisis, ]
+```
+
+```{r}
+StuDF
+StuDF[c("姓名","成績")] 
+StuDF[1:5,c("姓名","成績")] 
+```
+
+```{r}
+StuDF[,c("姓名","成績")]
+StuDF[StuDF$成績==80,]
 ```
 
 ```{r}
