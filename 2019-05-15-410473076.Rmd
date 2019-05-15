@@ -148,3 +148,34 @@ function1 <- function(x,.alpha){
 class(function1)
 ```
 
+
+
+#範例
+
+Qs=a+b∗P
+```{r}
+supply_fun <- function(a,b,P){
+Qs <- a+b*P # 程序產生output值
+  return(Qs) # 傳回output值
+}
+demand_fun <- function(c,d,P){
+Qd <- c-d*P # 程序產生output值
+  return(Qd) # 傳回output值
+}
+```
+
+
+```{r}
+supply_fun <- function(a,b,P){
+  Qs <- a+b*P
+  return(Qs)}
+demand_fun <- function(c,d,P){
+  Qd <- c-d*P
+  return(Qd)
+}
+
+supply_fun(0,1,1)
+demand_fun(5,1,1)
+```
+
+
