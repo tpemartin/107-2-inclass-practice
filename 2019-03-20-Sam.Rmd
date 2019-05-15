@@ -878,10 +878,46 @@ exData3$isAsiaCrisis
 
 ```
 
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+```{r}
+ischosenstudent<- transcriptDataFinal$學號 == "92aS67fee"
+
+transcriptDataFinal[ischosenstudent,]     #取出子樣本 -> 母樣本[對象,]
+```
 
 
+##fuction
+
+```{r}
+function1 <- function(x,.alpha){
+  value <- .alpha+x  #產生output值
+  return(value) #傳回output
+}
+
+class(function1)
+
+function1(1,2)
+```
+
+```{r}
+supply_fun <- function(a,b,P){
+  supplyfunvalue <- a+b*P
+  return(supplyfunvalue)
+}
 
 
+demand_fun <- function(c,d,P){
+  demandfunvalue<- c-d*P
+  return(demandfunvalue)
+}
+
+supply_fun(0,1,1) 
+demand_fun(5,1,1) #當市場價格P=1 有超額需求4-1=3
+```
 
 
 
