@@ -99,7 +99,31 @@ b
 
 ```{r}
 b$元素3 <- "FALSE"
-b$新元素 <- "7"
 b
+```
+使用"元素名稱"創新元素
+```{r}
+names(b)
+b[["新元素A"]] <- c(1,2,3)
+b$新元素B <- c(T,F,T)
+b
+```
+
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+```
+
+```{r}
+library(lubridate)
+exData3$期間 <- ymd(exData3$期間)
+class(exData3$期間)
+```
+
+```{r}
+
 ```
 
