@@ -1,0 +1,45 @@
+---
+title: '2019-03-13'
+author: "410473076"
+date: "3/13/2019"
+output: html_document
+---
+
+```{r}
+a <- 2
+```
+
+```{r}
+3 -> b
+```
+
+```{r}
+c <- 47
+65 + c
+```
+
+```{r}
+`107上學期成績平均` <- 99
+```
+
+#Numeric
+```{r}
+a<-5
+a2<-5L
+```
+
+```{r}
+class(a)
+```
+
+#vector
+```{r}
+aVector<-c(5,6,7)
+a2Vector<-c(5L,6L,7L)
+```
+
+```{r}
+class(aVector)
+class(a2Vector)
+```
+
