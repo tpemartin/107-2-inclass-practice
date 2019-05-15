@@ -139,11 +139,27 @@ transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/git
 transcriptDataFinal[transcriptDataFinal$學號=="92aS67fee",]
 ```
 ```{r}
-
+utility_cobb_douglass <- function(x,y,.alpha,.beta){
+  utilValue <- x^.alpha*y^.beta # 程序產生output值
+  return(utilValue) # 傳回output值
+}
 ```
 
+```{r}
+class(utility_cobb_douglass)
+```
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8)
+```
 
+```{r}
+ttt<-function(w,x,y,z){tttvalue<-w^x+x^1/2/(y+z)
+return(tttvalue)}
+```
 
+```{r}
+ttt(2.4,5.8,7.4,8.3)
+```
 
 
 
