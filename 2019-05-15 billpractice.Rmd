@@ -1,5 +1,5 @@
 ---
-title: '2019-05-15'
+title: '2019-05-15 billpractice'
 author: "林茂廷"
 date: "5/15/2019"
 output: html_document
@@ -126,7 +126,21 @@ isAsiaCrisis <- exData3$期間 >= front & exData3$期間<= end
 子樣本
 #sum(isAsiaCrisis)
 ```
+```{r}
+exData3[exData3$isAsiaCrisis==TRUE,]
+exData3[exData3$isAsiaCrisis,]
+```
 
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+```{r}
+transcriptDataFinal[transcriptDataFinal$學號=="92aS67fee",]
+```
+```{r}
+
+```
 
 
 
