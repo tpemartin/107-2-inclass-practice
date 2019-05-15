@@ -919,7 +919,22 @@ supply_fun(0,1,1)
 demand_fun(5,1,1) #當市場價格P=1 有超額需求4-1=3
 ```
 
+```{r}
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
 
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
+```
+
+```{r}
+gpa_fun("223S63286")
+gpa_fun("105S60ba1")
+```
 
 
 
