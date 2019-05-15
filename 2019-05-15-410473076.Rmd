@@ -101,8 +101,23 @@ exData3
 
 ```
 
+```{r}
+logiAsiaCrisis <- exData3$isAsiaCrisis
+exData3[logiAsiaCrisis, ]
+```
+或寫在一起
+```{r}
+exData3[exData3$isAsiaCrisis==T ,]
+exData3[exData3$isAsiaCrisis,]
+```
 
 
+#課堂練習
+
+```{r}
+library(readr)
+classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+```
 
 
 
