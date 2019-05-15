@@ -850,12 +850,33 @@ b[[6]] <- "新元素"
 
 names(b)[c(4,5)] <- str_c("元素",4:5)
 
-b$新元素
-b[[6]]
+b$新元素 <- c(1,2,3)
+
+b[["新元素"]]
 ```
 
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+head(exData3$期間)
+```
 
+```{r}
+library(lubridate)
+exData3$期間<- ymd(exData3$期間)
+class(exData3$期間)
+```
 
+```{r}
+
+exData3$isAsiaCrisis <- exData3$期間>= ymd("1997-6-01") & exData3$期間<= ymd("1998-12-01")
+class(exData3$isAsiaCrisis)
+exData3$isAsiaCrisis
+
+```
 
 
 
