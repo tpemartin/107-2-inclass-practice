@@ -825,4 +825,67 @@ classSurvey[,c(4,5)]
 ```
 
 
+0515
+
+```{r}
+colnames(StuDF)[c(2,3)] <- c("name","grade")
+colnames(StuDF)
+
+library(stringr)
+
+rownames(StuDF) <- str_c("第",1:5,"筆")
+StuDF
+```
+
+```{r}
+b <- list(
+  元素1=1,
+  元素2="Hello",
+  元素3=TRUE
+)
+
+b[[3]] <- "FALSE"
+b[[5]] <- "7"
+b[[6]] <- "新元素"
+
+names(b)[c(4,5)] <- str_c("元素",4:5)
+
+b$新元素
+b[[6]]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
