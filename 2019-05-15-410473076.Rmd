@@ -112,11 +112,12 @@ exData3[exData3$isAsiaCrisis,]
 ```
 
 
-#課堂練習
+
+#8.1.2
 
 ```{r}
 library(readr)
-classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
 ```
 
 
