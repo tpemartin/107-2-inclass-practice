@@ -149,6 +149,53 @@ StuDF[StuDF$成績==80,]
 ```
 
 ```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+```{r}
+names(transcriptDataFinal)
+```
+取出92aS67fee 的子樣本
+```{r}
+Ans1 <- transcriptDataFinal$學號=="92aS67fee"
+transcriptDataFinal[Ans1,]
+```
+
+```{r}
+utility_cobb_douglass <- function(x,y,.alpha,.beta){
+  utilValue <- x^.alpha*y^.beta # 程序產生output值
+  return(utilValue) # 傳回output值
+}
+```
+
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8) 
+
+```
+
+```{r}
+supplyfunction <- function(a,b,P){
+  Qs <- a + b*P
+  return(Qs)
+}
+
+```
+
+```{r}
+demandfunction <- function(c,d,P){
+  Qd <- c - d*P
+  return(Qd)
+}
+```
+
+```{r}
+supplyfunction(0,1,1)
+demandfunction(5,1,1)
+demandfunction(5,1,1)-supplyfunction(0,1,1)
+```
+
+```{r}
 
 ```
 
