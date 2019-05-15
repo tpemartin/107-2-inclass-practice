@@ -91,6 +91,45 @@ b
 
 ```{r}
 b$元素2<-"object"
+```
+
+```{r}
+names(b)
+b[["新元素A"]] <- c(1,2,3)
+b$新元素B <- c(T,F,T)
 b
 ```
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+class(exData3$期間)
+```
+
+```{r}
+exData3$期間<-ymd(exData3$期間)
+class(exData3$期間)
+```
+
+```{r}
+exData3$isAsiaCrisis<-(ymd(exData3$期間)>="1997-06-01"&ymd(exData3$期間)<='1998-12-01')
+exData3
+```
+```{r}
+front <- ymd("1997-06-01")
+end <- ymd("1998-12-01")
+isAsiaCrisis <- exData3$期間 >= front & exData3$期間<= end
+#isAsiaCrisis
+"子樣本" <- exData3$期間[isAsiaCrisis]
+子樣本
+#sum(isAsiaCrisis)
+```
+
+
+
+
+
+
 
