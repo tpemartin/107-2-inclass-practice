@@ -40,3 +40,29 @@ names(Vector1) <- c('名稱1','名稱2','名稱3','名稱4','名稱5','名稱6')
 names(Vector1)
 ```
 
+```{r}
+StuDF2 <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50),
+  stringsAsFactors = FALSE
+  )
+StuDF2 
+```
+
+```{r}
+colnames(StuDF2)
+names(StuDF2)
+```
+
+```{r}
+colnames(StuDF2) <- c("col1","col2","col3")
+colnames(StuDF2)
+StuDF2
+```
+colnames是查詢，加 <- 代表改名字
+```{r}
+colnames(StuDF2)[c(2,3)] <- c("name","grade")
+StuDF2
+```
+
