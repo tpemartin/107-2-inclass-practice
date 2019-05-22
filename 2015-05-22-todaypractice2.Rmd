@@ -24,13 +24,18 @@ invoiceList$tpLogical <- tpLogical
 library(lubridate)
 nyDateTime <- ymd_hms(invoiceList$訂單時區之下單時間[nyLogical],
                       tz="America/New_york")
+
 invoiceList$UTC時間[nyLogical] <-
   with_tz(nyDateTime,tzone="UTC")
-ymd_hms(invoiceList$`訂單時區之下單時間`[tpLogical],
-          tz="Asia/Taipei") -> tpDateTime
+tpDateTime <- ymd_hms(invoiceList$`訂單時區之下單時間`[tpLogical],
+          tz="Asia/Taipei") 
 
 invoiceList$UTC時間[tpLogical] <-
   with_tz(tpDateTime,tzone="UTC")
+invoiceList
+```
+
+```{r}
 
 
 ```
