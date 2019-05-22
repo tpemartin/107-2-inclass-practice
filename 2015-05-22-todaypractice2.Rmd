@@ -41,6 +41,7 @@ nytime <- ymd_hms("1973-02-21 12:05:22",tz="America/New_York")
 tptime <- with_tz(nytime,tz="Asia/Taipei")
 ```
 
+with_tz只能用(,tzone=)
 ```{r}
 ymd_hms_tzChange <- function(input,fromTzone,toTzone){
   time<- ymd_hms(input,tz=fromTzone)
