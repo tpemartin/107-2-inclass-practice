@@ -101,11 +101,25 @@ mm<-str_extract(twDates,"[:digit:]+(?=月)")
 yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
 ```
 
+
+
+#原始步驟
 ```{r}
-date_convert_twYM
+yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(twDates,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+yyyymmdd
 ```
-
-
+#寫成函數
+```{r}
+date_convert_twYM <- function(twDates){
+  #twDates
+  yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+  mm<-str_extract(twDates,"[:digit:]+(?=月)")
+  yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+  return(yyyymmdd)
+}
+```
 
 
 
