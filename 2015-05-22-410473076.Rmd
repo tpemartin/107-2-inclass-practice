@@ -57,13 +57,17 @@ invoiceList$UTC時間[tpLogical] <- with_tz(tpDateTime,tz="UTC")
 invoiceList
 ```
 
+
+
+
 #請把以America/New_York時區輸入的時間字串"1973-02-21 12:05:22"，轉成date time class, 再改成Asia/Taipei時間顯示。
-
-
 ```{r}
-library(lubridate)
-ymd_hms("1973-02-21 12:05:22",tz="America/New_York") ->fromDataTime
-with_tz()
+ymd_hms_tzChange <- function(input,fromTzone,toTzone){
+  ymd_hms(input,tz=fromTzone) -> fromDateTime 
+  with_tz(fromDateTime,tz=toTzone) ->toDateTime
+  return(toDateTime) 
+}
+ymd_hms_tzChange("1973-02-21 12:05:22","America/New_York","Asia/Taipei")
 ```
 
 
