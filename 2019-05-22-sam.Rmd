@@ -14,7 +14,7 @@ NYtimeexchange <- with_tz(NYtimeex, tzone="Asia/Taipei")
 NYtimeexchange
 
 TimeFun <- function(NYtimeex){
-  NYtimeex <- ymd_hms("1973-02-21 12:05:22")
+  NYtimeex <- ymd_hms("1973-02-21 12:05:22",tz="America/New_York")
   NYtimeexchange <- with_tz(NYtimeex, tzone="Asia/Taipei")
   rerun(NYtimeexchange)
 }                                                                    #這個作法只有output "一個"
@@ -23,8 +23,25 @@ TimeFun <- function(NYtimeex){
 ```{r}
 ymd_hms_function <- function(input, fromTzone, toTzone){
   step1 <- ymd_hms(input, tz=fromTzone)
-  answer <- with_tz(stpe1, tz= toTzone)
+  answer <- with_tz( ymd_hms(input, tz=fromTzone), tzone =  toTzone)
   return(answer)
 }
+
+ymd_hms_function("1998-10-10 23:45:53", "Asia/Taipei", "America/New_York")
 ```
+
+```{r}
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,15,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+```
+
+```{r}
+library(stringr); library(lubridate)
+yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911  # (?<=(民國))[:digit:]+ <- 取出一串數字們 前接民國
+mm<-str_extract(twDates,"[:digit:]+(?=月)")  #[:digit:]+(?=月) <- 取出一串數字們 後面接月
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+```
+
 
