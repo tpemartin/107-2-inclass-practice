@@ -54,9 +54,9 @@ yyyymmddtimefun <- function(twDates){
 
 yyyymmddtimefun("民國87年10月")
 ```
-
+以下為有預設值的function
 ```{r}
-yyyymmddtimefun <- function(twDates,dd="10"){        
+yyyymmddtimefun <- function(twDates,dd="10"){      #差別在這 dd="??"  (??可以自己設定)  
   yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911  
   mm<-str_extract(twDates,"[:digit:]+(?=月)")  
   yyyymmdd <- ymd(str_c(yyyy,mm,dd,sep="-")) 
