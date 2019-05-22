@@ -45,13 +45,14 @@ with_tz只能用(,tzone=)
 ```{r}
 ymd_hms_tzChange <- function(input,fromTzone,toTzone){
   time<- ymd_hms(input,tz=fromTzone)
-  answer <- with_tz(time,tz=toTzone)
+  answer <- with_tz(time,tzone=toTzone)
   return(answer)
 }
 ymd_hms_tzChange("1973-02-21 12:05:22","America/New_York","Asia/Taipei")
 ```
 
+```{r}
 
-
+```
 
 
