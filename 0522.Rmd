@@ -1,0 +1,28 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+請把以America/New_York時區輸入的時間字串"1973-02-21 12:05:22"，轉成date time class, 再改成Asia/Taipei時間顯示。
+```{r}
+library(lubridate)
+NYtimeex <- ymd_hms("1973-02-21 12:05:22", tz="America/New_York")
+NYtimeexchange <- with_tz(NYtimeex, tzone="Asia/Taipei")
+NYtimeexchange
+
+TimeFun <- function(NYtimeex){
+  NYtimeex <- ymd_hms("1973-02-21 12:05:22")
+  NYtimeexchange <- with_tz(NYtimeex, tzone="Asia/Taipei")
+  rerun(NYtimeexchange)
+}                                                                    #這個作法只有output "一個"
+```
+
+```{r}
+ymd_hms_function <- function(input, fromTzone, toTzone){
+  step1 <- ymd_hms(input, tz=fromTzone)
+  answer <- with_tz(stpe1, tz= toTzone)
+  return(answer)
+}
+```
+
