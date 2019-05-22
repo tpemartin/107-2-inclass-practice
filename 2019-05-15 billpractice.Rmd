@@ -226,19 +226,51 @@ gpa_fun("d55S6d052")
 ```
 
 ```{r}
-
+ymd_hms_tzChange <- function(input,fromTzone,toTzone){
+  time1 <- ymd_hms(input,tz=fromTzone)
+  answer <- with_tz(time1,tzone = toTzone)
+  return(answer)
+}
+ymd_hms_tzChange("1973-02-21 12:05:22","America/New_York","Asia/Taipei")
 ```
 
 ```{r}
-
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,15,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+library(stringr); library(lubridate)
+yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(twDates,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+twDates
 ```
 
 ```{r}
-
+date_convert_twYM <- function(x){
+  yyyy<-as.integer(str_extract(x,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(x,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+return(yyyymmdd)
+}
+date_convert_twYM(twDates)
 ```
 
 ```{r}
+date_convert_twYM("民國102年9月")
+```
 
+```{r}
+date_convert_twYM <- function(twdate, day=01){
+  yyyy<-as.integer(str_extract(twdate,"(?<=(民國))[:digit:]+"))+1911 
+  mm<-str_extract(twdate,"[:digit:]+(?=月)")
+  yyyymmdd <- ymd(str_c(yyyy,mm,day,sep="-"))
+
+  return(yyyymmdd)
+}
+
+date_convert_twYM("民國108年5月")
+date_convert_twYM(twDates, 04)
 ```
 
 ```{r}
