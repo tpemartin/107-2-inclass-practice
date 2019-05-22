@@ -95,5 +95,6 @@ mm<-str_extract(x,"[:digit:]+(?=月)")
 yyyymmdd <- ymd(str_c(yyyy,mm,y,sep="-"))
 return(yyyymmdd)
 }
+date_convert_twYM1(twDates)
 ```
 
