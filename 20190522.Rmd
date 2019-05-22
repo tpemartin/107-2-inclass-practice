@@ -36,3 +36,13 @@ ymd_hms_tzChange <- function(input,fromTzone,toTzone){
 ymd_hms_tzChange("1973-02-21 12:05:22","America/New_York","Asia/Taipei")
 ```
 
+```{r}
+date_convert_twYM <- function(x,dd=01){
+  yyyy<-as.integer(str_extract(x,"(?<=(民國))[:digit:]+"))+1911
+  mm<-str_extract(x,"[:digit:]+(?=月)")
+  yyyymmdd <- ymd(str_c(yyyy,mm,dd,sep="-"))
+  y <- ymd(yyyymmdd)
+  return(y)
+}
+```
+
