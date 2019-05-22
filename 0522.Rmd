@@ -141,6 +141,7 @@ str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates_New
 
 twDates_New
 date_convert_twYM(twDates_New)
-date_convert_twYM(twDates_New,dd="04")
+date_convert_twYM(twDates_New,dd="01")
 ```
+
 
