@@ -56,7 +56,13 @@ yyyymmddtimefun("民國87年10月")
 ```
 
 ```{r}
-
+yyyymmddtimefun <- function(twDates,dd="10"){        
+  yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911  
+  mm<-str_extract(twDates,"[:digit:]+(?=月)")  
+  yyyymmdd <- ymd(str_c(yyyy,mm,dd,sep="-")) 
+  return(yyyymmdd)
+}
+yyyymmddtimefun("民國87年10月10日")
 ```
 
 
