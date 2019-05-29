@@ -130,12 +130,30 @@ gpa_fun <- function(studentID){
 gpa_fun("92aS67fee") 
 gpa_fun("aa829838s") 
 ```
+#在跑的時候要在Console打數字
+```{r}
+a <- readline(prompt = "請輸入一個數字： ")
+if(a < 0) {
+  print("a為負值")
+}
+```
+
+```{r}
+a <- readline(prompt = "請輸入一個數字： ")
+if(a==1) {
+  print("你輸入了1")
+} else if(a==2) {
+  print("你輸入了2")
+} else if(a==3) {
+  print("你輸入了3")
+} else {
+  print("你輸入了其他數字")
+}
+```
 
 ```{r}
 
 ```
-
-
 
 
 
