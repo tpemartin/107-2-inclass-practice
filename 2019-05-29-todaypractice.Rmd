@@ -103,14 +103,37 @@ demand_supply_fun <- function(P,a,b,c,d){
 ```
 #條件執行
 ```{r}
-a <- readline(prompt = "請輸入一個數字： ")
-if(a < 0) {
-  print("a為負值")
+supply_fun2 <- function(P,a,b){
+  Qs <- a+b*P
+  if(P>=0) {
+    return(Qs)
+  }
+}
+supply_fun2(P=-1,0,1)
+supply_fun2(P=2,0,1)
+```
+
+```{r}
+gpa_fun <- function(studentID){
+  if(studentID %in% transcriptDataFinal$學號){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+  } else {message("NosearchID")
+  }
 }
 ```
 
+```{r}
+gpa_fun("92aS67fee") 
+gpa_fun("aa829838s") 
+```
 
+```{r}
 
+```
 
 
 
