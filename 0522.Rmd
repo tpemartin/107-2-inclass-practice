@@ -1,6 +1,6 @@
 ---
 title: '2015-05-22'
-author: "æž—èŒ‚å»·"
+author: "??—è?‚å»·"
 date: "5/22/2019"
 output: html_document
 ---
@@ -10,20 +10,20 @@ output: html_document
 ```{r}
 library(readr)
 invoiceList <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/invoiceList.csv",
-col_types = cols(è¨‚å–®æ™‚é–“.ä»¥è¨‚å–®æ™‚å€é¡¯ç¤º. = col_character()))
-names(invoiceList)[[2]] <- "è¨‚å–®æ™‚å€ä¹‹ä¸‹å–®æ™‚é–“"
+col_types = cols(è¨‚å–®??‚é??.ä»¥è?‚å–®??‚å?€é¡¯ç¤º. = col_character()))
+names(invoiceList)[[2]] <- "è¨‚å–®??‚å?€ä¹‹ä?‹å–®??‚é??"
 ```
 
 ```{r}
-TY<-invoiceList$è¨‚å–®æ™‚å€=="Asia/Taipei"
-NY<-invoiceList$è¨‚å–®æ™‚å€=="America/New_York"
-tydate<-ymd_hms(invoiceList$è¨‚å–®æ™‚å€ä¹‹ä¸‹å–®æ™‚é–“[TY],tzone="Asia/Taipei")
+TY<-invoiceList$è¨‚å–®??‚å?€=="Asia/Taipei"
+NY<-invoiceList$è¨‚å–®??‚å?€=="America/New_York"
+tydate<-ymd_hms(invoiceList$è¨‚å–®??‚å?€ä¹‹ä?‹å–®??‚é?“[TY],tzone="Asia/Taipei")
 tydate1<-with_tz(tydate,tzone="UTC")
-nydate<-ymd_hms(invoiceList$è¨‚å–®æ™‚å€ä¹‹ä¸‹å–®æ™‚é–“[NY],tzone="America/New_York")
+nydate<-ymd_hms(invoiceList$è¨‚å–®??‚å?€ä¹‹ä?‹å–®??‚é?“[NY],tzone="America/New_York")
 nydate1<-with_tz(nydate,tzone="UTC")
 list(nydate1)
 ```
-è«‹æŠŠä»¥America/New_Yorkæ™‚å€è¼¸å…¥çš„æ™‚é–“å­—ä¸²"1973-02-21 12:05:22"ï¼Œè½‰æˆdate time class, å†æ”¹æˆAsia/Taipeiæ™‚é–“é¡¯ç¤ºã€‚
+è«‹æ?Šä»¥America/New_York??‚å?€è¼¸å…¥??„æ?‚é?“å?—ä¸²"1973-02-21 12:05:22"ï¼Œè?‰æ?date time class, ??æ”¹??Asia/Taipei??‚é?“é¡¯ç¤ºã€?
 
 ```{r}
 timezonechange<-ymd_hms("1973-02-21 12:05:22",tzone="America/New_York")
@@ -53,12 +53,12 @@ library(lubridate)
 ```
 ```{r}
 studentID <-"92aS67fee" 
-transcriptDataFinal$å­¸è™Ÿ==studentID -> logiChosenStudent
+transcriptDataFinal$å­¸è??==studentID -> logiChosenStudent
 
 subSample <- transcriptDataFinal[logiChosenStudent,]
 
-sum(subSample$å­¸æœŸæˆç¸¾*subSample$å­¸åˆ†æ•¸)/
-  sum(subSample$å­¸åˆ†æ•¸) -> GPA
+sum(subSample$å­¸æ?Ÿæ?ç¸¾*subSample$å­¸å?†æ•¸)/
+  sum(subSample$å­¸å?†æ•¸) -> GPA
 ```
 
 ```{r}
@@ -68,12 +68,12 @@ transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/git
 
 ```{r}
 gpa_fun <- function(studentID){
-  transcriptDataFinal$å­¸è™Ÿ==studentID -> logiChosenStudent
+  transcriptDataFinal$å­¸è??==studentID -> logiChosenStudent
   
   subSample <- transcriptDataFinal[logiChosenStudent,]
   
-  sum(subSample$å­¸æœŸæˆç¸¾*subSample$å­¸åˆ†æ•¸)/
-    sum(subSample$å­¸åˆ†æ•¸) -> GPA
+  sum(subSample$å­¸æ?Ÿæ?ç¸¾*subSample$å­¸å?†æ•¸)/
+    sum(subSample$å­¸å?†æ•¸) -> GPA
   return(GPA)
 }
 ```
@@ -86,28 +86,53 @@ gpa_fun("9efW9aea5")
 library(stringr)
 sample(99:103,15,replace = T)-> yy
 sample(1:12,15,replace=T)-> mm
-str_c("æ°‘åœ‹",str_pad(yy,3,"left","0"),"å¹´",mm,"æœˆ") -> twDates
+str_c("æ°‘å??",str_pad(yy,3,"left","0"),"å¹?",mm,"???") -> twDates
 twDates
 ```
 
 ```{r}
 library(stringr); library(lubridate)
-yyyy<-as.integer(str_extract(twDates,"(?<=(æ°‘åœ‹))[:digit:]+"))+1911
-mm<-str_extract(twDates,"[:digit:]+(?=æœˆ)")
+yyyy<-as.integer(str_extract(twDates,"(?<=(æ°‘å??))[:digit:]+"))+1911
+mm<-str_extract(twDates,"[:digit:]+(?=???)")
 yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
 yyyymmdd
 ```
-è«‹å¯«ä¸€å€‹å‡½æ•¸å…¶åç¨±ç‚ºdate_convert_twYMï¼Œä¸”date_convert_twYM(x)å¯ä»¥æŠŠä¸€å€‹æ°‘åœ‹å¹´æœˆå­—ä¸²ç‰©ä»¶xè½‰æˆdate time classçš„è¥¿å…ƒå¹´æœˆæ—¥ç‰©ä»¶è¼¸å‡ºã€‚
+è«‹å¯«ä¸€?€‹å‡½?•¸?…¶??ç¨±?‚ºdate_convert_twYMï¼Œä?”date_convert_twYM(x)?¯ä»¥æ?Šä?€?€‹æ?‘å?‹å¹´??ˆå?—ä¸²?‰©ä»¶xè½‰æ?date time class??„è¥¿??ƒå¹´??ˆæ—¥?‰©ä»¶è¼¸?‡º?€?
 
 ```{r}
 date_convert_TWYM<-function(IN){
-  yyyy<-as.integer(str_extract(IN,"(?<=(æ°‘åœ‹))[:digit:]+"))+1911
-mm<-str_extract(IN,"[:digit:]+(?=æœˆ)")
+  yyyy<-as.integer(str_extract(IN,"(?<=(æ°‘å??))[:digit:]+"))+1911
+mm<-str_extract(IN,"[:digit:]+(?=???)")
 ans<- ymd(str_c(yyyy,mm,"01",sep="-")) 
 return(ans)
 
 }
   
 date_convert_TWYM(twDates)
+```
+³Ð³y¤@­Ódemand_supply_fun(P,a,b,c,d)¡A¥¦·|¿é¥X¤@­Ólist¥]§t¤T­Ó¤¸¯À¡G¨Ñµ¹¶q¡A»Ý¨D¶q¡A¶WÃB¨Ñµ¹¶q
+```{r}
+demand_supply_fun<-function(p,a,b,c,d){
+  qs<-a+b*p
+  qd<-c-d*p
+  es<-qs-qd
+  return(list(¨Ñµ¹¶q=qs,»Ý¨D¶q=qd,¶WÃB¨Ñµ¹¶q=es))
+}
+
+```
+
+```{r}
+a <-  readline(prompt = "½Ð¿é¤J¤@­Ó¼Æ¦r¡G ")
+if(a < 0) {
+  print("a¬°­t­È")
+} else {
+  print("a¤£¬°­t­È")
+}
+
+```
+
+```{r}
+gpa_fun("92aS67fee") # Åã¥Ü82.85276
+gpa_fun("aa829838s") # ¬dµL¦¹¾Ç¸¹
 ```
 
