@@ -1,7 +1,7 @@
 ---
-title: '2019-05-15 billpractice'
+title: '2019-05-29 billpractice'
 author: "林茂廷"
-date: "5/22/2019"
+date: "5/29/2019"
 output: html_document
 ---
 
@@ -274,6 +274,24 @@ date_convert_twYM(twDates, 04)
 ```
 
 ```{r}
+now2 <- function(){
+  currentDateTime <- Sys.time()
+  hh<-hour(currentDateTime)
+  mm<-minute(currentDateTime)
+  cat("現在是",hh,"點",mm,"分")
+}
+```
 
+```{r}
+now2()
+
+```
+
+```{r}
+textbookURL<-function(){browseURL("https://bookdown.org/tpemartin/ntpu-programming-for-data-science/function-and-conditional-execution.html#defaults")}
+```
+
+```{r}
+textbookURL()
 ```
 
