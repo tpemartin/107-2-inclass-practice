@@ -152,8 +152,36 @@ if(a==1) {
 ```
 
 ```{r}
-
+supply_fun4 <- function(P,a,b){
+  Qs <- a+b*P
+  if(P < 0) {
+    message("P不能為負值") # 在螢幕出現的「錯誤」提示，沒有輸出任何值
+  } else if(P < -a/b) {
+    message("P必需大於等於",-a/b,"(即-a/b值)")
+  } else {
+    return(Qs)
+  }
+}
+supply_fun4(P=-1,-3,1)
+supply_fun4(P=2,-3,1)
+supply_fun4(P=3,-3,1)
 ```
 
+```{r}
+fizzbuzz <- function(x){
+  if(x %% 15== 0){
+    print("fizzbuzz")}
+    else if(x%% 3 ==0){
+      print("fizz")
+    }else if (x%% 5 == 0){
+      print("buzz")
+    }else {
+      return(x)
+    }
+  }
+```
 
+```{r}
+fizzbuzz(10)
+```
 
