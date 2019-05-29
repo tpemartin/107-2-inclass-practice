@@ -1,0 +1,48 @@
+---
+title: '2015-05-29'
+author: "켲두�["
+date: "5/29/2019"
+output: html_document
+---
+
+
+
+#8.1.3 return팒input
+
+```{r}
+now <- function(){
+  currentDateTime <- Sys.time()
+  hh<-hour(currentDateTime)
+  mm<-minute(currentDateTime)
+  cat("�{쫇촑",hh,"헕",mm,"ㅐ")
+}
+```
+
+
+```{r}
+textbookURL <- function(){
+  browseURL("https://bookdown.org/tpemartin/ntpu-programming-for-data-science/")
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
