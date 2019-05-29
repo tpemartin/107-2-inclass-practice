@@ -1,0 +1,78 @@
+---
+title: '2019-04-24'
+author: "林茂廷"
+date: "4/24/2019"
+output: html_document
+---
+
+```{r}
+m2<-matrix(c("a","b","c","d"),2,2)
+class(m2)
+typeof(m2)
+a<-m2[[1]]
+c<-m2[[3]]
+bd<-m2[2,]
+a
+c
+bd
+```
+
+```{r}
+MAT2 <- matrix(c("a","b","c","d"),2,2)
+MAT2
+class(MAT2)
+typeof(MAT2)
+MAT2[[2]]
+MAT2[c(T,F,F,T)]
+```
+
+```{r}
+StuList <- list(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuList 
+StuList[[2]][3]
+```
+
+```{r}
+as.data.frame(StuList) -> StuDF3
+
+class(StuDF3)
+```
+
+```{r}
+LETTERS
+chosenLETTERS <- LETTERS[1:8]
+m <- matrix(chosenLETTERS,2,4)
+m
+tolower(m)
+```
+
+```{r}
+chosenletters <- letters[1:16]
+matobj2 <- matrix(chosenletters,4,4)
+matobj2
+```
+
+```{r}
+LETTERS
+chosenLETTERS <- LETTERS[1:8]
+m <- matrix(chosenLETTERS,2,4)
+m
+tolower(m) # 轉成小寫
+m
+toupper(m) # 轉成大寫
+m
+```
+
+```{r}
+matObj1[c(1,4),c(2,3)]
+matObj1[c(T,F,F,T,F),c(F,T,T)]
+```
+
+```{r}
+classSurvey[c(1:60),c(4,5)]
+```
+
