@@ -100,4 +100,22 @@ gpa_fun("92aS67fee") # 顯示82.85276
 gpa_fun("aa829838s") # 查無此學號
 ```
 
+```{r}
+fizzbuzz <- function(input){
+  if(input %% 15 == 0 ){
+    print("fizzbuzz")
+  }else if(input %% 3 == 0){
+    print("fizz")
+  }else if(input %% 5 == 0){
+    print("buzz")
+  }else {
+    print(input)
+  }
+}
+
+fizzbuzz(15)
+fizzbuzz(6)
+fizzbuzz(4)
+fizzbuzz(20)
+```
 
