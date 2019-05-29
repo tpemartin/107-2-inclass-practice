@@ -185,3 +185,11 @@ fizzbuzz <- function(x){
 fizzbuzz(10)
 ```
 
+```{r}
+a <- c(1,3,5)
+a>2 # 此邏輯條件產生三個值
+if(a>2) {
+  print("a大於2")
+}
+```
+
