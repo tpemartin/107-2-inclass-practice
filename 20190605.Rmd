@@ -46,3 +46,19 @@ for(i in studentIds5){
 }
 ```
 
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+```
+
+
+```{r}
+for(i in seq_along(gmailAddress)){
+  print(gmailAddress[[i]])
+}
+```
+
