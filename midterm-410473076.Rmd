@@ -120,6 +120,7 @@ str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
 
 ### 5.1 去除字元
 請將twDates中的"民國"及"月"都去除，並存在twDates2答案物件，如："民國099年2月"會變成"099年2"。
+
 ```{r ans51}
 str_replace(twDates,"民國","")->twDates2
 str_replace(twDates2,"月","")->twDates2
@@ -128,8 +129,10 @@ twDates2
 # twDates2
 ```
 
+
 ### 5.2 取出年份
 取出民國年的並加上1911年轉成西元年，將此年份存在答案物件westYears裡（class為integer）。(hint: `str_split()`可分割字串,再使用第3題取出你要的部份)
+
 ```{r ans52}
 twDates2
 str_sub(twDates,3,5) ->yearCharactor
@@ -137,6 +140,7 @@ as.integer(yearCharactor)+1911 ->westYears
 westYears
 # westYears
 ```
+
 
 ### 5.3 西元年月日
 將twDates民國年月轉成date class的西元年月日，原始資料沒有日，請設定成每月1日。例如："民國100年5月"會轉成2011-05-01的date class日期。答案請存westDates答案物件。
@@ -159,6 +163,10 @@ ymd(westDates) -> westDates # 轉成dates
 westDates
 class(westDates)
 ```
+
+
+
+
 
 
 ## 6 differen time zone
@@ -197,14 +205,10 @@ sampledTranscriptData裡每個元素底下的值都是一位同學在一門課�
 ### 7.1 子樣本與當人比例
 取出科目名稱為「科目204」的學期成績，計算該科的當人比例（子樣本中成績不及格的比例）將此值存在答案物件failRate裡（為numeric/double class）。
 ```{r ans71}
-(sampledTranscriptData$科目名稱 == "科目204") -> logicChosenSubject
-length(logicChosenSubject)
-sum(logicChosenSubject)
-(sampledTranscriptData$科目名稱 == "科目204" & 
-    sampledTranscriptData$學期成績 < 60) -> logicChosenSubjectAndFail
-length(logicChosenSubjectAndFail)
-sum(logicChosenSubjectAndFail)
-sum(logicChosenSubjectAndFail)/sum(logicChosenSubject) -> failRate
+(sampledTranscriptData$科目名稱 == "科目204") -> chosenSubjectLogi
+sampledTranscriptData$學期成績[chosenSubjectLogi] -> chosenGrades
+sum(chosenGrades<60)/length(chosenGrades) -> failRate
+
 failRate
 # failRate
 ```
@@ -220,9 +224,8 @@ sampledTranscriptData$學屆 <-
   str_sub(sampledTranscriptData$學號,2,4)
 sampledTranscriptData$系碼 <- 
   str_sub(sampledTranscriptData$學號,5,6)
-tail(sampledTranscriptData$學號) # or head()
-tail(sampledTranscriptData$系碼) # or head()
 
+sampledTranscriptData
 # sampledTranscriptData
 ```
 
@@ -235,14 +238,7 @@ sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"2","")
 sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"3","")
 sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"4","")
 
-head(sampledTranscriptData$系級)
-head(sampledTranscriptData$學系)
-
-sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"[1234]","")
-sampledTranscriptData$學系
-
-sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"[:digit:]","")
-sampledTranscriptData$學系
+sampledTranscriptData$學系 
 # sampledTranscriptData$學系 
 ```
 
@@ -251,10 +247,7 @@ sampledTranscriptData$學系
 ```{r ans74}
 (sampledTranscriptData$系碼!="73" & 
    sampledTranscriptData$學系=="經濟學系") -> logiCheck
-
-sampledTranscriptData$學號[logiCheck] 
-
-unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
+sampledTranscriptData$學號[logiCheck] %>% unique() -> changeMajorStudent
 
 changeMajorStudent
 # changeMajorStudent
@@ -263,6 +256,14 @@ changeMajorStudent
 ### 7.5 學期平均成績
 請計算學號"410073409b"在101學年第1學期的平均成績（即該學期每科成績乘每科學分後加總，再除以總學分數），答案存在答案物件studentGPA(為numeric class)。
 ```{r ans75}
+(sampledTranscriptData$學號 == "410073409b" &
+  sampledTranscriptData$學年==101 &
+  sampledTranscriptData$學期==1) -> logiSelect
+  
+sum(sampledTranscriptData$學分數[logiSelect]*
+  sampledTranscriptData$學期成績[logiSelect])/sum(sampledTranscriptData$學分數[logiSelect]) -> studentGPA
+
+studentGPA
 # studentGPA
 ```
 
