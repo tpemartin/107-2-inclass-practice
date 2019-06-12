@@ -281,6 +281,8 @@ saveCommitAuthor[[i]] <- commitHistory[[i]]$commit$author$name
 
 ### 3. for loop
 ```{r}
+saveCommitAuthor <-
+  vector("character",length(commitHistory))
 for (i in seq_along(commitHistory)) {
   saveCommitAuthor[[i]] <- commitHistory[[i]]$commit$author$name
 }
@@ -306,6 +308,7 @@ saveCommitCommiter[[i]] <- commitHistory[[i]]$commit$committer$name
 
 ### 3. for loop
 ```{r}
+saveCommitCommiter <- vector("character",length(commitHistory))
 for (i in seq_along(commitHistory)) {
   saveCommitCommiter[[i]] <- 
     commitHistory[[i]]$commit$committer$name
@@ -314,17 +317,29 @@ saveCommitCommiter
 ```
 
 
-任務三：存下來每個commit的commiter
+任務三：存下來每個author與committer同人的commitDate
 ### 0. saving container
 ```{r}
-
+saveCommitDate <- vector("character",length(commitHistory))
+logiResult <- vector("logical",length(commitHistory))
 ```
 
 ### 1. sequence source
+```{r}
+commitHistory
+```
 
 ### 2. body
+```{r}
+i <- 1
+logiResult <- commitHistory[[i]]$commit$author$name == commitHistory[[i]]$commit$committer$name
+saveCommitDate[[i]] <- commitHistory[[i]]$commit$author$date
+```
 
 ### 3. for loop
+```{r}
+
+```
 
 
 
