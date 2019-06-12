@@ -1,0 +1,119 @@
+---
+title: "Untitled"
+author: "Daphne"
+date: "2019年6月12日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+load(url("https://www.dropbox.com/s/duh5aaqgl2f5m3z/loopTranscriptData.Rda?raw=1"))
+studentIds <- unique(transcriptDataFinal$學號) # 全部可能學號
+studentIds5 <- studentIds[1:5] # 前5筆學號
+```
+```{r}
+studentIds5
+seq_along(studentIds5)
+```
+
+
+```{r}
+for(i in seq_along(studentIds5)){
+  print(studentIds5[[i]])
+}
+```
+
+```{r}
+length(studentIds5)
+1:length(studentIds5)
+```
+任務：針對studentIds5裡的「每一個」學號進行print()
+## sequence source
+```{r}
+studentIds5
+```
+
+##Body
+把任務定義在對「第i個」
+任務：針對studentIds5裡的「第i個」學號進行print()
+```{r}
+i <- 1
+
+print(studentIds5[[i]])
+```
+使用以下for loop模式，完成對「每個」的任務。
+for(i in seq_along(sequence_source)){
+  body
+}
+```{r}
+for(i in seq_along(studentIds5)){
+  print(studentIds5[[i]])
+}
+```
+
+任務：一一檢查gmailAddress「每個」元素，若沒有寫“@gmail.com”則加上。
+
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+```
+
+##seruence
+```{r}
+gmailAddress
+```
+
+
+##Body
+任務：檢查gmailAddress「第i個」元素，若沒有寫“@gmail.com”則加上
+```{r}
+i <- 1
+
+print(gmailAddress[[i]])
+```
+
+```{r}
+library(stringr)
+
+for(i in seq_along(gmailAddress)){
+  if(!(str_detect(gmailAddress[[i]],"@gmali.com"))){
+    gmailAddress[[i]] <- str_c(gmailAddress[[i]],"@gmali.com")
+  }
+}
+gmailAddress
+```
+
+
+
+
+
+
+
+
+
