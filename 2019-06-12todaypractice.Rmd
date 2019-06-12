@@ -338,7 +338,19 @@ saveCommitDate[[i]] <- commitHistory[[i]]$commit$author$date
 
 ### 3. for loop
 ```{r}
+logiResult <- vector("logical",length(commitHistory))
+for (i in seq_along(commitHistory)) {
+  logiResult <- 
+    commitHistory[[i]]$commit$author$name == commitHistory[[i]]$commit$committer$name
+}
+saveCommitDate <- vector("character",length(commitHistory))
+for (i in seq_along(commitHistory)) {
+  saveCommitDate[[i]] <- 
+    commitHistory[[i]]$commit$author$date
+}
 
+saveCommitDate[logiResult]  -> CommieDate1
+CommieDate1
 ```
 
 
