@@ -133,9 +133,23 @@ print(commitHistory[[i]]$commit$author$name)
 ```
 ## for loop
 ```{r}
-
+for (i in seq_along(commitHistory)) {
+  print(commitHistory[[i]]$commit$author$name)
+}
 ```
 
+```{r}
+for(i in seq_along(commitHistory)){
+  print(
+    str_c(
+      "Author is ",
+      commitHistory[[i]][["commit"]][["author"]][["name"]],
+      ". Committer is ",
+      commitHistory[[i]][["commit"]][["committer"]][["name"]]
+      )
+    )
+}
+```
 
 
 
