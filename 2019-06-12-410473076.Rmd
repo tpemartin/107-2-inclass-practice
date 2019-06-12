@@ -207,7 +207,7 @@ commitHistory
 i<- 1
 commitHistory[[i]]$commit$author$name -> saveCommitAuthor[[i]]
 ```
-
+¿À¨d§@§U
 ```{r}
 saveCommitAuthor
 ```
@@ -221,6 +221,8 @@ for(i in seq_along(commitHistory)){
 }
 saveCommitAuthor
 ```
+
+
 
 
 
