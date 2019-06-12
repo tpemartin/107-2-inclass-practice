@@ -100,14 +100,28 @@ yyyymmdd
 請寫一個函數其名稱為date_convert_twYM，且date_convert_twYM(x)可以把一個民國年月字串物件x轉成date time class的西元年月日物件輸出。
 
 ```{r}
-date_convert_TWYM<-function(IN){
-  yyyy<-as.integer(str_extract(IN,"(?<=(民國))[:digit:]+"))+1911
-mm<-str_extract(IN,"[:digit:]+(?=月)")
-ans<- ymd(str_c(yyyy,mm,"01",sep="-")) 
-return(ans)
+date_convert_TWYM<-function(IN,dd="01"){
+   yyyy<-as.integer(str_extract(IN,"(?<=(民國))[:digit:]+"))+1911
+   mm<-str_extract(IN,"[:digit:]+(?=月)")
+  ans<- ymd(str_c(yyyy,mm,dd,sep="-")) 
+  return(ans)
 
 }
   
-date_convert_TWYM(twDates)
+date_convert_TWYM(twDates,dd="03")
 ```
+```{r}
+utility_cobb_douglass2 <- function(x,y,.alpha=0.5,.beta=0.5){
+  utilValue <- x^.alpha*y^.beta
+  return(utilValue)
+}
+```
+
+```{r}
+utility_cobb_douglass2 <- function(x,y,.alpha=0.5,.beta=0.5){
+  utilValue <- x^.alpha*y^.beta
+  return(utilValue)
+}
+```
+
 
