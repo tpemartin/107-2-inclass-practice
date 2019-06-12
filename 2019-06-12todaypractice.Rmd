@@ -151,5 +151,30 @@ for(i in seq_along(commitHistory)){
 }
 ```
 
+任務1：print「每個」commit的author等於committer的邏輯判斷結果。
+
+## sequence source
+```{r}
+commitHistory
+```
+
+## body
+```{r}
+i <- 1
+logiResult <- commitHistory[[i]]$commit$author$name == commitHistory[[i]]$commit$committer$name
+print(logiResult)
+```
+
+## for loop
+```{r}
+for (i in seq_along(commitHistory)) {
+  logiResult <- commitHistory[[i]]$commit$author$name == commitHistory[[i]]$commit$committer$name
+print(logiResult)
+}
+```
+
+
+
+
 
 
