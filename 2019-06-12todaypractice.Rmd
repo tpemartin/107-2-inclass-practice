@@ -215,6 +215,17 @@ saveList # 儲存後
 ```
 
 任務: 將transcriptDataFinal資料中每個學號的平均成績算出來並儲存（使用gpa_fun()）
+```{r}
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+  
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+  
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
+```
 
 ## 0.Saving container
 平均成績 is numeric
@@ -243,6 +254,77 @@ for (i in seq_along(studentIds5)) {
 }
 saveGPA5
 ```
+
+```{r}
+names(saveGPA5) <- studentIds5
+saveGPA5
+```
+
+任務一：存下來每個commit的author。
+### 0. saving container
+```{r}
+saveCommitAuthor <-
+  vector("character",length(commitHistory))
+```
+
+### 1. sequence source
+```{r}
+commitHistory
+```
+
+### 2. body
+存下來「第i個」commit的author。
+```{r}
+i <- 1
+saveCommitAuthor[[i]] <- commitHistory[[i]]$commit$author$name
+```
+
+### 3. for loop
+```{r}
+for (i in seq_along(commitHistory)) {
+  saveCommitAuthor[[i]] <- commitHistory[[i]]$commit$author$name
+}
+saveCommitAuthor
+```
+
+任務二：存下來每個commit的commiter
+### 0. saving container
+```{r}
+saveCommitCommiter <- vector("character",length(commitHistory))
+```
+
+### 1. sequence source
+```{r}
+commitHistory
+```
+
+### 2. body
+```{r}
+i <- 1
+saveCommitCommiter[[i]] <- commitHistory[[i]]$commit$committer$name
+```
+
+### 3. for loop
+```{r}
+for (i in seq_along(commitHistory)) {
+  saveCommitCommiter[[i]] <- 
+    commitHistory[[i]]$commit$committer$name
+}
+saveCommitCommiter
+```
+
+
+任務三：存下來每個commit的commiter
+### 0. saving container
+```{r}
+
+```
+
+### 1. sequence source
+
+### 2. body
+
+### 3. for loop
 
 
 
