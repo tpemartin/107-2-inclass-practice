@@ -97,6 +97,7 @@ str_smallClosest
 
 請建立一個list class的答案物件EconCourseSelectionInfo，其中EconCourseSelectionInfo[[“104”]]$url會得到“http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc”; 而“104”若換成其他三個學年任一個，所得到的url訊息也會對應改變。本題答案物件是EconCourseSelectionInfo。
 
+
 ```{r}
 EconCourseSelectionInfo <- list(
   "101"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc"),
@@ -124,6 +125,26 @@ EconCourseSelectionInfo: list class, 代表經濟系的課程資訊，且依前�
 
 此函數會去EconCourseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。
 
+#自己做
+```{r}
+search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
+  if(entranceYear %in% c(101,102,103)){
+    EconCourseSelectionInfo[["101"]]$url -> output  #注意數字的引號""
+  }else if(entranceYear==104){
+    EconCourseSelectionInfo[["104"]]$url -> output
+  }else if(entranceYear %in% c(105,106)){
+    EconCourseSelectionInfo[["105"]]$url -> output
+  }else if(entranceYear>=107){
+    EconCourseSelectionInfo[["107"]]$url -> output
+  }else{
+    "很抱歉沒有您入學年的資訊，請打系辦電話" -> output
+  }
+  return(output)
+}
+search_courseRules
+```
+
+#答案
 ```{r}
 search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
   if(entranceYear %in% c(101,102,103)){                # 適用101文件的條件：entranceYear 101, 102, 103
@@ -139,7 +160,7 @@ search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
   }
   return(output)
 }
-
+search_courseRules
 ```
 
 
@@ -152,26 +173,27 @@ courseSelectionInfo: list class, 依經濟系EconCourseSelectionInfo相同資料
 
 此函數會去courseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。要小心的是，各系選課準則頒佈學年不盡相同。（若同學3.2題的寫法已可跨系通用，可以把該題程序複製過來這題回答，只要答案物件名稱改成search_courseRules_flexible）
 
+#自己做
 ```{r}
-# 設定測試input值
-entranceYear <- 103
-courseSelectionInfo <- EconCourseSelectionInfo
-# 1. 從courseSelectionInfo裡可得到文件頒佈學年
-names(courseSelectionInfo) -> ruleYears
-# 2. 再從這些文件學年找出那些是在entranceYear之前頒佈的
-as.numeric(ruleYears) -> numNumber
-numNumber <= entranceYear -> logiTrue
-if(any(logiTrue)){
-  # 3. 符合上述條件的文件裡，選出頒佈學年最近的一份回傳其url
-  # numNumber[logiTrue] #符合上述條件的文件學年
-  max(numNumber[logiTrue]) -> maxNum #選出頒佈學年最近的一份
-  courseSelectionInfo[[as.character(maxNum)]]$url -> output
-} else {
-  output <- "很抱歉沒有您入學年的資訊，請打系辦電話"
+search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
+  names(courseSelectionInfo) -> ruleYears   #因為各系頒布學年不同，所以要先找到該系頒布學年ruleYears
+  as.numeric(ruleYears) -> numNumber
+  numNumber <= entranceYear -> logiTrue
+  if(any(logiTrue)){                        #any(logiTrue)
+    max(numNumber[logiTrue]) -> maxNum      #numNumber[logiTrue]
+    courseSelectionInfo[[as.character(maxNum)]]$url -> output
+  }else{
+    "很抱歉沒有您入學年的資訊，請打系辦電話" -> output
+  }
+  return(output)
 }
+search_courseRules_flexible
 ```
 
 
+
+
+#答案
 ```{r}
 search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
   
@@ -186,7 +208,7 @@ search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
     max(numNumber[logiTrue]) -> maxNum #選出頒佈學年最近的一份
     courseSelectionInfo[[as.character(maxNum)]]$url -> output
   } else {
-    output <- "很抱歉沒有您入學年的資訊，請打系辦電話"
+     "很抱歉沒有您入學年的資訊，請打系辦電話" -> output
   }  
   
   return(output)
