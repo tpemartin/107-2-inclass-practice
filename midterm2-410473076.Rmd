@@ -29,7 +29,7 @@ homeworkData <- data.frame(
   姓名=c("小明","小花","小新"),
   作業1分數=c(10,9,5),
   作業2分數=c(10,10,9),
-  stringsAsFactors=FALSE  #有這條姓名才會是character
+  stringsAsFactors=FALSE     #有這條姓名才會是character
 )
 homeworkData
 ```
@@ -191,8 +191,6 @@ search_courseRules_flexible
 ```
 
 
-
-
 #答案
 ```{r}
 search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
@@ -226,10 +224,12 @@ search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
 
 此題「禁用」list()重新定義全新list物件，此題改題程式會拿掉答案中出現list字眼的程序行。此題答案物件為EconCourseSelectionInfo2。
 
+
+#答案
 ```{r}
 EconCourseSelectionInfo2 <- EconCourseSelectionInfo
-names(EconCourseSelectionInfo2)[[3]] <- "106"
-EconCourseSelectionInfo2[["107"]]$`線上志願選課辦法` <- 
+names(EconCourseSelectionInfo2)[[3]] <- "106"                       #注意箭頭方向
+EconCourseSelectionInfo2[["107"]]$`線上志願選課辦法` <-             #[["107"]]$`線上志願選課辦法`
   "http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf"
 
 EconCourseSelectionInfo2
@@ -244,7 +244,24 @@ EconCourseSelectionInfo2
 load(url("https://github.com/tpemartin/github-data/blob/master/invoiceList.Rda?raw=true"))
 c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間') -> names(invoiceList)
 ```
+
 請將每個「訂單時區之下單時間」依其「訂單時區」轉成UTC時間date time class（即POSIXct class）後，存在「UTC時間」對應的位置裡。最後一行請打本題答案物件invoiceList。
+
+```{r}
+(invoiceList$訂單時區=="America/New_York") -> nyLogical
+
+(invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
+
+invoiceList$UTC時間[nyLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],
+          tz="America/New_York"),tzone="UTC")
+
+invoiceList$UTC時間[tpLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],
+          tz="Asia/Taipei"),tzone="UTC")
+
+invoiceList 
+```
 
 
 
@@ -253,8 +270,11 @@ c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間') -> names(inv
 ##5 轉系生
 請先執行以下程式取得學生成績單資料sampledTranscriptData，它是個list class的物件。
 ```{r}
-
+load(url("https://github.com/tpemartin/github-data/blob/master/sampledTranscriptData.Rda?raw=true"))
+c('學號','學期成績','學分數','學年','學期','必選修類別（必／選／通）','系級','科目名稱','年級','學屆') ->
+  names(sampledTranscriptData)
 ```
+
 sampledTranscriptData裡每個元素底下的值都是一位同學在一門課的修課狀況，資料變數（即這裡元素名稱）。
 
 學號是一入學就決定，不管後來有沒有轉系，其中：
@@ -263,8 +283,14 @@ sampledTranscriptData裡每個元素底下的值都是一位同學在一門課�
 經濟系的系碼為“73”，外系轉入經濟系的學生其系碼不會是“73”，但其「系級」變數值會含有“經濟學系”字樣。（Hint: stringr裡的str_detect(x,"test")可用來偵測x字串向量中，那些元素字串值中有“test”字眼出現，有的話回傳TRUE，反之為FALSE）
 
 請找出外系轉入經濟系的學生學號，並存成changeMajorStudent答案物件。(由於資料一筆為一科成績，所以學號會重覆出現，要存入答案物件前請用unique()去除重覆學號)
-```{r}
 
+
+```{r}
+(str_sub(sampledTranscriptData$學號,5,6)!="73" & 
+   str_detect(sampledTranscriptData$系級,"(經濟學系)")) -> logiCheck
+unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
+
+changeMajorStudent
 ```
 
 
