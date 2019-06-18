@@ -29,7 +29,7 @@ homeworkData <- data.frame(
   姓名=c("小明","小花","小新"),
   作業1分數=c(10,9,5),
   作業2分數=c(10,10,9),
-  stringsAsFactors=FALSE  #姓名才會是character
+  stringsAsFactors=FALSE  #有這條姓名才會是character
 )
 homeworkData
 ```
@@ -205,8 +205,15 @@ search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
 此題「禁用」list()重新定義全新list物件，此題改題程式會拿掉答案中出現list字眼的程序行。此題答案物件為EconCourseSelectionInfo2。
 
 ```{r}
+EconCourseSelectionInfo2 <- EconCourseSelectionInfo
+names(EconCourseSelectionInfo2)[[3]] <- "106"
+EconCourseSelectionInfo2[["107"]]$`線上志願選課辦法` <- 
+  "http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf"
 
+EconCourseSelectionInfo2
 ```
+
+
 
 
 ##4 differen time zone
@@ -216,6 +223,9 @@ load(url("https://github.com/tpemartin/github-data/blob/master/invoiceList.Rda?r
 c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間') -> names(invoiceList)
 ```
 請將每個「訂單時區之下單時間」依其「訂單時區」轉成UTC時間date time class（即POSIXct class）後，存在「UTC時間」對應的位置裡。最後一行請打本題答案物件invoiceList。
+
+
+
 
 
 ##5 轉系生
