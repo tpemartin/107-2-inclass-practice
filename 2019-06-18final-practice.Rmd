@@ -108,13 +108,62 @@ ymd(westDates) -> westDates
 westDates
 ```
 
+### 1-7
+```{r}
+load("sampledTranscriptData.Rda")
+names(sampledTranscriptData) <- 
+  c('學號','學期成績','學分數','學年','學期','必選修類別（必／選／通）','系級','科目名稱','年級','學屆')
+```
+取出科目名稱為「科目204」的學期成績，計算該科的當人比例（子樣本中成績不及格的比例）將此值存在答案物件failRate裡（為numeric/double class）。
+```{r}
+## ----ans71---------------------------------------------------------------
+# failRate
+sampledTranscriptData$科目名稱== "科目204" -> choosesubject
+sum(sampledTranscriptData$學期成績[choosesubject] < 60 )-> n1
+length(sampledTranscriptData$學期成績[choosesubject]) -> n2
+failRate <- n1 / n2
+failRate
+```
+使用sampledTranscriptData$學屆 <-及sampledTranscriptData$系碼 <- 在sampledTranscriptData新增「學屆」及「系碼」兩個的新元素，其元素值放在<-右側定義。
 
+「學屆」元素值代表的是每一位同學的入學學年，可由學號的第2到4位字元產生，「系碼」即學號的第5到6位字元；如410073298即為100學年入學，系碼73。另本題的答案物件為sampledTranscriptData。（使用sampledTranscriptData$學屆 <-及sampledTranscriptData$系碼 <-，將個別由學號取出之值放在<-右側即可在sampleTranscriptData新增這兩個元素。）
+```{r}
+## ----ans72---------------------------------------------------------------
+# sampledTranscriptData
+sampledTranscriptData$學屆 <- str_sub(sampledTranscriptData$學號,2,4)
+sampledTranscriptData$系碼 <- str_sub(sampledTranscriptData$學號,5,6)
+sampledTranscriptData
+```
 
+請在sampledTranscriptData新增一個「學系」變數，存在sampledTranscriptData$學系答案物件裡，它是「系級」元素值去除數字1,2,3,4的結果。例如：系級為“經濟學系2”, 學系值即為“經濟學系”。（hint: 可透過str_replace()或str_replace_all()把字串中的數字去除。）
+```{r}
+## ----ans73---------------------------------------------------------------
+# sampledTranscriptData$學系 
+sampledTranscriptData$學系 <- str_replace_all(sampledTranscriptData$系級,"[1234]","")
+sampledTranscriptData$學系
+```
 
+學號是一入學就決定，不管後來有沒有轉系。 請找出外系轉入經濟系的學生學號，並存成changeMajorStudent答案物件。(由於資料一筆為一科成績，所以學號會重覆出現，要存入答案物件前請用unique()去除重覆學號)
+```{r}
+## ----ans74---------------------------------------------------------------
+# changeMajorStudent
+(sampledTranscriptData$系碼 != 73 ) & (sampledTranscriptData$學系 == "經濟學系") -> logans
+sampledTranscriptData$學號[logans] -> lognum
+changeMajorStudent <- unique(lognum)
+changeMajorStudent
+```
 
-
-
-
+請計算學號“410073409b”在101學年第1學期的平均成績（即該學期每科成績乘每科學分後加總，再除以總學分數），答案存在答案物件studentGPA(為numeric class)。
+```{r}
+## ----ans75---------------------------------------------------------------
+# studentGPA
+(sampledTranscriptData$學號== "410073409b" & sampledTranscriptData$學年==101 & 
+   sampledTranscriptData$學期==1 )-> choosenstudent
+(sampledTranscriptData$學期成績[choosenstudent])*(sampledTranscriptData$學分數[choosenstudent]) -> n3
+sampledTranscriptData$學分數[choosenstudent] -> n4
+studentGPA <- sum(n3) / sum(n4)
+studentGPA
+```
 
 
 
