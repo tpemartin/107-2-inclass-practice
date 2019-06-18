@@ -1,0 +1,147 @@
+---
+title: "Untitled"
+author: "Daphne"
+date: "2019年6月18日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+### Midterm1
+```{r}
+library(lubridate); library(stringr); library(dplyr); library(readr); library(purrr)
+```
+### 1-3
+```{r}
+load("submitTime.Rda")
+```
+請將它改成以America/New_York時區顯示的「character class」文字字串，並存在答案物件nyTime。答案物件請寫在最後一行。（注意答案物件class必修為character）
+```{r}
+## ----ans3----------------------------------------------------------------
+# nyTime
+submitTime
+submitTime <- mdy_hms(submitTime)
+nyTime <- with_tz(submitTime,tzone = "America/New_York")
+as.character(nyTime)
+nyTime
+```
+### 1-4
+```{r}
+a <- list(
+  學號=c("a23","a22","a41"),
+  成績=c(88,76,82)
+)
+map(a,~.[[2]]) ### 取出每個元素第二位
+map(a,~.[c(1,3)]) ### 取出每個元素第一及第三位
+map(a,~.[c(T,F,T)]) ### 取出每個元素第一及第三位
+```
+
+
+```{r}
+randomGrades <- sample(40:80,15,replace = T)
+randomCredits <- sample(0:3,15,replace=T)
+data3 <- list(
+  成績=randomGrades,
+  學分數=randomCredits
+)
+```
+請選出成績大於等於60的資料並存在passData這個帶有「成績」及「學分數」的list物件。此題答案物件為passData。
+```{r}
+## ----ans4----------------------------------------------------------------
+# passData
+pass <-  data3$成績 >= 60
+map(data3,~.[pass]) -> passData
+passData
+```
+
+### 1-5
+```{r}
+sample(99:103,15,replace = T)-> yy
+sample(1:12,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+### twDates
+```
+請將twDates中的“民國”及“月”都去除，並存在twDates2答案物件，如：“民國099年2月”會變成“099年2”。
+```{r}
+## ----ans51---------------------------------------------------------------
+# twDates2
+str_sub(twDates,3,9) -> twDates2
+twDates2
+```
+取出民國年的並加上1911年轉成西元年，將此年份存在答案物件westYears裡（class為integer）。(hint: str_split()可分割字串,再使用第3題取出你要的部份)
+```{r}
+## ----ans52---------------------------------------------------------------
+# westYears
+str_sub(twDates2,1,3) -> yearneed
+as.integer(yearneed) +1911 -> westYears
+westYears
+```
+將twDates民國年月轉成date class的西元年月日，原始資料沒有日，請設定成每月1日。例如：“民國100年5月”會轉成2011-05-01的date class日期。答案請存westDates答案物件。
+```{r}
+## ----ans53---------------------------------------------------------------
+# westDates
+str_c(westYears,"-",mm,"-",01) -> westDates
+ymd(westDates) -> westDates
+westDates
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
