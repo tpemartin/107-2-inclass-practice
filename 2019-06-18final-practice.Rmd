@@ -233,7 +233,7 @@ str_smallClosest <- function(chrNumber,criticalNumber){
   max(chrNumber[lognumber]) -> loganswer
   return(as.character(loganswer))
 }
-str_smallClosest(c("10","25","11"),12)
+str_smallClosest
 ```
 
 
@@ -276,7 +276,24 @@ EconCourseSelectionInfo: list class, 代表經濟系的課程資訊，且依前�
 ```{r}
 ## ----ans32f--------------------------------------------------------------
 # search_courseRules
+search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
+  input <- as.integer(entranceYear)
+  if(input>=101 & input<104){
+    output <- EconCourseSelectionInfo$`101`$url
+  }else if(input>=104 & input<105){
+    output <- EconCourseSelectionInfo$`104`$url
+  }else if(input>=105 & input<107){
+    output <- EconCourseSelectionInfo$`105`$url
+  }else if(input>=107){
+    output <- EconCourseSelectionInfo$`107`$url
+  }else{
+    output <- "很抱歉沒有您入學年的資訊，請打系辦電話"
+  }
+  return(output)
+}
+search_courseRules
 ```
+
 
 ### 2-3-3
 社工系聽說你寫了上題的程式而驚為天人要拿來使用，該系也依EconCourseSelectionInfo的資料結構建立了自己的選課準則物件SocialWorkCourseSelectionInfo。請改寫上一題的函數並存在答案物件search_courseRules_flexible中，，使用方法為search_courseRules_flexible(entranceYear,courseSelectionInfo):
@@ -290,7 +307,38 @@ courseSelectionInfo: list class, 依經濟系EconCourseSelectionInfo相同資料
 ```{r}
 ## ----ans33f--------------------------------------------------------------
 # search_courseRules_flexible
+search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
+  names(courseSelectionInfo) -> yearselect #先找出系上選課的資訊元素，會出現"101"之類的
+  as.numeric(yearselect) -> yearselect #將character轉成numeric
+  logyear <- yearselect <= as.numeric(entranceYear) #只要入學年>=選課資訊的年度，也要numeric入學年
+  if(any(logyear)){ #只要符合上述的log
+    output2 <- max(yearselect[logyear]) #只要"最大"的選課資訊年度且符合log
+    return(courseSelectionInfo$as.character(output2)$url) #return(courseSelectionInfo$as.character(output2)$url)
+  }else{
+    return("很抱歉沒有您入學年的資訊，請打系辦電話")
+  }
+}
+search_courseRules_flexible
+
 ```
+
+```{r}
+search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
+  names(courseSelectionInfo) -> ruleYears
+  ## 以下借用第2題答案但小修改
+  as.numeric(ruleYears) -> numNumber
+  logiTrue <- numNumber <= as.numeric(entranceYear)
+  if(any(logiTrue)){
+    max(numNumber[logiTrue]) -> maxNum
+    return(courseSelectionInfo[[as.character(maxNum)]]$url)
+  } else {
+    return("很抱歉沒有您入學年的資訊，請打系辦電話")
+  }
+}
+
+search_courseRules_flexible
+```
+
 
 ### 2-3-4
 先將EconCourseSelectionInfo另存成EconCourseSelectionInfo2物件，以EconCourseSelectionInfo2物件為對象：
@@ -304,6 +352,10 @@ courseSelectionInfo: list class, 依經濟系EconCourseSelectionInfo相同資料
 ```{r}
 ## ----ans34---------------------------------------------------------------
 # EconCourseSelectionInfo2
+EconCourseSelectionInfo2 <- EconCourseSelectionInfo
+names(EconCourseSelectionInfo2)[[3]] <- "106"
+EconCourseSelectionInfo2$`107`$線上志願選課辦 <- "http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf"
+EconCourseSelectionInfo2
 ```
 
 
