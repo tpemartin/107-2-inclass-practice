@@ -166,22 +166,145 @@ studentGPA
 ```
 
 
+### Midterm2
+```{r}
+library(lubridate); library(stringr); library(purrr); library(readr);
+```
 
 
+### 2-1-1
+請建立一個data frame名為homeworkData, 它有三個元素，分別是「姓名」、「作業1分數」、「作業2分數」，分別是不同人的姓名，作業1及作業2分數，其class分別是character, numeric, numeric。
+
+請將以下3筆資料放在homeworkData中：
+
+“小明”,10,10
+
+“小花”,9, 10
+
+“小新”,5, 9
+```{r}
+## ----ans11---------------------------------------------------------------
+# homeworkData
+homeworkData <- data.frame(
+  姓名=c("小明","小花","小新"),
+  作業1分數=c(10,9,5),
+  作業2分數=c(10,10,9),
+  stringsAsFactors=F
+)
+homeworkData
+```
+
+### 2-1-2
+
+```{r}
+emailText <-
+  "親愛的student好，您的作業成績為：作業1, y1分; 作業2, y2分"
+```
+請建立一個函數email_content_fun(input)：
+
+input: homeworkData的一筆資料，如homeworkData[1,]代表第一筆資料，homeworkData[2,]代表第二筆資料，等等。
+它會回傳為該筆資料量身訂做的emailText，其內容為emailText但將其student，y1及y2分別換成input該筆資料的姓名，作業1成績及作業2成績。
+
+```{r}
+## ----ans12f--------------------------------------------------------------
+# email_content_fun
+email_content_fun <- function(input){
+  str_replace_all(emailText,"student",input$姓名) -> emailTextOut
+  str_replace_all(emailTextOut,"y1",as.character(input$作業1分數)) -> emailTextOut
+  str_replace_all(emailTextOut,"y2",as.character(input$作業2分數)) -> emailTextOut
+  return(emailTextOut)
+}
+email_content_fun(homeworkData[1,])
+```
+
+### 2-2
+寫一個函數str_smallClosest，使用方法為str_smallClosest(chrNumber,criticalNumber)，其中：
+
+chrNumber: 為character class的數字文字向量，如c(“10”,“25”,“11”)
+
+criticalNumber: 為數字。
+
+str_smallClosest(chrNumber,criticalNumber)會找出chrNumber字串數字中「小於等於」criticalNumber中的「最大值」且回傳值依然是character，例如：str_smallClosest(c("10","25","11"),12)"會回傳字串“11”。本題答案物件是str_smallClosest。(hint: max()會找出數字向量中的最大值)
+```{r}
+## ----ans2f---------------------------------------------------------------
+# str_smallClosest
+str_smallClosest <- function(chrNumber,criticalNumber){
+  as.numeric(chrNumber) <= criticalNumber -> lognumber
+  max(chrNumber[lognumber]) -> loganswer
+  return(as.character(loganswer))
+}
+str_smallClosest(c("10","25","11"),12)
+```
 
 
+### 2-3-1
+以下是經濟學系不同入學年學生所適用的選課準則文件網址：
 
+101學年：http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc
 
+104學年：http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc
 
+105學年：http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc
 
+107學年：http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf
 
+請建立一個list class的答案物件EconCourseSelectionInfo，其中EconCourseSelectionInfo[[“104”]]$url會得到“http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc”; 而“104”若換成其他三個學年任一個，所得到的url訊息也會對應改變。本題答案物件是EconCourseSelectionInfo。
 
+```{r}
+## ----ans31---------------------------------------------------------------
+# EconCourseSelectionInfo
+EconCourseSelectionInfo <- list(
+  "101"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc"),
+  "104"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc"),
+  "105"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc"),
+  "107"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf")
+)
+EconCourseSelectionInfo
+```
 
+### 2-3-2
+每屆入學新生所適用的選課準則是以「學生入學年前（含入學年）」中最新的文件為主，如：106學年入學者，在他之前有101，104，及105三份文件，105是當中最新的，故他們適用105學年文件。
 
+請寫一個函數search_courseRules，使用方法為search_courseRules(entranceYear,EconCourseSelectionInfo):
 
+entranceYear: 數值，使用者輸入的入學年，可以是任何的數字。
 
+EconCourseSelectionInfo: list class, 代表經濟系的課程資訊，且依前一題結構架構。
 
+此函數會去EconCourseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。
 
+```{r}
+## ----ans32f--------------------------------------------------------------
+# search_courseRules
+```
+
+### 2-3-3
+社工系聽說你寫了上題的程式而驚為天人要拿來使用，該系也依EconCourseSelectionInfo的資料結構建立了自己的選課準則物件SocialWorkCourseSelectionInfo。請改寫上一題的函數並存在答案物件search_courseRules_flexible中，，使用方法為search_courseRules_flexible(entranceYear,courseSelectionInfo):
+
+entranceYear: 數值，使用者輸入的入學年，可以是任何的數字。
+
+courseSelectionInfo: list class, 依經濟系EconCourseSelectionInfo相同資料結構建立的課程資訊物件, 即courseSelectionInfo[[文件頒佈學年]]$url會得到文件資訊網址。
+
+此函數會去courseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。要小心的是，各系選課準則頒佈學年不盡相同。（若同學3.2題的寫法已可跨系通用，可以把該題程序複製過來這題回答，只要答案物件名稱改成search_courseRules_flexible）
+
+```{r}
+## ----ans33f--------------------------------------------------------------
+# search_courseRules_flexible
+```
+
+### 2-3-4
+先將EconCourseSelectionInfo另存成EconCourseSelectionInfo2物件，以EconCourseSelectionInfo2物件為對象：
+
+將的“105”學年元素名稱改為“106”。
+
+並在“107”學年元素下新增“線上志願選課辦法”名稱元素，其值為“http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf”
+
+此題「禁用」list()重新定義全新list物件，此題改題程式會拿掉答案中出現list字眼的程序行。此題答案物件為EconCourseSelectionInfo2。
+
+```{r}
+## ----ans34---------------------------------------------------------------
+# EconCourseSelectionInfo2
+```
 
 
 
