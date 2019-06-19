@@ -65,6 +65,7 @@ i <- 1
 
 print(studentIds5[[i]])
 ```
+## for loop
 使用以下for loop模式，完成對「每個」的任務。
 for(i in seq_along(sequence_source)){
   body
@@ -111,6 +112,7 @@ for(i in seq_along(gmailAddress)){
     correctgmail <-
     str_c(gmailAddress[[i]],"@gmali.com")
     gmailAddress[[i]] <- correctgmail
+  }
 }
 cat("修正後狀況\n")
 gmailAddress
