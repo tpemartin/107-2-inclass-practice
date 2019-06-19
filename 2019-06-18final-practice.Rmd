@@ -115,6 +115,7 @@ names(sampledTranscriptData) <-
   c('學號','學期成績','學分數','學年','學期','必選修類別（必／選／通）','系級','科目名稱','年級','學屆')
 ```
 取出科目名稱為「科目204」的學期成績，計算該科的當人比例（子樣本中成績不及格的比例）將此值存在答案物件failRate裡（為numeric/double class）。
+### Sum是加總向量內的所有元素值，計算邏輯值遇到數學運算時T會被當成1，而F會被當成0。
 ```{r}
 ## ----ans71---------------------------------------------------------------
 # failRate
@@ -204,7 +205,7 @@ emailText <-
 
 input: homeworkData的一筆資料，如homeworkData[1,]代表第一筆資料，homeworkData[2,]代表第二筆資料，等等。
 它會回傳為該筆資料量身訂做的emailText，其內容為emailText但將其student，y1及y2分別換成input該筆資料的姓名，作業1成績及作業2成績。
-
+### str_replace_all(物件,要換的東西,替代的東西)
 ```{r}
 ## ----ans12f--------------------------------------------------------------
 # email_content_fun
@@ -224,14 +225,14 @@ chrNumber: 為character class的數字文字向量，如c(“10”,“25”,“1
 
 criticalNumber: 為數字。
 
-str_smallClosest(chrNumber,criticalNumber)會找出chrNumber字串數字中「小於等於」criticalNumber中的「最大值」且回傳值依然是character，例如：str_smallClosest(c("10","25","11"),12)"會回傳字串“11”。本題答案物件是str_smallClosest。(hint: max()會找出數字向量中的最大值)
+str_smallClosest(chrNumber,criticalNumber)會找出chrNumber字串數字中「小於等於」criticalNumber中的「最大值」且回傳值依然是character，例如：str_smallClosest(c("10","25","11"),12)"會回傳 #字串# “11”。本題答案物件是str_smallClosest。(hint: max()會找出數字向量中的最大值)
 ```{r}
 ## ----ans2f---------------------------------------------------------------
 # str_smallClosest
 str_smallClosest <- function(chrNumber,criticalNumber){
-  as.numeric(chrNumber) <= criticalNumber -> lognumber
+  as.numeric(chrNumber) <= criticalNumber -> lognumber  #原本是字串的chrNumber轉成數字來比較
   max(chrNumber[lognumber]) -> loganswer
-  return(as.character(loganswer))
+  return(as.character(loganswer))  #最後回傳的答案是字串Charater
 }
 str_smallClosest
 ```
