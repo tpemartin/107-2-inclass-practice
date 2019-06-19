@@ -52,14 +52,19 @@ x
 ```
 請產生一個logical class答案物件名為logicBig，其中元素值為TRUE若x對應值大於50（不包含50），反之為FALSE。答案物件請寫在最後一行。
 ```{r ans1}
-# logicBig
+as.integer(x) >50 -> logicBig 
+
+logicBig
 ```
 
 
 ## 2 list
 建立一個答案物件compoundObject, 其中`compoundObject[[1]]`會得到數字1 (numeric class), `compoundObject[[2]]`會得到字串"hello"(character class),`compoundObject[[3]]`會得到邏輯TRUE (logical class)。 
 ```{r ans2}
-# compoundObject
+compoundobject <- list(
+  1,"Hello",TRUE
+)
+compoundObject
 ```
 
 
@@ -70,6 +75,10 @@ load("submitTime.Rda")
 ```
 請將它改成以America/New_York時區顯示的「character class」文字字串，並存在答案物件nyTime。答案物件請寫在最後一行。（注意答案物件class必修為character）
 ```{r ans3}
+mdy_hms(submitTime)-> submitTime1
+with_tz(submitTime1,tzone = "America/New_York") -> nyTime
+as.character(nyTime) -> nyTime
+nyTime
 # nyTime
 ```
 
@@ -97,15 +106,9 @@ data3 <- list(
 
 請選出成績大於等於60的資料並存在passData這個帶有「成績」及「學分數」的list物件。此題答案物件為passData。
 ```{r ans4}
-logicPass <-(data3$成績 >=60)
-logicPass
-
-a <- data3$成績[logicPass]
-b <- data3$學分數[logicPass]
-
-passData <-list(成績=a,學分數=b)
+data3$成績>=60 ->logiTrue
+map(data3,~.[logiTrue]) ->passData
 passData
-# passData
 ```
 
 
@@ -115,23 +118,29 @@ passData
 sample(99:103,15,replace = T)-> yy
 sample(1:12,15,replace=T)-> mm
 str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
-# twDates
+twDates
 ```
 
 ### 5.1 去除字元
 請將twDates中的"民國"及"月"都去除，並存在twDates2答案物件，如："民國099年2月"會變成"099年2"。
 
 ```{r ans51}
-str_replace(twDates,"民國","")->twDates2
-str_replace(twDates2,"月","")->twDates2
+str_replace(twDates,"民國","") -> twDates2
+str_replace(twDates2,"月","") -> twDates2
 twDates2
-
-# twDates2
 ```
 
 
 ### 5.2 取出年份
 取出民國年的並加上1911年轉成西元年，將此年份存在答案物件westYears裡（class為integer）。(hint: `str_split()`可分割字串,再使用第3題取出你要的部份)
+```{r}
+str_sub(twDates,3,5) -> yearCharactor
+as.integer(yearCharactor) +1911 ->westYears
+westYears
+```
+
+
+
 
 ```{r ans52}
 twDates2
@@ -144,6 +153,16 @@ westYears
 
 ### 5.3 西元年月日
 將twDates民國年月轉成date class的西元年月日，原始資料沒有日，請設定成每月1日。例如："民國100年5月"會轉成2011-05-01的date class日期。答案請存westDates答案物件。
+
+```{r}
+map(dateList,~.[[2]]) -> mm
+str_c(westYears,mm,"1",sep="-") -> ymdString
+ymd(ymdString) -> westDates
+
+westDates
+```
+
+
 
 ```{r ans53}
 twDates2
@@ -181,6 +200,8 @@ names(invoiceList) <-
 ### 6.1 改元素名稱
 請將元素名稱「訂單時間(以訂單時區顯示)」改成「訂單時區之下單時間」。答案最後一行請寫invoiceList答案物件。
 ```{r ans61}
+names(invoiceList)[[2]] <- "訂單時區之下單時間"
+invoiceList
 # invoiceList
 ```
 
@@ -188,7 +209,16 @@ names(invoiceList) <-
 請將每個「訂單時區之下單時間」依其「訂單時區」轉成UTC時間date time class（即POSIXct class）後，存在「UTC時間」對應的位置裡。最後一行請打本題答案物件invoiceList。
 
 ```{r ans62}
-# invoiceList 
+invoiceList$訂單時區=="America/New_York" -> nyLogical
+invoiceList$訂單時區=="Asia/Taipei" -> tpLogical
+
+invoiceList$UTC時間[nyLogical] <-
+  with_tz(ymd_hms(invoiceList$訂單時區之下單時間[nyLogical],tz="America/New_York"),tzone="UTC")
+
+invoiceList$UTC時間[tpLogical] <-
+  with_tz(ymd_hms(invoiceList$訂單時區之下單時間[tpLogical],tz="Asia/Taipei"),tzone="UTC")
+
+invoiceList 
 ```
 
 
@@ -204,6 +234,22 @@ sampledTranscriptData裡每個元素底下的值都是一位同學在一門課�
 
 ### 7.1 子樣本與當人比例
 取出科目名稱為「科目204」的學期成績，計算該科的當人比例（子樣本中成績不及格的比例）將此值存在答案物件failRate裡（為numeric/double class）。
+
+
+```{r}
+sampledTranscriptData$科目名稱 =="科目204" ->logiTrue
+sampledTranscriptData$學期成績[logiTrue] ->chosenGrades
+sum(chosenGrades <60) / length(chosenGrades) ->failRate
+failRate
+```
+
+
+
+
+
+
+
+
 ```{r ans71}
 (sampledTranscriptData$科目名稱 == "科目204") -> chosenSubjectLogi
 sampledTranscriptData$學期成績[chosenSubjectLogi] -> chosenGrades
@@ -212,7 +258,6 @@ sum(chosenGrades<60)/length(chosenGrades) -> failRate
 failRate
 # failRate
 ```
-
 
 ```{r}
 (sampledTranscriptData$科目名稱 == "科目204") ->chosenSubjectLogi
@@ -232,6 +277,20 @@ failRate
 使用`sampledTranscriptData$學屆 <- `及`sampledTranscriptData$系碼 <-` 在sampledTranscriptData新增「學屆」及「系碼」兩個的新元素，其元素值放在`<-`右側定義。
 
 「學屆」元素值代表的是每一位同學的入學學年，可由學號的第2到4位字元產生，「系碼」即學號的第5到6位字元；如410073298即為100學年入學，系碼73。另本題的答案物件為sampledTranscriptData。（使用`sampledTranscriptData$學屆 <- `及`sampledTranscriptData$系碼 <-`，將個別由學號取出之值放在`<-`右側即可在sampleTranscriptData新增這兩個元素。）
+
+
+```{r}
+sampledTranscriptData$學屆 <- str_sub(sampledTranscriptData$學號,2,4)
+sampledTranscriptData$系碼 <- str_sub(sampledTranscriptData$學號,5,6)
+sampledTranscriptData
+```
+
+
+
+
+
+
+
 ```{r ans72}
 sampledTranscriptData$學屆 <- 
   str_sub(sampledTranscriptData$學號,2,4)
@@ -254,6 +313,19 @@ sampledTranscriptData
 ### 7.3 產生學系 str_replace_all
 請在sampledTranscriptData新增一個「學系」變數，存在`sampledTranscriptData$學系`答案物件裡，它是「系級」元素值去除數字1,2,3,4的結果。例如：系級為"經濟學系2", 學系值即為"經濟學系"。（hint: 可透過`str_replace()`或`str_replace_all()`把字串中的數字去除。）
 
+```{r}
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"1","")
+sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"2","")
+```
+
+
+
+
+
+
+
+
+
 ```{r ans73}
 sampledTranscriptData$學系 <-
   str_replace(sampledTranscriptData$系級,"1","")
@@ -270,6 +342,16 @@ sampledTranscriptData$學系
 
 ### 7.4 轉系生
 學號是一入學就決定，不管後來有沒有轉系。 請找出外系轉入經濟系的學生學號，並存成changeMajorStudent答案物件。(由於資料一筆為一科成績，所以學號會重覆出現，要存入答案物件前請用`unique()`去除重覆學號)
+
+```{r}
+str_sub(sampledTranscriptData$學號,5,6)!="73" & str_detect(sampledTranscriptData$系級,"經濟學系") -> logiCheck
+unique(sampledTranscriptData$學號[logiCheck]) ->changeMajorStudent
+
+changeMajorStudent
+```
+
+
+
 ```{r ans74}
 (sampledTranscriptData$系碼!="73" & 
    sampledTranscriptData$學系=="經濟學系") -> logiCheck
@@ -281,6 +363,16 @@ changeMajorStudent
 
 ### 7.5 學期平均成績
 請計算學號"410073409b"在101學年第1學期的平均成績（即該學期每科成績乘每科學分後加總，再除以總學分數），答案存在答案物件studentGPA(為numeric class)。
+
+```{r}
+sampledTranscriptData$學號=="410073409b" & sampledTranscriptData$學年==101 & sampledTranscriptData$學期==1 -> chosemLogi
+sum(sampledTranscriptData$學期成績[chosenLogi]*sampledTranscriptData$學分數[chosenLogi])/sum(sampledTranscriptData$學分數[chosenLogi]) ->studentGPA
+studentGPA
+
+```
+
+
+
 ```{r ans75}
 (sampledTranscriptData$學號 == "410073409b" &
   sampledTranscriptData$學年==101 &
