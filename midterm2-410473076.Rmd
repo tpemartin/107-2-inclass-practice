@@ -49,7 +49,7 @@ input: homeworkData的一筆資料，如homeworkData[1,]代表第一筆資料，
 ```{r}
 email_content_fun <- function(input){
   str_replace(emailText,"student",input$姓名) ->emailTextOut
-  str_replace(emailTextOut,"y1",as.character(input$作業1分數)) ->emailTextOut
+  str_replace(emailTextOut,"y1",as.character(input$作業1分數)) ->emailTextOut    #as.character
   str_replace(emailTextOut,"y2",as.character(input$作業2分數)) ->emailTextOut
   retutn(emailTextOut)
 }
