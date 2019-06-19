@@ -100,7 +100,7 @@ str_smallClosest
 
 ```{r}
 EconCourseSelectionInfo <- list(
-  "101"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc"),
+  "101"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc"),    #url=
   "104"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc"),
   "105"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc"),
   "107"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf")
@@ -178,7 +178,7 @@ courseSelectionInfo: list class, 依經濟系EconCourseSelectionInfo相同資料
 search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
   names(courseSelectionInfo) -> ruleYears   #因為各系頒布學年不同，所以要先找到該系頒布學年ruleYears
   as.numeric(ruleYears) -> numNumber
-  numNumber <= entranceYear -> logiTrue
+  numNumber <= entranceYear -> logiTrue     #numNumber <= entranceYear -> logiTrue
   if(any(logiTrue)){                        #any(logiTrue)
     max(numNumber[logiTrue]) -> maxNum      #numNumber[logiTrue]
     courseSelectionInfo[[as.character(maxNum)]]$url -> output
@@ -266,10 +266,10 @@ invoiceList
 (invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
 
 invoiceList$UTC時間[nyLogical] <-
-  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],tz="America/New_York"),tzone="UTC")
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],tz="America/New_York"),tzone="UTC")     #[nyLogical]
 
 invoiceList$UTC時間[tpLogical] <-
-  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],tz="Asia/Taipei"),tzone="UTC")
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],tz="Asia/Taipei"),tzone="UTC")          #[tpLogical]
 
 invoiceList 
 ```
@@ -297,8 +297,16 @@ sampledTranscriptData裡每個元素底下的值都是一位同學在一門課�
 
 
 ```{r}
+str_sub(sampledTranscriptData$學號,5,6)!="73" & str_detect(sampledTranscriptData$系級,"經濟學系") ->logiCheck
+unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
+changeMajorStudent
+```
+
+
+```{r}
 (str_sub(sampledTranscriptData$學號,5,6)!="73" & 
    str_detect(sampledTranscriptData$系級,"(經濟學系)")) -> logiCheck
+
 unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
 
 changeMajorStudent
