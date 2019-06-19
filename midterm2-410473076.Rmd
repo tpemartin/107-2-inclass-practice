@@ -248,17 +248,28 @@ c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間') -> names(inv
 請將每個「訂單時區之下單時間」依其「訂單時區」轉成UTC時間date time class（即POSIXct class）後，存在「UTC時間」對應的位置裡。最後一行請打本題答案物件invoiceList。
 
 ```{r}
+invoiceList$訂單時區="America/New_York" -> nyLogical
+invoiceList$訂單時區="Asia/Taipei" ->tpLogical
+
+invoiceList$UTC時間[nyLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],tz="America/New_York"),tzone="UTC")
+invoiceList$UTC時間[tpLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],tz="Asia/Taipei"),tzone="UTC")
+
+invoiceList
+```
+
+#答案
+```{r}
 (invoiceList$訂單時區=="America/New_York") -> nyLogical
 
 (invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
 
 invoiceList$UTC時間[nyLogical] <-
-  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],
-          tz="America/New_York"),tzone="UTC")
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],tz="America/New_York"),tzone="UTC")
 
 invoiceList$UTC時間[tpLogical] <-
-  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],
-          tz="Asia/Taipei"),tzone="UTC")
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],tz="Asia/Taipei"),tzone="UTC")
 
 invoiceList 
 ```
