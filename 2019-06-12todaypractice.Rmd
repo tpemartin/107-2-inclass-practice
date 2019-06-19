@@ -339,6 +339,7 @@ saveCommitDate[[i]] <- commitHistory[[i]]$commit$author$date
 ```
 
 ### 3. for loop
+分開兩個寫
 ```{r}
 logiResult <- vector("logical",length(commitHistory))
 for (i in seq_along(commitHistory)) {
