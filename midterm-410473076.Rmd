@@ -3,8 +3,8 @@ title: "midterm"
 date: "2019-04-19"
 output: html_document
 params:
-  studentID: "你的學號"
-  studentName: "你的名字"
+  studentID: "410473076"
+  studentName: "張舒涵"
 ---
 
 ```{r setup, include=FALSE}
@@ -214,6 +214,19 @@ failRate
 ```
 
 
+```{r}
+(sampledTranscriptData$科目名稱 == "科目204") ->chosenSubjectLogi
+sampledTranscriptData$學期成績[chosenSubjectLogi] ->chosenGrades
+sum(chosenGrades<60)/length(chosenGrades) ->failRate
+
+failRate
+```
+
+
+
+
+
+
 ### 7.2 產生學屆系碼 str_sub
 
 使用`sampledTranscriptData$學屆 <- `及`sampledTranscriptData$系碼 <-` 在sampledTranscriptData新增「學屆」及「系碼」兩個的新元素，其元素值放在`<-`右側定義。
@@ -229,14 +242,27 @@ sampledTranscriptData
 # sampledTranscriptData
 ```
 
+```{r}
+sampledTranscriptData$學屆 <-
+  str_sub(sampledTranscriptData,2,4)
+sampledTranscriptData$系碼 <-
+  str_sub(sampledTranscriptData,5,6)
+sampledTranscriptData
+```
+
+
 ### 7.3 產生學系 str_replace_all
 請在sampledTranscriptData新增一個「學系」變數，存在`sampledTranscriptData$學系`答案物件裡，它是「系級」元素值去除數字1,2,3,4的結果。例如：系級為"經濟學系2", 學系值即為"經濟學系"。（hint: 可透過`str_replace()`或`str_replace_all()`把字串中的數字去除。）
 
 ```{r ans73}
-sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"1","")
-sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"2","")
-sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"3","")
-sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"4","")
+sampledTranscriptData$學系 <-
+  str_replace(sampledTranscriptData$系級,"1","")
+sampledTranscriptData$學系 <-
+  str_replace(sampledTranscriptData$學系,"2","")
+sampledTranscriptData$學系 <-
+  str_replace(sampledTranscriptData$學系,"3","")
+sampledTranscriptData$學系 <-
+  str_replace(sampledTranscriptData$學系,"4","")
 
 sampledTranscriptData$學系 
 # sampledTranscriptData$學系 
