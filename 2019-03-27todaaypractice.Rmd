@@ -1,0 +1,165 @@
+---
+title: '2019-03-27'
+author: "林茂廷"
+date: "3/27/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(lubridate)
+```
+
+```{r}
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+
+```
+
+```{r}
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+twDateTime
+```
+
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+LisbonDateTime
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+twDateTime
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+LisbonDateTime
+typeof(LisbonDateTime)
+as.double(LisbonDateTime)
+as.double(twDateTime)
+```
+
+
+```{r}
+day1 <- ymd("2018-9-11")
+day1
+```
+```{r}
+day2 <- mdy ("march,3,2019")
+day2
+```
+
+```{r}
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+```
+
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+```
+```{r}
+a+bL
+aL+bL
+```
+```{r}
+class(a+bL)
+class(aL+bL)
+```
+```{r}
+a-bL
+a*bL
+```
+```{r}
+c <- 4
+```
+
+```{r}
+c+a
+a%%b
+a^b
+```
+```{r}
+day3 <- ymd("2019-08-11")
+day3
+day4 <-ymd("2000-02-01")
+day4
+```
+
+```{r}
+day3-day4
+```
+
+```{r}
+class(day3-day4)
+```
+```{r}
+class(day3)
+as.Date(day3)
+as.double(day3)
+```
+```{r}
+day3+13
+```
+```{r}
+library(lubridate)
+startingDate <- ymd("2000-02-17")
+startingDate + years(1)
+startingDate + dyears(1)
+```
+```{r}
+x<- 5
+y<- 7
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+```
+```{r}
+x>y
+x+2 == y
+x != y
+```
+```{r}
+x > x2
+```
+```{r}
+x3 <- c(8,-1,123)
+y3 <- c(1,4,-5)
+```
+
+```{r}
+x3 > y3
+```
+```{r}
+x4 <- c(1,5,8)
+y4 <- c(5,8)
+x4 %in% y4
+y4 %in% x4
+```
+```{r}
+x5 <- c(1,NA,10)
+y5 <- c(-1,NA,20)
+
+x6 <- c(NA,"小花")
+y6 <- c(NA,"小華")
+```
+
+```{r}
+x5 == y5
+x5>y5
+```
+```{r}
+is.na(x5)
+is.na(y5)
+```
+```{r}
+sum(x5)
+sum(x5, na.rm = TRUE)
+sum(x5, na.rm = FALSE)
+```
+
