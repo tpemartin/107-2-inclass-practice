@@ -1,0 +1,315 @@
+---
+title: "midterm2"
+date: "2019-06-18"
+output: html_document
+params:
+  studentID: "410473076"
+  studentName: "張舒涵"
+---
+
+請先執以下code chunk, 引入所需packages.
+```{r}
+library(lubridate); library(stringr); library(purrr); library(readr);
+```
+
+##1
+
+#1.1 資料建立
+請建立一個data frame名為homeworkData, 它有三個元素，分別是「姓名」、「作業1分數」、「作業2分數」，分別是不同人的姓名，作業1及作業2分數，其class分別是character, numeric, numeric。
+
+請將以下3筆資料放在homeworkData中：
+
+“小明”,10,10
+
+“小花”,9, 10
+
+“小新”,5, 9
+```{r}
+homeworkData <- data.frame(
+  姓名=c("小明","小花","小新"),
+  作業1分數=c(10,9,5),
+  作業2分數=c(10,10,9),
+  stringsAsFactors=FALSE     #有這條姓名才會是character
+)
+homeworkData
+```
+
+
+#1.2
+以下字串代表要寄給學生作業成績通知信件的信件內容模版：
+```{r}
+emailText <-
+  "親愛的student好，您的作業成績為：作業1, y1分; 作業2, y2分"
+```
+請建立一個函數email_content_fun(input)：
+
+input: homeworkData的一筆資料，如homeworkData[1,]代表第一筆資料，homeworkData[2,]代表第二筆資料，等等。
+它會回傳為該筆資料量身訂做的emailText，其內容為emailText但將其student，y1及y2分別換成input該筆資料的姓名，作業1成績及作業2成績。
+
+```{r}
+email_content_fun <- function(input){
+  str_replace(emailText,"student",input$姓名) ->emailTextOut
+  str_replace(emailTextOut,"y1",as.character(input$作業1分數)) ->emailTextOut    #as.character
+  str_replace(emailTextOut,"y2",as.character(input$作業2分數)) ->emailTextOut
+  retutn(emailTextOut)
+}
+
+email_content_fun
+```
+
+
+
+##2 字串數字比較
+
+寫一個函數str_smallClosest，使用方法為str_smallClosest(chrNumber,criticalNumber)，其中：
+
+chrNumber: 為character class的數字文字向量，如c(“10”,“25”,“11”)
+
+criticalNumber: 為數字。
+
+str_smallClosest(chrNumber,criticalNumber)會找出chrNumber字串數字中「小於等於」criticalNumber中的「最大值」且回傳值依然是character，例如：str_smallClosest(c("10","25","11"),12)會回傳字串“11”。本題答案物件是str_smallClosest。(hint: max()會找出數字向量中的最大值)
+
+```{r}
+str_smallClosest <- function(chrNumber,criticalNumber){
+  as.numeric(chrNumber) -> numNumber       # 將character物件chrNumber轉成numeric物件numNumber
+  numNumber <= criticalNumber -> logiTrue  # numNumber中小於等於criticalNumber的元素logic判斷值
+  max(numNumber[logiTrue]) -> maxNum       # 自numNumber中取出logiTrue為TRUE的值，找出當中最大的存在maxNum
+  return(as.character(maxNum))             # 將maxNum轉成character回傳
+}
+str_smallClosest
+```
+
+
+
+
+##3 選課準則查詢
+
+#3.1 建立資訊清單
+以下是經濟學系不同入學年學生所適用的選課準則文件網址：
+
+101學年：http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc
+
+104學年：http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc
+
+105學年：http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc
+
+107學年：http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf
+
+請建立一個list class的答案物件EconCourseSelectionInfo，其中EconCourseSelectionInfo[[“104”]]$url會得到“http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc”; 而“104”若換成其他三個學年任一個，所得到的url訊息也會對應改變。本題答案物件是EconCourseSelectionInfo。
+
+
+```{r}
+EconCourseSelectionInfo <- list(
+  "101"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc"),    #url=
+  "104"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc"),
+  "105"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc"),
+  "107"=list(url="http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf")
+)
+EconCourseSelectionInfo
+```
+
+```{r}
+EconCourseSelectionInfo[["104"]]$url == "http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc"
+```
+
+
+
+#3.2 條件執行
+每屆入學新生所適用的選課準則是以「學生入學年前（含入學年）」中最新的文件為主，如：106學年入學者，在他之前有101，104，及105三份文件，105是當中最新的，故他們適用105學年文件。
+
+請寫一個函數search_courseRules，使用方法為search_courseRules(entranceYear,EconCourseSelectionInfo):
+
+entranceYear: 數值，使用者輸入的入學年，可以是任何的數字。
+
+EconCourseSelectionInfo: list class, 代表經濟系的課程資訊，且依前一題結構架構。
+
+此函數會去EconCourseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。
+
+#自己做
+```{r}
+search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
+  if(entranceYear %in% c(101,102,103)){
+    EconCourseSelectionInfo[["101"]]$url -> output  #注意數字的引號""
+  }else if(entranceYear==104){
+    EconCourseSelectionInfo[["104"]]$url -> output
+  }else if(entranceYear %in% c(105,106)){
+    EconCourseSelectionInfo[["105"]]$url -> output
+  }else if(entranceYear>=107){
+    EconCourseSelectionInfo[["107"]]$url -> output
+  }else{
+    "很抱歉沒有您入學年的資訊，請打系辦電話" -> output
+  }
+  return(output)
+}
+search_courseRules
+```
+
+#答案
+```{r}
+search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
+  if(entranceYear %in% c(101,102,103)){                # 適用101文件的條件：entranceYear 101, 102, 103
+    output <- EconCourseSelectionInfo[["101"]]$url
+  } else if(entranceYear==104) {                       # 適用104文件的條件：entranceYear 104
+    output <- EconCourseSelectionInfo[["104"]]$url
+  } else if(entranceYear %in% c(105,106)){             # 適用105文件的條件: entranceYear 105, 106
+    output <- EconCourseSelectionInfo[["105"]]$url
+  } else if(entranceYear >= 107){                      # 適用107文件的條件: entranceYear >=107
+    output <- EconCourseSelectionInfo[["107"]]$url
+  } else {                                             # entranceYear < 101 沒答案，要找系辦
+    output <- "很抱歉沒有您入學年的資訊，請打系辦電話"
+  }
+  return(output)
+}
+search_courseRules
+```
+
+
+#3.3 跨系通用
+社工系聽說你寫了上題的程式而驚為天人要拿來使用，該系也依EconCourseSelectionInfo的資料結構建立了自己的選課準則物件SocialWorkCourseSelectionInfo。請改寫上一題的函數並存在答案物件search_courseRules_flexible中，，使用方法為search_courseRules_flexible(entranceYear,courseSelectionInfo):
+
+entranceYear: 數值，使用者輸入的入學年，可以是任何的數字。
+
+courseSelectionInfo: list class, 依經濟系EconCourseSelectionInfo相同資料結構建立的課程資訊物件, 即courseSelectionInfo[[文件頒佈學年]]$url會得到文件資訊網址。
+
+此函數會去courseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。要小心的是，各系選課準則頒佈學年不盡相同。（若同學3.2題的寫法已可跨系通用，可以把該題程序複製過來這題回答，只要答案物件名稱改成search_courseRules_flexible）
+
+#自己做
+```{r}
+search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
+  names(courseSelectionInfo) -> ruleYears   #因為各系頒布學年不同，所以要先找到該系頒布學年ruleYears
+  as.numeric(ruleYears) -> numNumber
+  numNumber <= entranceYear -> logiTrue     #numNumber <= entranceYear -> logiTrue
+  if(any(logiTrue)){                        #any(logiTrue)
+    max(numNumber[logiTrue]) -> maxNum      #numNumber[logiTrue]
+    courseSelectionInfo[[as.character(maxNum)]]$url -> output
+  }else{
+    "很抱歉沒有您入學年的資訊，請打系辦電話" -> output
+  }
+  return(output)
+}
+search_courseRules_flexible
+```
+
+
+#答案
+```{r}
+search_courseRules_flexible <- function(entranceYear,courseSelectionInfo){
+  
+  # 1. 從courseSelectionInfo裡可得到文件頒佈學年
+  names(courseSelectionInfo) -> ruleYears
+  # 2. 再從這些文件學年找出那些是在entranceYear之前頒佈的
+  as.numeric(ruleYears) -> numNumber
+  numNumber <= entranceYear -> logiTrue
+  if(any(logiTrue)){
+    # 3. 符合上述條件的文件裡，選出頒佈學年最近的一份回傳其url
+    # numNumber[logiTrue] #符合上述條件的文件學年
+    max(numNumber[logiTrue]) -> maxNum #選出頒佈學年最近的一份
+    courseSelectionInfo[[as.character(maxNum)]]$url -> output
+  } else {
+     "很抱歉沒有您入學年的資訊，請打系辦電話" -> output
+  }  
+  
+  return(output)
+}
+```
+
+
+
+#3.4 更改元素名稱(b)
+先將EconCourseSelectionInfo另存成EconCourseSelectionInfo2物件，以EconCourseSelectionInfo2物件為對象：
+
+將的“105”學年元素名稱改為“106”。
+
+並在“107”學年元素下新增“線上志願選課辦法”名稱元素，其值為“http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf”
+
+此題「禁用」list()重新定義全新list物件，此題改題程式會拿掉答案中出現list字眼的程序行。此題答案物件為EconCourseSelectionInfo2。
+
+
+#答案
+```{r}
+EconCourseSelectionInfo2 <- EconCourseSelectionInfo
+names(EconCourseSelectionInfo2)[[3]] <- "106"                       #注意箭頭方向
+EconCourseSelectionInfo2[["107"]]$`線上志願選課辦法` <-             #[["107"]]$`線上志願選課辦法`
+  "http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf"
+
+EconCourseSelectionInfo2
+```
+
+
+
+
+##4 differen time zone
+執行以下程式引入invoiceList物件，其中「訂單時區」與「訂單時間(以訂單時區顯示)」的每筆資料是訂單來自時區及以該時區輸入的下單時間字串，「UTC時間」則是個目前無特別意義的UTC時間。
+```{r}
+load(url("https://github.com/tpemartin/github-data/blob/master/invoiceList.Rda?raw=true"))
+c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間') -> names(invoiceList)
+```
+
+請將每個「訂單時區之下單時間」依其「訂單時區」轉成UTC時間date time class（即POSIXct class）後，存在「UTC時間」對應的位置裡。最後一行請打本題答案物件invoiceList。
+
+```{r}
+invoiceList$訂單時區="America/New_York" -> nyLogical
+invoiceList$訂單時區="Asia/Taipei" ->tpLogical
+
+invoiceList$UTC時間[nyLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],tz="America/New_York"),tzone="UTC")
+invoiceList$UTC時間[tpLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],tz="Asia/Taipei"),tzone="UTC")
+
+invoiceList
+```
+
+#答案
+```{r}
+(invoiceList$訂單時區=="America/New_York") -> nyLogical
+
+(invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
+
+invoiceList$UTC時間[nyLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],tz="America/New_York"),tzone="UTC")     #[nyLogical]
+
+invoiceList$UTC時間[tpLogical] <-
+  with_tz(ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[tpLogical],tz="Asia/Taipei"),tzone="UTC")          #[tpLogical]
+
+invoiceList 
+```
+
+
+
+
+
+##5 轉系生
+請先執行以下程式取得學生成績單資料sampledTranscriptData，它是個list class的物件。
+```{r}
+load(url("https://github.com/tpemartin/github-data/blob/master/sampledTranscriptData.Rda?raw=true"))
+c('學號','學期成績','學分數','學年','學期','必選修類別（必／選／通）','系級','科目名稱','年級','學屆') ->
+  names(sampledTranscriptData)
+```
+
+sampledTranscriptData裡每個元素底下的值都是一位同學在一門課的修課狀況，資料變數（即這裡元素名稱）。
+
+學號是一入學就決定，不管後來有沒有轉系，其中：
+
+學號第5-6位數字為「系碼」
+經濟系的系碼為“73”，外系轉入經濟系的學生其系碼不會是“73”，但其「系級」變數值會含有“經濟學系”字樣。（Hint: stringr裡的str_detect(x,"test")可用來偵測x字串向量中，那些元素字串值中有“test”字眼出現，有的話回傳TRUE，反之為FALSE）
+
+請找出外系轉入經濟系的學生學號，並存成changeMajorStudent答案物件。(由於資料一筆為一科成績，所以學號會重覆出現，要存入答案物件前請用unique()去除重覆學號)
+
+
+```{r}
+str_sub(sampledTranscriptData$學號,5,6)!="73" & str_detect(sampledTranscriptData$系級,"經濟學系") ->logiCheck
+unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
+changeMajorStudent
+```
+
+
+```{r}
+(str_sub(sampledTranscriptData$學號,5,6)!="73" & 
+   str_detect(sampledTranscriptData$系級,"(經濟學系)")) -> logiCheck
+
+unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
+
+changeMajorStudent
+```
+
+
