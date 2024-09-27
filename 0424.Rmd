@@ -1,0 +1,163 @@
+---
+title: '0424'
+author: "黃鼎鈞"
+date: "2019/4/24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+m2<-matrix(c("a","b","c","d"),2,2)
+m2
+typeof(m2)
+class(m2)
+a<-m2[[3]]
+a
+c<-m2[[4]]
+c
+ac<-m2[[2]]
+ac
+bd<-m2[2,]
+bd
+m2[c(T,F,F,T)]
+```
+```{r}
+Vec2<-c(2:8)
+Vec2
+x<-Vec2[c(T,F,F)]
+x
+y<-Vec2[[3]]
+y
+```
+
+```{r}
+Mat1<-matrix(c(1:9), 3,3)
+Mat1
+```
+
+```{r}
+StuDF <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuDF 
+```
+
+```{r}
+class(StuDF)
+typeof(StuDF)
+```
+
+```{r}
+StuList <- list(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+```
+
+```{r}
+StuList 
+StuList[[2]][3]
+```
+
+```{r}
+fat<-StuDF[["姓名"]][[3]]
+fat
+StuDF[[2]][[3]]
+StuDF[[3]][[3]]
+```
+
+```{r}
+class(StuDF$姓名)
+as.character(StuDF$姓名)
+class(StuDF$姓名)
+```
+
+```{r}
+class(StuList)
+as.data.frame(StuList)->StuList3
+class(StuList)
+```
+
+```{r}
+StuList3
+```
+
+```{r}
+StuDF2 <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50),
+  stringsAsFactors = FALSE
+  )
+StuDF2 
+```
+
+```{r}
+StuDf3 <- data.frame(
+  stringasfactors= FALSE
+  )
+```
+
+```{r}
+LETTERS
+letters
+```
+
+```{r}
+chosenLETTERS <- LETTERS[1:15]
+matObj1 <- matrix(chosenLETTERS,5,3)
+matObj1
+```
+
+```{r}
+chosenLETTERS[8]
+matObj1[8]
+matObj1[3,2]
+matObj1[c(F,F,TRUE,F,F),c(F,TRUE,F)]
+```
+
+```{r}
+matObj1[c(1,4),c(2,3)]
+matObj1[c(T,F,F,T,F),c(F,T,T)]
+```
+```{r}
+library(readr)
+classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+```
+
+```{r}
+dim(classSurvey)
+nrow(classSurvey)
+ncol(classSurvey)
+```
+```{r}
+classSurvey[c(1:60),c(4,5)]
+```
+
+
