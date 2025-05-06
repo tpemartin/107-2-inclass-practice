@@ -1,0 +1,235 @@
+---
+title: "classin20190403"
+author: "Daphne"
+date: "2019年4月9日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+```
+
+```{r}
+x3 != y3
+x3 == y3
+```
+
+```{r}
+!( x3 == y3)
+x3 == y3
+```
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$"幣別"
+```
+```{r}
+head(currency)
+```
+
+```{r}
+class(currency)
+```
+
+
+```{r}
+currency <- as.factor(currency)
+class(currency)
+```
+
+```{r}
+levels(currency)
+```
+```{r}
+length(levels(currency))
+```
+```{r}
+step1_extractLevelsVector <- levels(currency)
+step1_extractLevelsVector
+
+```
+```{r}
+step2_countVectorLenrth <-
+  length(step1_extractLevelsVector)
+step2_countVectorLenrth
+```
+
+```{r}
+head(currency)
+```
+
+```{r}
+sum(currency == "日圓JPY/USD")
+```
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+
+x5 %in% greatTaipei
+!(x5 %in% greatTaipei)
+```
+```{r}
+y5 <- c("女","男","女")
+y5=="女"
+```
+```{r}
+!(y5=="女")
+```
+```{r}
+x5 %in% greatTaipei
+y5=="女"
+(x5 %in% greatTaipei) & (y5=="女")
+```
+```{r}
+which((x5 %in% greatTaipei) & (y5=="女"))
+```
+
+```{r}
+(x5 %in% greatTaipei) | (y5=="女")
+```
+```{r}
+which((x5 %in% greatTaipei) | (y5=="女"))
+```
+
+```{r}
+x5 %in% greatTaipei
+y5=="女"
+xor(x5 %in% greatTaipei, y5=="女")
+```
+```{r}
+which(xor(x5 %in% greatTaipei, y5=="女"))
+```
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$"期間")
+currency <- exData2$"幣別"
+exchangeRate <- exData2$"匯率"
+```
+```{r}
+class(date)
+```
+```{r}
+head(date)
+```
+```{r}
+library(lubridate)
+date <- ymd(date)
+```
+```{r}
+class(date)
+```
+```{r}
+isafter19800801 <- 
+  date >= ymd("1980-08-01")
+sum(isafter19800801)
+```
+第一種方法_先轉成facyor class再算sum
+```{r}
+currency <- as.factor(currency)
+class(currency)
+```
+```{r}
+sum(currency == "歐元USD/EUR" )
+```
+第二種方法_去定義currency==歐元
+```{r}
+iseuro <- currency == "歐元USD/EUR"
+sum(iseuro)
+```
+
+```{r}
+isExchangeRateNA <-
+  is.na(exchangeRate)
+sum(isExchangeRateNA)
+```
+
+```{r}
+is.na(exchangeRate)
+```
+```{r}
+isnotna <- !is.na(exchangeRate)
+iseuro <- currency == "歐元USD/EUR"
+```
+```{r}
+sum((isnotna)&(iseuro))
+```
+
+
+練習2
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+major <- transcriptDataFinal$"學系"
+studentID <- transcriptDataFinal$"學號"
+grade <- transcriptDataFinal$"學期成績"
+```
+```{r}
+class(major)
+```
+第一題
+```{r}
+major <- as.factor(major)
+class(major)
+```
+```{r}
+sum(major == "經濟學系")
+```
+第二題
+```{r}
+sum(studentID == "5bdS6977b")
+```
+第三題
+```{r}
+sum((studentID == "5bdS6977b")&(grade >= 60))
+```
+
+第四題
+```{r}
+sum((major == "經濟學系")&(courseType == "選"))
+```
+第五題
+```{r}
+sum(major == "經濟學系"&courseType == "必")
+both1 <- sum(major == "經濟學系"&courseType == "必")
+
+```
+```{r}
+sum((major == "經濟學系"&courseType == "必")&(grade < 60))
+both2 <- sum((major == "經濟學系"&courseType == "必")&(grade < 60))
+```
+```{r}
+both2/both1
+```
+
+
+

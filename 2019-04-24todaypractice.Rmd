@@ -1,0 +1,128 @@
+---
+title: '2019-04-24'
+author: "林茂廷"
+date: "4/24/2019"
+output: html_document
+---
+
+```{r}
+Mat1 <- matrix(c(1:6),2,3)
+Mat1
+```
+```{r}
+Mat2 <- matrix(c("a","b","c","d"),2,2)
+Mat2
+class(Mat2)
+typeof(Mat2)
+Mat2[[2]]
+Mat2[c(T,F,F,T)]
+```
+
+```{r}
+StuList <- list(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuList 
+```
+
+```{r}
+StuDF <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuDF 
+```
+StuDF其實在R中其實是list
+```{r}
+class(StuDF)
+typeof(StuDF)
+```
+
+```{r}
+StuDF[[2]][[3]]
+```
+
+```{r}
+class(StuDF$姓名)
+```
+```{r}
+StuDF$姓名 <- as.character(StuDF$姓名)
+class(StuDF$姓名)
+```
+```{r}
+StuDF2 <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50),
+  stringsAsFactors = FALSE
+  )
+StuDF2 
+```
+
+```{r}
+class(StuList)
+```
+
+```{r}
+as.data.frame(StuList) -> StuDF3
+class(StuDF3)
+```
+```{r}
+StuDF3
+```
+取消內定character為factor的方式：as.data.frame(..., stringsAsFactors = FALSE)
+```{r}
+as.data.frame(StuList,stringsAsFactors = F) -> StuDF4
+class(StuDF4)
+```
+```{r}
+StuDF4
+```
+
+```{r}
+LETTERS
+```
+
+```{r}
+chosenLETTERS <- LETTERS[1:15]
+matObj1 <- matrix(chosenLETTERS,5,3)
+matObj1
+class(matObj1)
+```
+
+```{r}
+chosenLETTERS2 <- letters[1:15]
+matObj2 <- matrix(chosenLETTERS2,5,3)
+matObj2
+```
+
+```{r}
+matObj1[8]
+chosenLETTERS2[8]
+```
+
+```{r}
+matObj1
+```
+c(1,4)代表row橫的 c(2,3)代表column直的
+```{r}
+matObj1[3,2] 
+matObj1[c(1,4),c(2,3)]
+```
+```{r}
+matObj1[c(T,F,F,T,F),c(F,T,T)]
+```
+```{r}
+library(readr)
+classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+```
+```{r}
+classSurvey[c(1:60),c(4,5)]
+
+```
+
+
+

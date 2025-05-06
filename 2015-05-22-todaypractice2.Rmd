@@ -1,0 +1,100 @@
+---
+title: '2015-05-22'
+author: "林茂廷"
+date: "5/22/2019"
+output: html_document
+---
+
+## midterm 6.2
+
+```{r}
+library(readr)
+invoiceList <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/invoiceList.csv",
+col_types = cols(訂單時間.以訂單時區顯示. = col_character()))
+names(invoiceList)[[2]] <- "訂單時區之下單時間"
+```
+
+```{r}
+(invoiceList$訂單時區=="America/New_York") -> nyLogical
+(invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
+
+invoiceList$nyLogical <- nyLogical
+invoiceList$tpLogical <- tpLogical
+
+library(lubridate)
+nyDateTime <- ymd_hms(invoiceList$訂單時區之下單時間[nyLogical],
+                      tz="America/New_york")
+
+invoiceList$UTC時間[nyLogical] <-
+  with_tz(nyDateTime,tzone="UTC")
+
+tpDateTime <- ymd_hms(invoiceList$`訂單時區之下單時間`[tpLogical],
+          tz="Asia/Taipei") 
+
+invoiceList$UTC時間[tpLogical] <-
+  with_tz(tpDateTime,tzone="UTC")
+invoiceList
+```
+
+```{r}
+nytime <- ymd_hms("1973-02-21 12:05:22",tz="America/New_York")
+tptime <- with_tz(nytime,tz="Asia/Taipei")
+```
+
+with_tz只能用(,tzone=)
+```{r}
+ymd_hms_tzChange <- function(input,fromTzone,toTzone){
+  time<- ymd_hms(input,tz=fromTzone)
+  answer <- with_tz(time,tzone=toTzone)
+  return(answer)
+}
+ymd_hms_tzChange("1973-02-21 12:05:22","America/New_York","Asia/Taipei")
+```
+
+```{r}
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,15,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+twDates
+```
+
+```{r}
+library(stringr); library(lubridate)
+yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(twDates,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+```
+
+```{r}
+date_convert_twYM <- function(x){
+  yyyy<-as.integer(str_extract(x,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(x,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+return(yyyymmdd)
+}
+date_convert_twYM(twDates)
+```
+
+```{r}
+utility_cobb_douglass2 <- function(x,y,.alpha=0.5,.beta=0.5){
+  utilValue <- x^.alpha*y^.beta
+  return(utilValue)
+}
+```
+
+```{r}
+utility_cobb_douglass2(1,2) # 使用預設值
+utility_cobb_douglass2(1,2,0.5,0.8) # 自定參數值
+```
+
+```{r}
+date_convert_twYM1 <- function(x,y=01){
+  yyyy<-as.integer(str_extract(x,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(x,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,y,sep="-"))
+return(yyyymmdd)
+}
+date_convert_twYM1(twDates)
+```
+
