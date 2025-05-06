@@ -1,0 +1,197 @@
+---
+title: '2019-03-20'
+author: ""
+date: "3/20/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+dialogue <- c("小明說：'明天不用上課。'",
+               "小花說：'真的嗎？'")
+
+cat(dialogue, sep="\n")
+```
+
+```{r}
+birthplace <- factor(
+  c("台中市", "台中市", "台北市","台中市","台北市")
+)
+class(birthplace)
+typeof(birthplace)
+levels(birthplace)
+as.integer(birthplace)
+```
+```{r}
+library(lubridate)
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+```
+
+```{r}
+Sys.timezone(1)
+```
+
+```{r}
+library(lubridate)
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+```
+
+```{r}
+typeof(LisbonDateTime)
+as.integer(LisbonDateTime)
+as.double(LisbonDateTime)
+```
+```{r}
+LisbonDateTime <- mdy_hms("3/18/2019 14:04:00")
+```
+
+```{r}
+LisbonDateTime <- ymd("2019/3/18")
+```
+
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+```
+
+```{r}
+a+bL
+class(a+bL)
+
+aL+bL
+class(aL+bL)
+```
+
+```{r}
+c <- 4
+
+c+a
+```
+
+```{r}
+a^b
+a %% b
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime+1
+```
+
+```{r}
+startingDate <- ymd("2000-02-17")
+```
+
+```{r}
+startingDate + years(1)
+```
+
+```{r}
+startingDate + dyears(1)
+```
+```{r}
+ymd("2000-02-01") -> startingDate
+ymd("2019-08-11") -> endingDate
+endingDate - startingDate
+```
+```{r}
+x <- 5
+y <- 7
+
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+```
+
+```{r}
+x >= y
+x == y
+x < y
+```
+
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+```
+```{r}
+x4 <- c(1,5,8)
+y4 <- c(5,8)
+
+x4 %in% y4
+```
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+y5 <- c("台北市","新北市")
+
+x5 %in% y5
+```
+```{r}
+x2 <- c(1,NA,10)
+y2 <- c(-1,NA,20)
+
+x3 <- c(NA,"小花")
+y3 <- c(NA,"小華")
+
+is.na(x2)
+```
+```{r}
+0/0
+```
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$幣別
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
