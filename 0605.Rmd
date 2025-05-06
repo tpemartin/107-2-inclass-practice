@@ -1,0 +1,63 @@
+---
+title: '0605'
+author: "黃鼎鈞"
+date: "2019/6/5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+utility_cobb_douglass(1,.beta=0.8,2,.alpha=0.5)
+```
+
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8)
+utility_cobb_douglass(1,2,.beta=0.8,.alpha=0.5)
+utility_cobb_douglass(1,.beta=0.8,2,0.5)
+utility_cobb_douglass(1,.beta=0.8,.alpha=0.5,2)
+```
+
+```{r}
+utility_cobb_douglass(y=2,x=1,0.5,0.8)
+
+
+```
+
+```{r}
+for(i in gmailAddress){
+  print(i)
+}
+
+for(i in c(1:4)){
+  print(i)
+  print(gmailAddress[[i]])
+}
+
+for(i in seq_along(gmailAddress)){
+  print(i)
+  print(gmailAddress[[i]])
+}
+```
+

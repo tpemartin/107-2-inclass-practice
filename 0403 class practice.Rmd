@@ -1,0 +1,173 @@
+---
+title: "0403課堂練習"
+author: "黃鼎鈞"
+date: "2019/4/10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+```
+
+```{r}
+x3 == y3
+x3 != y3
+```
+
+```{r}
+x3 == y3
+!(x3 == y3)
+```
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$幣別
+```
+
+```{r}
+head(currency) # head 會顯示物件前六個元素值。
+```
+```{r}
+levels(currency)
+```
+
+
+```{r}
+class(currency)
+```
+
+
+```{r}
+currency <- as.factor(currency)
+class(currency)
+```
+
+```{r}
+levels(currency)
+```
+
+```{r}
+length(levels(currency))
+```
+
+```{r}
+step1_extractLevelsVector <- levels(currency)
+step1_extractLevelsVector
+```
+
+```{r}
+step2_countVectorLength <- length(step1_extractLevelsVector)
+```
+
+```{r}
+step2_countVectorLength
+```
+
+
+```{r}
+head(currency)
+levels(currency)
+```
+
+```{r}
+currency2 <- c("日元","美元","日元")
+currency2
+```
+
+```{r}
+sum(currency2 == "日元")
+```
+
+```{r}
+head(currency)
+sum(currency == "日圓JPY/USD")
+```
+
+# 5.4 Logical Operators
+
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+x5 %in% greatTaipei
+```
+
+
+
+```{r}
+!(x5 %in% greatTaipei)
+```
+
+```{r}
+y5 <- c("女","男","女")
+y5=="女"
+```
+
+
+```{r}
+!(y5=="女")
+```
+
+> 圈圏是要圏出"Relational Operation"為真的元素在物件內的「位置」
+```{r}
+x5 %in% greatTaipei
+y5 == "女"
+(x5 %in% greatTaipei) & (y5=="女") # 同時（&）來自於greatTaipei 又是 女 性。
+```
+
+```{r}
+which((x5 %in% greatTaipei) & (y5=="女"))
+```
+
+```{r}
+x5
+y5
+```
+
+```{r}
+(x5 %in% greatTaipei)
+(y5=="女")
+(x5 %in% greatTaipei) | (y5=="女")
+```
+
+
+```{r}
+which((x5 %in% greatTaipei) | (y5=="女"))
+```
+
+```{r}
+x5 %in% greatTaipei
+y5=="女"
+xor(x5 %in% greatTaipei, y5=="女")
+```
+
+
+
+```{r}
+which(xor(x5 %in% greatTaipei, y5=="女"))
+```
+
